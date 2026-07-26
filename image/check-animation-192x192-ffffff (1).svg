@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 24 24"
+     style="transform:rotate(0deg);transform-origin:50% 50%;">
+  <rect width="100%" height="100%" fill="#0e100f" fill-opacity="0"/>
+  <defs></defs>
+  <style>
+    @keyframes draw1 {
+  0%          { stroke-dasharray:0.000 22.627; stroke-dashoffset:-22.627; opacity:1; animation-timing-function:cubic-bezier(0.455, 0.03, 0.515, 0.955); }
+  100%      { stroke-dasharray:22.627 22.627; stroke-dashoffset:0.000; opacity:1; animation-timing-function:cubic-bezier(0.55, 0.055, 0.675, 0.19); }
+}
+    .p1 { animation: draw1 1s linear forwards; animation-delay: 0.015s; }
+  </style>
+  <path class="p1" d="M20 6 9 17l-5-5" fill="none" stroke="#def433"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

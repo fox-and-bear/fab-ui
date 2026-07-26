@@ -1,0 +1,213 @@
+@layer base {
+  /* ===========================================
+ Contents: 
+1. Box Model
+2. Document Root
+3. Display / Visibility
+4. Typography
+5. Media & Embedded Elements
+6. Forms
+7. Scroll & Motion 
+=========================================== */
+
+  /* ===========================================
+  1. BOX MODEL
+   =========================================== */
+
+  /* Use border-box by default, globally. */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    font: inherit;
+  }
+
+  /* remove default spacing */
+  /* force styling of type through styling, rather than elements */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ===========================================
+  2. DOCUMENT ROOT
+   =========================================== */
+
+  :root {
+    color-scheme: dark light;
+  }
+
+  /* 2026-06-29 Hanging punctuation is only supported in Safari ATM  */
+  html {
+    hanging-punctuation: first last;
+    line-height: 1.5;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    scrollbar-gutter: stable;
+    -webkit-font-smoothing: antialiased;
+
+    overflow-x: hidden; /* prevent horizontal scroll QUESTIONABLE??*/
+  }
+
+  /* ===========================================
+   3. DISPLAY / VISIBILITY
+   =========================================== */
+
+  /* Maintain hidden behaviour when overriding display values */
+  [hidden] {
+    display: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid;
+    outline-offset: 2px;
+    z-index: 1;
+  }
+
+  /* ===========================================
+   4. TYPOGRAPHY
+   =========================================== */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  button,
+  input,
+  label {
+    line-height: 1.1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  /* prevent orphans in supported browsers */
+  p,
+  li {
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+  }
+
+  caption,
+  figcaption,
+  label,
+  legend {
+    line-height: 1.375;
+  }
+
+  pre {
+    white-space: pre-wrap;
+  }
+
+  hr {
+    border-style: solid;
+    border-width: 1px 0 0;
+    color: inherit;
+    height: 0;
+    overflow: visible;
+  }
+
+  header,
+  main,
+  footer,
+  section,
+  article,
+  aside,
+  nav,
+  figure {
+    container-type: inline-size;
+  }
+
+  /* ===========================================
+   5. MEDIA & EMBEDDED ELEMENTS
+   =========================================== */
+
+  img,
+  svg,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object {
+    display: block;
+    max-width: 100%;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    height: auto;
+  }
+
+  img {
+    vertical-align: middle;
+    font-style: italic;
+    background-repeat: no-repeat;
+    background-size: cover;
+    shape-margin: 0.75rem;
+  }
+
+  picture {
+    display: contents;
+  }
+
+  source {
+    display: none;
+  }
+
+  /* ===========================================
+   6. FORMS
+   =========================================== */
+
+  textarea:not([rows]) {
+    min-height: 10em;
+  }
+
+  /* ===========================================
+   7. SCROLL & MOTION
+   =========================================== */
+
+  /* Anything that has been anchored to should have extra scroll margin */
+  :target {
+    scroll-margin-block: 5ex;
+  }
+
+  /* 2026-06-29 interpolate-size is only supported in Chrome ATM */
+
+  @media (prefers-reduced-motion: no-preference) {
+    :has(:target) {
+      scroll-behavior: smooth;
+      scroll-padding-top: 3rem;
+      interpolate-size: allow-keywords;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-delay: -1ms !important;
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      background-attachment: initial !important;
+      scroll-behavior: auto !important;
+      transition-delay: 0s !important;
+      transition-duration: 0s !important;
+    }
+  }
+} /* end @layer base */

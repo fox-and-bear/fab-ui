@@ -1,0 +1,67 @@
+:root {
+  --lime: oklch(0.92 0.2 116.39 / 1);
+  --grape: oklch(0.4 0.12 302.23 / 1);
+  --purple: oklch(0.45 0.25 294.31 / 1);
+  --blue: oklch(0.55 0.23 260.76 / 1);
+  --teal: oklch(0.78 0.13 204.07 / 1);
+  --green: oklch(0.72 0.18 154.97 / 1);
+  --yellow: oklch(0.87 0.18 90.38 / 1);
+  --orange: oklch(0.74 0.18 56.46 / 1);
+  --red: oklch(0.66 0.23 26.4 / 1);
+  --dark: oklch(0.29 0.04 281.65 / 1);
+  --light: oklch(90.064% 0.01071 112.59 / 1);
+
+  --_step-1: 0.2;
+  --_step-2: 0.4;
+  --_step-3: 0.6;
+  --_step-4: 0.8;
+
+  --lighter: 0.98; /* almost white */
+  --target-chroma: 0.02; /* very low chroma for near grey */
+  --darker: 0.15; /* very dark */
+}
+
+#example-calculations {
+  /* Set your base color tints/shades */
+  --adjust-colour: var(--lime); /* default base colour */
+
+  --colour-100: oklch(
+    from var(--colour-500) calc(l + (var(--lighter) - l) * var(--_step-4))
+      calc(c - (c - var(--target-chroma)) * var(--_step-4)) h
+  );
+  --colour-200: oklch(
+    from var(--colour-500) calc(l + (var(--lighter) - l) * var(--_step-3))
+      calc(c - (c - var(--target-chroma)) * var(--_step-3)) h
+  );
+  --colour-300: oklch(
+    from var(--colour-500) calc(l + (var(--lighter) - l) * var(--_step-2))
+      calc(c - (c - var(--target-chroma)) * var(--_step-2)) h
+  );
+  --colour-400: oklch(
+    from var(--colour-500) calc(l + (var(--lighter) - l) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+  --colour-500: var(--adjust-colour);
+  --colour-600: oklch(
+    from var(--colour-500) calc(l - (l - var(--darker)) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+  --colour-700: oklch(
+    from var(--colour-500) calc(l - (l - var(--darker)) * var(--_step-2))
+      calc(c - (c - var(--target-chroma)) * var(--_step-2)) h
+  );
+  --colour-800: oklch(
+    from var(--colour-500) calc(l - (l - var(--darker)) * var(--_step-3))
+      calc(c - (c - var(--target-chroma)) * var(--_step-3)) h
+  );
+  --colour-900: oklch(
+    from var(--colour-500) calc(l - (l - var(--darker)) * var(--_step-4))
+      calc(c - (c - var(--target-chroma)) * var(--_step-4)) h
+  );
+
+  --colour-500-on: color-mix(
+    in oklch shorter hue,
+    contrast-color(var(--colour-500)) 80%,
+    var(--colour-500)
+  );
+}

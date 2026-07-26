@@ -1,0 +1,24 @@
+/**
+ * _component-container.css
+ *
+ * XXX
+ */
+@layer component;
+
+:root {
+  --fab-container-border-width: var(--fab-border-width-s);
+  --fab-container-border-style: var(--fab-border-style);
+  --fab-container-border-colour: var(--fab-colour-dark-teal-3);
+  --fab-container-border-radius: var(--fab-radius-m);
+  --fab-container-padding: min(var(--fab-spacing-2xl), 15%);
+  --fab-container-margin-block-end: var(--fab-spacing-l);
+}
+
+.fab-container {
+  border-width: var(--fab-container-border-width);
+  border-style: var(--fab-container-border-style);
+  border-color: var(--fab-container-border-colour);
+  border-radius: var(--fab-container-border-radius);
+  margin-block-end: var(--fab-container-margin-block-end);
+  padding: var(--fab-container-padding);
+}

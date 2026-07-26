@@ -1,0 +1,139 @@
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-Thin.woff2") format("woff2"),
+    url("Quablo-Thin.woff") format("woff"),
+    url("Quablo-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-ThinItalic.woff2") format("woff2"),
+    url("Quablo-ThinItalic.woff") format("woff"),
+    url("Quablo-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-ExtraLight.woff2") format("woff2"),
+    url("Quablo-ExtraLight.woff") format("woff"),
+    url("Quablo-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-ExtraLightItalic.woff2") format("woff2"),
+    url("Quablo-ExtraLightItalic.woff") format("woff"),
+    url("Quablo-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-Light.woff2") format("woff2"),
+    url("Quablo-Light.woff") format("woff"),
+    url("Quablo-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-LightItalic.woff2") format("woff2"),
+    url("Quablo-LightItalic.woff") format("woff"),
+    url("Quablo-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-Regular.woff2") format("woff2"),
+    url("Quablo-Regular.woff") format("woff"),
+    url("Quablo-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-RegularItalic.woff2") format("woff2"),
+    url("Quablo-RegularItalic.woff") format("woff"),
+    url("Quablo-RegularItalic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-Medium.woff2") format("woff2"),
+    url("Quablo-Medium.woff") format("woff"),
+    url("Quablo-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-MediumItalic.woff2") format("woff2"),
+    url("Quablo-MediumItalic.woff") format("woff"),
+    url("Quablo-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-SemiBold.woff2") format("woff2"),
+    url("Quablo-SemiBold.woff") format("woff"),
+    url("Quablo-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-SemiBoldItalic.woff2") format("woff2"),
+    url("Quablo-SemiBoldItalic.woff") format("woff"),
+    url("Quablo-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-Bold.woff2") format("woff2"),
+    url("Quablo-Bold.woff") format("woff"),
+    url("Quablo-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quablo";
+  src:
+    url("Quablo-BoldItalic.woff2") format("woff2"),
+    url("Quablo-BoldItalic.woff") format("woff"),
+    url("Quablo-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}

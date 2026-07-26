@@ -1,0 +1,164 @@
+:root {
+  --colour-text: var(--light-1);
+  --colour-text-lighter: var(--light-2);
+  --colour-text-darker: var(--light-0);
+  --colour-text-disabled: var(--dark-2);
+
+  --colour-background: var(--dark-1);
+  --colour-background-lighter: var(--dark-2);
+  --colour-background-darker: var(--dark-0);
+
+  --colour-border: var(--light-0);
+
+  /* --colour-primary: var(--lime-1);
+  --colour-primary-lighter: var(--lime-2);
+  --colour-primary-darker: var(--lime-0);
+  --colour-primary-on: var(--dark-1);
+  --colour-primary-disabled: var(--lime-4);
+  --colour-primary-disabled-on: var(--dark-2); */
+
+  --colour-primary: var(--lime);
+  --colour-primary-lighter: oklch(
+    from var(--colour-primary) calc(l + (var(--lighter) - l) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+  --colour-primary-darker: oklch(
+    from var(--colour-primary) calc(l - (l - var(--darker)) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+
+  --colour-primary-disabled: oklch(
+    from var(--colour-primary) calc(l + (var(--lighter) - l) * var(--_step-4))
+    calc(c - (c - var(--target-chroma)) * var(--_step-4)) h
+    );
+  --colour-primary-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-primary)) 80%, var(--colour-primary));
+  --colour-primary-disabled-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-primary-disabled)) 60%, var(--colour-primary-disabled));
+
+  /* --colour-secondary: var(--dark-1);
+  --colour-secondary-lighter: var(--dark-2);
+  --colour-secondary-darker: var(--dark-0);
+  --colour-secondary-on: var(--light-1);
+  --colour-secondary-disabled: var(--dark-0);
+  --colour-secondary-disabled-on: var(--dark-2); */
+
+  --colour-secondary: var(--dark);
+  --colour-secondary-lighter: oklch(
+    from var(--colour-secondary) calc(l + (var(--lighter) - l) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+  --colour-secondary-darker: oklch(
+    from var(--colour-secondary) calc(l - (l - var(--darker)) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+
+  --colour-secondary-disabled: oklch(
+    from var(--colour-secondary) calc(l + (var(--lighter) - l) * var(--_step-4))
+    calc(c - (c - var(--target-chroma)) * var(--_step-4)) h
+    );
+  --colour-secondary-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-secondary)) 80%, var(--colour-secondary));
+  --colour-secondary-disabled-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-secondary-disabled)) 60%, var(--colour-secondary-disabled));
+
+  /* --colour-danger: var(--red-1);
+  --colour-danger-lighter: var(--red-2);
+  --colour-danger-darker: var(--red-0);
+  --colour-danger-on: var(--red-4);
+  --colour-danger-disabled: var(--red-4);
+  --colour-danger-disabled-on: var(--dark-2); */
+
+  --colour-danger: var(--red);
+  --colour-danger-lighter: oklch(
+    from var(--colour-danger) calc(l + (var(--lighter) - l) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+  --colour-danger-darker: oklch(
+    from var(--colour-danger) calc(l - (l - var(--darker)) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+
+  --colour-danger-disabled: oklch(
+    from var(--colour-danger) calc(l + (var(--lighter) - l) * var(--_step-4))
+    calc(c - (c - var(--target-chroma)) * var(--_step-4)) h
+    );
+  --colour-danger-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-danger)) 80%, var(--colour-danger));
+  --colour-danger-disabled-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-danger-disabled)) 60%, var(--colour-secondary-disabled));
+
+/* 
+  --colour-success: var(--green-1);
+  --colour-success-lighter: var(--green-2);
+  --colour-success-darker: var(--green-0);
+  --colour-success-on: var(--green-4);
+  --colour-success-disabled: var(--green-4);
+  --colour-success-disabled-on: var(--dark-2); */
+
+  
+  --colour-success: var(--green);
+  --colour-success-lighter: oklch(
+    from var(--colour-success) calc(l + (var(--lighter) - l) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+  --colour-success-darker: oklch(
+    from var(--colour-success) calc(l - (l - var(--darker)) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+
+  --colour-success-disabled: oklch(
+    from var(--colour-success) calc(l + (var(--lighter) - l) * var(--_step-4))
+    calc(c - (c - var(--target-chroma)) * var(--_step-4)) h
+    );
+  --colour-success-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-success)) 80%, var(--colour-success));
+  --colour-success-disabled-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-success-disabled)) 60%, var(--colour-secondary-disabled));
+
+
+
+  /* --colour-warning: var(--yellow-1);
+  --colour-warning-lighter: var(--yellow-2);
+  --colour-warning-darker: var(--yellow-0);
+  --colour-warning-on: var(--yellow-4);
+  --colour-warning-disabled: var(--yellow-4);
+  --colour-warning-disabled-on: var(--dark-2); */
+
+
+  --colour-warning: var(--yellow);
+  --colour-warning-lighter: oklch(
+    from var(--colour-warning) calc(l + (var(--lighter) - l) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+  --colour-warning-darker: oklch(
+    from var(--colour-warning) calc(l - (l - var(--darker)) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+
+  --colour-warning-disabled: oklch(
+    from var(--colour-warning) calc(l + (var(--lighter) - l) * var(--_step-4))
+    calc(c - (c - var(--target-chroma)) * var(--_step-4)) h
+    );
+  --colour-warning-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-warning)) 80%, var(--colour-warning));
+  --colour-warning-disabled-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-warning-disabled)) 60%, var(--colour-secondary-disabled));
+
+
+  /* --colour-info: var(--teal-1);
+  --colour-info-lighter: var(--teal-2);
+  --colour-info-darker: var(--teal-0);
+  --colour-info-on: var(--teal-4);
+  --colour-info-disabled: var(--teal-4);
+  --colour-info-disabled-on: var(--dark-2); */
+
+  
+  --colour-info: var(--teal);
+  --colour-info-lighter: oklch(
+    from var(--colour-info) calc(l + (var(--lighter) - l) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+  --colour-info-darker: oklch(
+    from var(--colour-info) calc(l - (l - var(--darker)) * var(--_step-1))
+      calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
+  );
+
+  --colour-info-disabled: oklch(
+    from var(--colour-info) calc(l + (var(--lighter) - l) * var(--_step-4))
+    calc(c - (c - var(--target-chroma)) * var(--_step-4)) h
+    );
+  --colour-info-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-info)) 80%, var(--colour-info));
+  --colour-info-disabled-on: color-mix(in oklch shorter hue, contrast-color(var(--colour-info-disabled)) 60%, var(--colour-secondary-disabled));
+
+}

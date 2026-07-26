@@ -1,0 +1,95 @@
+@import url("chaney/index.css");
+@import url("cassannet/index.css");
+@import url("n27/index.css");
+@import url("quablo/index.css");
+
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+  font-weight: 300 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Audiowide";
+  src: url("Audiowide-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* Berlin Type */
+
+@font-face {
+  font-family: "Berlin Type";
+  src:
+    url("BerlinTypeWeb-Bold.woff2") format("woff2"),
+    url("BerlinTypeWeb-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Berlin Type";
+  src:
+    url("BerlinTypeWeb-Regular.woff2") format("woff2"),
+    url("BerlinTypeWeb-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* DM Sans  */
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("DMSans-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 1 1000;
+  font-style: normal;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("DMSans-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 1 1000;
+  font-style: italic;
+}
+
+
+/* DM Mono  */
+
+@font-face {
+  font-family: "DM Mono";
+  src: url("DMMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "DM Mono";
+  src: url("DMMono-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "DM Mono";
+  src: url("DMMono-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "DM Mono";
+  src: url("DMMono-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "DM Mono";
+  src: url("DMMono-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "DM Mono";
+  src: url("DMMono-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}

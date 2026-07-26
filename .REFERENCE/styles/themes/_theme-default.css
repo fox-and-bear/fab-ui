@@ -1,0 +1,57 @@
+/**
+ * default.css
+ *
+ * XXX
+ */
+@layer themes;
+
+:root {
+
+  /* colour overrides */
+
+  /* Info colours */
+  /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+
+  /* Success colours */
+  /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+
+  /* Warning colours */
+  /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+
+  /* Danger colours */
+  /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+
+  /* Override: Surface colours */
+  /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+
+   /* Override: Text colours */
+  /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+
+  /**
+   * Line (text) heights
+   */
+  --fab-line-height-condensed: 1.2;
+  --fab-line-height-normal: 1.6;
+  --fab-line-height-expanded: 2;
+
+  /**
+   * Fonts
+   */
+  /* --fab-font-family-body: 'Barlow Semi Condensed';
+  --fab-font-family-heading: 'Space Grotesk'; */
+  --fab-font-family-body: 'BerlinTypeRegular';
+  --fab-font-family-heading: 'BerlinTypeBold';
+
+  /* Override: Font sizes and weights */
+
+  /* Font weights are defaulted to normal or bold since BerlinType only supports regular and bold weights */
+  --fab-font-weight-light: normal;
+  --fab-font-weight-normal: normal;
+  --fab-font-weight-semibold: bold;
+  --fab-font-weight-bold: bold;
+}
+
+/* Dialog/form overrides */
+.fab-dialog-search {
+  --fab-dialog-form-grid-template-columns: 1fr;
+}

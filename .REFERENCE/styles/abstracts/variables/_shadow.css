@@ -1,0 +1,40 @@
+/**
+ * shadow.css
+ *
+ * XXX
+ */
+
+@layer abstracts;
+
+:root {
+
+   --fab-shadow-offset-x-scale: 0;
+   --fab-shadow-offset-x-s: calc(var(--fab-shadow-offset-x-scale) * 0.125rem);
+   --fab-shadow-offset-x-m: calc(var(--fab-shadow-offset-x-scale) * 0.25rem);
+   --fab-shadow-offset-x-l: calc(var(--fab-shadow-offset-x-scale) * 0.5rem);
+
+   --fab-shadow-offset-y-scale: 0.0625;
+   --fab-shadow-offset-y-s: calc(var(--fab-shadow-offset-y-scale) * 0.125rem);
+   --fab-shadow-offset-y-m: calc(var(--fab-shadow-offset-y-scale) * 0.25rem);
+   --fab-shadow-offset-y-l: calc(var(--fab-shadow-offset-y-scale) * 0.5rem);
+
+   --fab-shadow-blur-scale: 1;
+   --fab-shadow-blur-s: calc(var(--fab-shadow-blur-scale) * 0.125rem);
+   --fab-shadow-blur-m: calc(var(--fab-shadow-blur-scale) * 0.25rem);
+   --fab-shadow-blur-l: calc(var(--fab-shadow-blur-scale) * 0.5rem);
+
+   --fab-shadow-spread-scale: 0;
+   --fab-shadow-spread-s: calc(var(--fab-shadow-spread-scale) * 0.125rem);
+   --fab-shadow-spread-m: calc(var(--fab-shadow-spread-scale) * 0.25rem);
+   --fab-shadow-spread-l: calc(var(--fab-shadow-spread-scale) * 0.5rem);
+
+   --fab-shadow-s: var(--fab-shadow-offset-x-s) var(--fab-shadow-offset-y-s) var(--fab-shadow-blur-s)
+   var(--fab-shadow-spread-s) var(--fab-colour-shadow);
+
+   --fab-shadow-m: var(--fab-shadow-offset-x-m) var(--fab-shadow-offset-y-m) var(--fab-shadow-blur-m)
+   var(--fab-shadow-spread-m) var(--fab-colour-shadow);
+
+   --fab-shadow-l: var(--fab-shadow-offset-x-l) var(--fab-shadow-offset-y-l) var(--fab-shadow-blur-l)
+   var(--fab-shadow-spread-l) var(--fab-colour-shadow);
+
+}

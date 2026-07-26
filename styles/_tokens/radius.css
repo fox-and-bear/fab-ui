@@ -1,0 +1,9 @@
+:root {
+    --radius-none: 0;
+    --radius-xs: var(--size-3xs);
+    --radius-sm: var(--size-2xs);
+    --radius-md: var(--size-md);
+    --radius-lg: var(--size-lg);
+    --radius-xl: var(--size-xl);
+    --radius-full: var(--size-full);
+}

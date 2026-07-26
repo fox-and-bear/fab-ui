@@ -1,0 +1,8 @@
+
+
+@layer utilities;
+
+.hidden,
+[hidden] {
+  display: none;
+}

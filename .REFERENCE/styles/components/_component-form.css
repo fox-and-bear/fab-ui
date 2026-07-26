@@ -1,0 +1,47 @@
+/**
+ * _component-form.css
+ *
+ * XXX
+ */
+@layer components;
+
+:root {
+   --fab-form-font-family: var(--fab-font-family-body);
+   --fab-form-font-size: var(--fab-font-size-m);
+   --fab-form-font-weight: var(--fab-font-weight-normal);
+
+   --fab-form__input-container-gap: 0;
+
+   --fab-form-help-text-margin: var(--fab-spacing-xs);
+   --fab-form-help-text-font-size: var(--fab-font-size-s);
+   --fab-form-help-text-font-weight: var(--fab-font-weight-light);
+   --fab-form-help-text-colour: grey;
+}
+
+form,
+.fab-form {
+
+   font-family: var(--fab-form-font-family);
+   font-size: var(--fab-form-font-size);
+   font-weight: var(--fab-form-font-weight);
+
+}
+
+.fab-form__input-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: start;
+   row-gap: var(--fab-form__input-container-gap);
+   width: 100%;
+   padding: 0;
+   margin: 0;
+}
+
+.fab-form__help-text {
+   width: 100%;
+   margin: var(--fab-form-help-text-margin);
+   color: var(--fab-form-help-text-colour);
+   font-size: var(--fab-form-help-text-font-size);
+   font-weight: var(--fab-form-help-text-font-weight);
+}

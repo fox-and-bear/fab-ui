@@ -1,0 +1,12 @@
+h1 {
+    color: var(--colour-primary)
+}
+
+body {
+    color: var(--colour-text);
+    background-color: var(--colour-background-darker);
+}
+
+main {
+    background-color: var(--colour-background);
+}

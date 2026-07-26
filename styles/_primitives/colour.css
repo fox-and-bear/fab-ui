@@ -1,0 +1,92 @@
+
+:root {
+    /* Lime  */
+  --lime-0: oklch(0.74 0.16 116.50 / 1);
+  --lime-1: oklch(0.92 0.20 116.39 / 1);
+  --lime-2: oklch(0.94 0.16 115.16 / 1);
+  --lime-3: oklch(0.96 0.10 113.64 / 1);
+  --lime-4: oklch(0.98 0.04 113.47 / 1);
+  --lime-transparent: oklch(0.92 0.20 116.39 / 0.25);
+
+  /* Grape */   
+  --grape-0: oklch(0.31 0.08 302.93 / 1);
+  --grape-1: oklch(0.40 0.12 302.23 / 1);
+  --grape-2: oklch(0.59 0.08 305.15 / 1);
+  --grape-3: oklch(0.77 0.04 305.64 / 1);
+  --grape-4: oklch(0.92 0.02 306.40 / 1);
+  --grape-transparent: oklch(0.41 0.12 302.27 / 0.50);
+  
+  /* Purple */
+  --purple-0: oklch(0.33 0.18 295.37 / 1);
+  --purple-1: oklch(0.45 0.25 294.31 / 1);
+  --purple-2: oklch(0.58 0.21 303.17 / 1);
+  --purple-3: oklch(0.75 0.12 306.60 / 1);
+  --purple-4: oklch(0.91 0.04 307.24 / 1);
+  --purple-transparent: oklch(0.45 0.25 294.31 / 0.25);
+
+  /* Blue */
+  --blue-0: oklch(0.40 0.17 260.17 / 1);
+  --blue-1: oklch(0.55 0.23 260.76 / 1);
+  --blue-2: oklch(0.67 0.17 258.50 / 1);
+  --blue-3: oklch(0.80 0.09 257.97 / 1);
+  --blue-4: oklch(0.92 0.03 257.85 / 1);
+  --blue-transparent: oklch(0.55 0.23 260.76 / 0.25);
+
+  /* Teal */
+  --teal-0: oklch(0.57 0.10 203.06 / 1);
+  --teal-1: oklch(0.78 0.13 204.07 / 1);
+  --teal-2: oklch(0.83 0.12 201.72 / 1);
+  --teal-3: oklch(0.89 0.08 201.63 / 1);
+  --teal-4: oklch(0.96 0.03 201.38 / 1);
+  --teal-transparent: oklch(0.78 0.13 204.07 / 0.25);
+
+    /* Green */
+  --green-0: oklch(0.52 0.13 155.81 / 1);
+  --green-1: oklch(0.72 0.18 154.97 / 1);
+  --green-2: oklch(0.79 0.14 161.56 / 1);
+  --green-3: oklch(0.87 0.09 165.40 / 1);
+  --green-4: oklch(0.95 0.03 167.98 / 1);
+  --green-transparent: oklch(0.72 0.18 154.97 / 0.25);
+
+  /* Yellow */
+  --yellow-0: oklch(0.63 0.13 91.17 / 1);
+  --yellow-1: oklch(0.87 0.18 90.38 / 1);
+  --yellow-2: oklch(0.90 0.16 95.03 / 1);
+  --yellow-3: oklch(0.94 0.10 96.09 / 1);
+  --yellow-4: oklch(0.98 0.04 96.58 / 1);
+  --yellow-transparent: oklch(0.87 0.18 90.38 / 0.25);
+
+  /* Orange */
+  --orange-0: oklch(0.54 0.13 57.56 / 1);
+  --orange-1: oklch(0.74 0.18 56.46 / 1);
+  --orange-2: oklch(0.81 0.15 66.50 / 1);
+  --orange-3: oklch(0.88 0.09 69.59 / 1);
+  --orange-4: oklch(0.95 0.03 70.34 / 1);
+  --orange-transparent: oklch(0.74 0.18 56.46 / 0.25);
+
+  /* Red */
+  --red-0: oklch(0.48 0.16 26.05 / 1);
+  --red-1: oklch(0.66 0.23 26.40 / 1);
+  --red-2: oklch(0.73 0.17 22.11 / 1);
+  --red-3: oklch(0.83 0.09 19.18 / 1);
+  --red-4: oklch(0.94 0.03 17.74 / 1);
+  --red-transparent: oklch(0.66 0.23 26.40 / 0.25);
+
+
+
+  /* Dark and Light */
+  --dark-0: oklch(0.23 0.03 280.77 / 1);
+  --dark-1: oklch(0.29 0.04 281.65 / 1);
+  --dark-2: oklch(53.108% 0.01876 281.922);
+  --dark-3: oklch(0.74 0.01 286.12 / 1);
+  --dark-4: oklch(0.90 0 286.32 / 1);
+  --dark-transparent: oklch(0.29 0.04 281.65 / 0.25);
+
+  --light-0: oklch(0.75 0.01 111.99 / 1);
+  --light-1: oklch(90.064% 0.01071 112.59);
+  --light-2: oklch(0.95 0.01 112 / 1);
+  --light-3: oklch(0.97 0.01 111.94 / 1);
+  --light-4: oklch(0.99 0 111.81 / 1);
+  --light-transparent: oklch(0.90 0.01 111.96  / 0.25);  
+
+}

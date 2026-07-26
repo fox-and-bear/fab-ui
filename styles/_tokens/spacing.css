@@ -1,0 +1,22 @@
+:root {
+  --space-4xs: var(--size-4xs);
+  --space-3xs: var(--size-3xs);
+  --space-2xs: var(--size-2xs);
+  --space-xs: var(--size-xs);
+  --space-sm: var(--size-sm);
+  --space-md: var(--size-md);
+  --space-lg: var(--size-lg);
+  --space-xl: var(--size-xl);
+  --space-2xl: var(--size-2xl);
+
+  /* Pairs - used for greater variations */
+  --space-4xs-p: var(--size-4xs-3xs);
+  --space-3xs-p: var(--size-3xs-2xs);
+  --space-2xs-p: var(--size-2xs-xs);
+  --space-xs-p: var(--size-xs-sm);
+  --space-sm-p: var(--size-sm-md);
+  --space-md-p: var(--size-md-lg);
+  --space-lg-p: var(--size-lg-xl);
+  --space-xl-p: var(--size-xl-2xl);
+  --space-2xl-p: var(--size-2xl-3xl);
+}

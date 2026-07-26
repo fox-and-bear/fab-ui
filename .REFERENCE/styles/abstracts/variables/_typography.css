@@ -1,0 +1,61 @@
+/**
+ * default.css
+ *
+ * XXX
+ */
+@layer abstracts;
+
+:root {
+
+  /**
+   * Fonts
+   */
+  --fab-font-family-body: sans-serif;
+  --fab-font-family-heading: sans-serif;
+
+  /* Font sizes use a ratio of 1.125 to scale sizes proportionally.
+    * For larger font sizes, each size is twice 1.125x larger to maximize impact.
+    * Each value uses `rem` units and is rounded to the nearest whole pixel when rendered. */
+  --fab-font-size-scale: 1;
+
+  --fab-font-size-m: calc( 1rem * var(--fab-font-size-scale) ); /* 16px */
+
+  --fab-font-size-s: round( calc( var(--fab-font-size-m) / 1.125 ), 1px ); /* 14px */
+  --fab-font-size-xs: round( calc( var(--fab-font-size-s) / 1.125 ), 1px ); /* 12px */
+  --fab-font-size-2xs: round( calc( var(--fab-font-size-xs) / 1.125 ), 1px ); /* 11px */
+  --fab-font-size-3xs: round( calc( var(--fab-font-size-2xs) / 1.125 ), 1px ); /* 10px */
+  --fab-font-size-4xs: round( calc( var(--fab-font-size-3xs) / 1.125 ), 1px ); /* 9px */
+  
+  --fab-font-size-l: round( calc( var(--fab-font-size-m) * 1.125 * 1.125 ), 1px ); /* 20px */
+  --fab-font-size-xl: round( calc( var(--fab-font-size-l) * 1.125 * 1.125 ), 1px ); /* 25px */
+  --fab-font-size-2xl: round( calc( var(--fab-font-size-xl) * 1.125 * 1.125 ), 1px ); /* 32px */
+  --fab-font-size-3xl: round( calc( var(--fab-font-size-2xl) * 1.125 * 1.125 ), 1px ); /* 41px */
+  --fab-font-size-4xl: round( calc( var(--fab-font-size-3xl) * 1.125 * 1.125 ), 1px ); /* 52px */
+
+  /* Smaller/larger font sizes relative to the current font size within the element; i.e. using `em` */
+  --fab-font-size-smaller: round( calc( 1em / 1.125 ), 1px );
+  --fab-font-size-larger: round( calc( 1em * 1.125 * 1.125 ), 1px );
+
+  --fab-font-size-body: var(--fab-font-size-m);
+  --fab-font-size-h1: var(--fab-font-size-3xl);
+  --fab-font-size-h2: var(--fab-font-size-2xl);
+  --fab-font-size-h3: var(--fab-font-size-xl);
+  --fab-font-size-h4: var(--fab-font-size-l);
+  --fab-font-size-h5: var(--fab-font-size-m);
+  --fab-font-size-h6: var(--fab-font-size-s);
+
+  --fab-font-weight-light: 300;
+  --fab-font-weight-normal: 400;
+  --fab-font-weight-semibold: 500;
+  --fab-font-weight-bold: 700;
+
+  --fab-font-weight-body: var(--fab-font-weight-normal);
+  --fab-font-weight-heading: var(--fab-font-weight-bold);
+  /* --fab-font-weight-code: var(--fab-font-weight-normal);
+  --fab-font-weight-longform: var(--fab-font-weight-normal); */
+  --fab-font-weight-action: var(--fab-font-weight-semibold);
+
+  --fab-line-height-condensed: 1.2;
+  --fab-line-height-normal: 1.6;
+  --fab-line-height-expanded: 2;
+}

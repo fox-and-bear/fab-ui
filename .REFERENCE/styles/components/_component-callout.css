@@ -1,0 +1,365 @@
+/**
+ * _component-callout.css
+ *
+ * XXX
+ */
+@layer components;
+
+:root {
+
+  --fab-callout-width-min: 300px;
+  --fab-callout-width-max: 500px;
+
+  --fab-callout-animation-duration: var(--fab-transition-slow);
+  --fab-callout-animation-closing-translation: -1rem;
+
+  --fab-callout-gap: var(--fab-spacing-m);
+  --fab-callout-padding: var(--fab-spacing-s);
+  --fab-callout-margin: var(--fab-spacing-s);
+
+  --fab-callout-colour-background: transparent;
+  --fab-callout-colour-text: var(--fab-colour-text-default-light, white);
+  --fab-callout-border-colour:  var(--fab-colour-neutral, grey);
+  --fab-callout-border-width: var(--fab-border-width-m);
+  --fab-callout-border-style: var(--fab-border-style);
+  --fab-callout-border: none;
+  --fab-callout-border-radius: var(--fab-radius-xl);
+  --fab-callout-filled-transparency: 25%;
+  --fab-callout-accent-transparency: 15%;
+
+  --fab-callout-close-btn-colour: var(--fab-colour-neutral-light);
+  --fab-callout-close-btn-height: 1.25rem;
+  --fab-callout-close-btn-width: 1.25rem;
+  
+  --fab-callout-icon-colour-background: transparent;
+  --fab-callout-icon-colour-foreground: currentColor;
+  --fab-callout-icon-height: 1.5rem;
+  --fab-callout-icon-width: 1.5rem;
+}
+
+.fab-callout {
+
+  min-width: var(--fab-callout-width-min);
+  max-width: var(--fab-callout-width-max);
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  gap: var(--fab-callout-gap);
+
+  align-items: center;
+
+  padding: var(--fab-callout-padding);
+  margin: var(--fab-callout-margin) auto;
+  border: var(--fab-callout-border);
+  /* border-radius: var(--fab-callout-border-radius); */
+  border-top-left-radius: var(--fab-callout-border-radius);
+  border-top-right-radius: var(--fab-callout-border-radius);
+  border-bottom-left-radius: var(--fab-callout-border-radius);
+  border-bottom-right-radius: 0;
+  
+  font-family: var(--fab-font-family-body), sans-serif;
+  font-size: var(--fab-font-size-body);
+  font-weight: var(--fab-font-weight-body);
+
+  background-color: var(--fab-callout-colour-background);
+  color: var(--fab-callout-colour-text);
+
+  /* Display transition */
+  opacity: 1;
+  transform: translateY( 0 );
+  transition: opacity var(--fab-callout-animation-duration) ease-out,
+    transform var(--fab-callout-animation-duration) ease-out,
+    max-height var(--fab-callout-animation-duration) ease-out,
+    margin var(--fab-callout-animation-duration) ease-out;
+  max-height: 500px;
+  pointer-events: auto;
+}
+
+.fab-callout__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /*var(--fab-spacing-s);*/
+  justify-content: start;
+  > * {
+    justify-content: start;
+  }
+}
+
+.fab-callout__title {
+  font-family: var(--fab-font-family-heading), sans-serif;
+  font-size: var(--fab-font-size-h4);
+  font-weight: var(--fab-font-weight-heading);
+}
+
+.fab-callout__btn--close {
+
+  margin-left: auto;
+  display: flex;
+  flex: none;
+
+  svg {
+    height: var(--fab-callout-close-btn-height);
+    width: var(--fab-callout-close-btn-width);
+    color: var(--fab-callout-close-btn-colour);
+  }
+}
+
+.fab-callout__container--icon {
+
+  height: var(--fab-callout-icon-height);
+  width: var(--fab-callout-icon-width);
+
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--fab-callout-icon-colour-foreground);
+
+  svg {
+    height: var(--fab-callout-icon-height);
+    width: var(--fab-callout-icon-width);
+    color: var(--fab-callout-icon-colour-foreground);
+    flex-shrink: 0;
+  }
+}
+
+/* When closing the callout - first animate it and then hide it */
+.fab-callout.hide {
+  opacity: 0;
+  transform: translateY( var(--fab-callout-animation-closing-translation) ); /* Move the callout up a bit before hiding it */
+  max-height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  pointer-events: none;
+}
+
+/**
+ * Appearance modifiers
+ *
+ * These appearance modifiers are defined before any others as they may then be overwritten
+ * by appearance modifiers in the variants below.
+ */
+
+/*
+ * Appearance: outlined
+ * By default, `outlined` callouts have a transparent background, unless modified additionally by the `filled` or `accent` modifiers
+ */
+/* :host([appearance~='outlined']) { */
+.fab-callout:is(.outlined) {
+  --fab-callout-colour-background: transparent;
+}
+/*
+ * Appearance: filled
+ * By default, `filled` callouts have a transparent border, unless modified additionally by the `outlined` modifier
+ */
+/* :host([appearance~='filled']) { */
+.fab-callout:is(.filled) {
+  --fab-callout-border-colour: transparent;
+}
+
+/**
+ * Variant: Brand
+ */
+/* :host([variant~='brand']),
+:host(.brand) { */
+.fab-callout:is(.brand) {
+  --fab-callout-icon-colour-background: var(--fab-colour-brand-fill-normal);
+}
+/* Brand appearance modifiers */
+/* :host([variant~='brand'][appearance~='outlined']),
+:host(.brand.outlined) { */
+.fab-callout:is(.brand.outlined) {
+  --fab-callout-border-colour: var(--fab-colour-brand-border-dark);
+  --fab-callout-close-btn-colour: var(--fab-colour-brand-border-normal);
+  --fab-callout-border: var(--fab-callout-border-width) var(--fab-callout-border-style) var(--fab-callout-border-colour);
+}
+/* :host([variant~='brand'][appearance~='filled']),
+:host(.brand.filled) { */
+.fab-callout:is(.brand.filled) {
+  --fab-callout-border-colour: var(--fab-colour-brand-border-normal);
+  --fab-callout-close-btn-colour: var(--fab-colour-brand-border-light);
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-brand-fill-dark), transparent var(--fab-callout-filled-transparency));
+  --fab-callout-colour-text: var(--fab-colour-brand-fill-dark-foreground);
+}
+/* :host([variant~='brand'][appearance~='accent']),
+:host(.brand.accent) { */
+.fab-callout:is(.brand.accent) {
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-brand-fill-normal), transparent var(--fab-callout-accent-transparency));
+  --fab-callout-colour-text: var(--fab-colour-brand-fill-normal-foreground);
+  --fab-callout-close-btn-colour: var(--fab-colour-brand-border-dark);
+  --fab-callout-border-colour: var(--fab-colour-brand-border-dark);
+  --fab-callout-icon-colour-background: var(--fab-colour-brand-fill-dark);
+}
+
+/**
+ * Variant: Success
+ */
+.fab-callout:is(.success) {
+  --fab-callout-border-colour: var(--fab-colour-success);
+  --fab-callout-close-btn-colour: var(--fab-colour-success);
+  --fab-callout-colour-background: transparent;
+  --fab-callout-colour-text: var(--fab-colour-success-light);
+}
+/* success appearance modifiers */
+.fab-callout:is(.success.outlined) {
+  --fab-callout-border: var(--fab-callout-border-width) var(--fab-callout-border-style) var(--fab-callout-border-colour);
+}
+.fab-callout:is(.success.filled) {
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-success-dark), transparent var(--fab-callout-filled-transparency));
+}
+.fab-callout:is(.success.accent) {
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-success-light), transparent var(--fab-callout-accent-transparency));
+  --fab-callout-colour-text: var(--fab-colour-success-dark);
+  --fab-callout-close-btn-colour: var(--fab-colour-success-dark);
+  --fab-callout-border-colour: var(--fab-colour-success-dark);
+}
+
+/**
+ * Variant: Warning
+ */
+.fab-callout:is(.warning) {
+  --fab-callout-border-colour: var(--fab-colour-warning);
+  --fab-callout-close-btn-colour: var(--fab-colour-warning);
+  --fab-callout-colour-background: transparent;
+  --fab-callout-colour-text: var(--fab-colour-warning-light);
+}
+/* warning appearance modifiers */
+.fab-callout:is(.warning.outlined) {
+  --fab-callout-border: var(--fab-callout-border-width) var(--fab-callout-border-style) var(--fab-callout-border-colour);
+}
+.fab-callout:is(.warning.filled) {
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-warning-dark), transparent var(--fab-callout-filled-transparency));
+}
+.fab-callout:is(.warning.accent) {
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-warning-light), transparent var(--fab-callout-accent-transparency));
+  --fab-callout-colour-text: var(--fab-colour-warning-dark);
+  --fab-callout-close-btn-colour: var(--fab-colour-warning-dark);
+  --fab-callout-border-colour: var(--fab-colour-warning-dark);
+}
+
+/**
+ * Variant: Danger
+ */
+.fab-callout:is(.danger) {
+  --fab-callout-border-colour: var(--fab-colour-danger);
+  --fab-callout-close-btn-colour: var(--fab-colour-danger);
+  --fab-callout-colour-background: transparent;
+  --fab-callout-colour-text: var(--fab-colour-danger-light);
+}
+/* danger appearance modifiers */
+.fab-callout:is(.danger.outlined) {
+  --fab-callout-border: var(--fab-callout-border-width) var(--fab-callout-border-style) var(--fab-callout-border-colour);
+}
+.fab-callout:is(.danger.filled) {
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-danger-dark), transparent var(--fab-callout-filled-transparency));
+}
+.fab-callout:is(.danger.accent) {
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-danger-light), transparent var(--fab-callout-accent-transparency));
+  --fab-callout-colour-text: var(--fab-colour-danger-dark);
+  --fab-callout-close-btn-colour: var(--fab-colour-danger-dark);
+  --fab-callout-border-colour: var(--fab-colour-danger-dark);
+}
+
+/**
+ * Variant: Info
+ */
+.fab-callout:is(.info) {
+  --fab-callout-border-colour: var(--fab-colour-info);
+  --fab-callout-close-btn-colour: var(--fab-colour-info);
+  --fab-callout-colour-background: transparent;
+  --fab-callout-colour-text: var(--fab-colour-info-light);
+}
+/* info appearance modifiers */
+.fab-callout:is(.info.outlined) {
+  --fab-callout-border: var(--fab-callout-border-width) var(--fab-callout-border-style) var(--fab-callout-border-colour);
+}
+.fab-callout:is(.info.filled) {
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-info-dark), transparent var(--fab-callout-filled-transparency));
+}
+.fab-callout:is(.info.accent) {
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-info-light), transparent var(--fab-callout-accent-transparency));
+  --fab-callout-colour-text: var(--fab-colour-info-dark);
+  --fab-callout-close-btn-colour: var(--fab-colour-info-dark);
+  --fab-callout-border-colour: var(--fab-colour-info-dark);
+}
+
+/**
+ * Variant: Neutral
+ */
+/* :host([variant~='neutral']),
+:host(.neutral) { */
+.fab-callout:is(.neutral) {
+  --fab-callout-icon-colour-background: var(--fab-colour-neutral-fill-normal);
+  /* --fab-callout-border-colour: var(--fab-colour-neutral-border-normal); */
+}
+/* neutral appearance modifiers */
+/* :host([variant~='neutral'][appearance~='plain'][icon-background]) {
+  --fab-callout-icon-colour-foreground: var(--fab-colour-text-default-dark);
+} */
+/* :host([variant~='neutral'][appearance~='outlined']),
+:host(.neutral.outlined) { */
+.fab-callout:is(.neutral.outlined) {
+  --fab-callout-border-colour: var(--fab-colour-neutral-border-dark);
+  --fab-callout-close-btn-colour: var(--fab-colour-neutral-border-normal);
+  --fab-callout-border: var(--fab-callout-border-width) var(--fab-callout-border-style) var(--fab-callout-border-colour);
+}
+/* :host([variant~='neutral'][appearance~='filled']),
+:host(.neutral.filled) { */
+.fab-callout:is(.neutral.filled) {
+  --fab-callout-border-colour: var(--fab-colour-neutral-border-normal);
+  --fab-callout-close-btn-colour: var(--fab-colour-neutral-border-light);
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-neutral-fill-dark), transparent var(--fab-callout-filled-transparency));
+  --fab-callout-colour-text: var(--fab-colour-neutral-fill-dark-foreground);
+}
+/* :host([variant~='neutral'][appearance~='filled'][icon-background]),
+:host([variant~='neutral'][appearance~='outlined'][icon-background]:not([appearance~='accent'])) {
+  --fab-callout-icon-colour-foreground: var(--fab-colour-text-default-dark);
+} */
+/* :host([variant~='neutral'][appearance~='accent']),
+:host(.neutral.accent) { */
+.fab-callout:is(.neutral.accent) {
+  --fab-callout-colour-background: color-mix(in oklch, var(--fab-colour-neutral-fill-normal), transparent var(--fab-callout-accent-transparency));
+  --fab-callout-colour-text: var(--fab-colour-neutral-fill-normal-foreground);
+  --fab-callout-close-btn-colour: var(--fab-colour-neutral-border-dark);
+  --fab-callout-border-colour: var(--fab-colour-neutral-border-dark);
+  --fab-callout-icon-colour-background: var(--fab-colour-neutral-fill-dark);
+}
+
+/* :host(:not([icon-background])) {
+  --fab-callout-icon-colour-background: transparent;
+} */
+
+/**
+ * Appearance modifiers
+ *
+ * These appearance modifiers are defined after any others as they may then overwrite
+ * any appearance modifiers in the variants above.
+ */
+
+/*
+ * Appearance: plain
+ * `plain` callouts always have a transparent background and border
+ */
+/* :host([appearance~='plain']) { */
+.fab-callout:is(.plain) {
+  --fab-callout-colour-background: transparent;
+  --fab-callout-border-colour: transparent;
+}
+/*
+ * Appearance: accent
+ * `accent` callouts always have darker text but retain the same colour for the icon
+ */
+/* :host([appearance~='accent']) { */
+.fab-callout:is(.accent) {
+  --fab-callout-colour-text: var(--fab-colour-text-default-dark);
+}
+/* :host([appearance~='accent']:not([icon-background])) {
+  --fab-callout-icon-colour-background: transparent;
+  --fab-callout-icon-colour-foreground: currentColor;
+} */
+/* :host([appearance~='accent'][icon-background]) { */
+.fab-callout:is(.accent.icon-background) {
+  --fab-callout-icon-colour-foreground: var(--fab-colour-text-default-light);
+}

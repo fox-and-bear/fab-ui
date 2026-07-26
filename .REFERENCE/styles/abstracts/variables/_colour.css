@@ -1,0 +1,87 @@
+
+@layer abstracts;
+
+:root {
+
+   /* Brand colours */
+   /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+   --fab-colour-brand: var(--fab-colour-sunflower-gold);
+   --fab-colour-brand-light: var(--fab-colour-canary-yellow);
+   --fab-colour-brand-dark: var(--fab-colour-ochre);
+
+   /* Neutral colours */
+   /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+   --fab-colour-neutral: var(--fab-colour-slate-grey);
+   --fab-colour-neutral-light: var(--fab-colour-alabaster-grey);
+   --fab-colour-neutral-dark: var(--fab-colour-gunmetal);
+
+   /* Info colours */
+   /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+   --fab-colour-info: var(--fab-colour-rich-cerulean);
+   --fab-colour-info-light: var(--fab-colour-sky-blue-light);
+   --fab-colour-info-dark: var(--fab-colour-deep-space-blue);
+
+   /* Success colours */
+   /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+   --fab-colour-success: var(--fab-colour-seagrass);
+   --fab-colour-success-light: var(--fab-colour-celadon-2);
+   --fab-colour-success-dark: var(--fab-colour-stormy-teal);
+
+   /* Warning colours */
+   /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+   --fab-colour-warning: var(--fab-colour-harvest-gold);
+   --fab-colour-warning-light: var(--fab-colour-banana-cream);
+   --fab-colour-warning-dark: var(--fab-colour-ochre);
+
+   /* Danger colours */
+   /* TODO: Modify colours for light/dark backgrounds (when e.g. callout has transparent background) */
+   --fab-colour-danger: var(--fab-colour-raspberry);
+   --fab-colour-danger-light: var(--fab-colour-pink-mist);
+   --fab-colour-danger-dark: var(--fab-colour-crushed-berry);
+
+  /**
+   * Foundation colours
+   *
+   * Surfaces:
+   *  --fab-colour-surface-default
+   *  --fab-colour-surface-raised
+   *  --fab-colour-surface-lowered
+   *  --fab-colour-surface-border
+   *
+   * Text:
+   *  --fab-colour-text-default
+   */
+
+   /* Surface colours */
+   --fab-colour-surface-raised: var(--fab-colour-dark-slate-grey);
+   --fab-colour-surface-default: var(--fab-colour-charcoal-blue);
+   --fab-colour-surface-lowered: var(--fab-colour-jet-black);
+   --fab-colour-surface-border: var(--fab-colour-charcoal-teal-blue);
+
+   /* Text colours */
+   /* TODO: Modify colours for light/dark backgrounds and themes */
+   --fab-colour-text-default: var(--fab-colour-pale-slate);
+   --fab-colour-text-secondary: var(--fab-colour-pale-slate-2);
+
+   /* Overlay colours */
+   --fab-colour-overlay-modal: color-mix(in oklab, black 60%, transparent);
+   --fab-colour-overlay-inline: color-mix(in oklab, var(--fab-colour-pale-slate-2) 10%, transparent);
+
+   --fab-colour-shadow: color-mix(
+      in oklab,
+      var(--fab-colour-surface-lowered) calc(var(--fab-shadow-blur-scale) * 32% + 40%),
+      transparent
+   );
+
+   /* Accent colours */
+   --fab-colour-accent-primary: var(--fab-colour-lobster-pink);
+   --fab-colour-accent-secondary: var(--fab-colour-magenta-bloom);
+   --fab-colour-accent-tertiary: var(--fab-colour-bronze);
+
+   /* Focus colour */
+   --fab-colour-focus: var(--fab-colour-accent-primary);
+
+      /* --fab-colour-mix-hover: black 8%;
+   --fab-colour-mix-active: black 16%; */
+
+}

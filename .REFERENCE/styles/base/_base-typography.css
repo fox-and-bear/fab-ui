@@ -1,0 +1,60 @@
+/**
+ * base.css
+ *
+ * XXX
+ */
+
+@layer base;
+
+body {
+  font-family: var(--fab-font-family-body), sans-serif;
+  font-size: var(--fab-font-size-m);
+  font-weight: var(--fab-font-weight-body);
+  line-height: var(--fab-line-height-normal);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--fab-font-family-heading), sans-serif;
+  font-weight: var(--fab-font-weight-heading);
+  /* line-height: var(--fab-line-height-condensed); */
+  line-height: var(--fab-line-height-normal);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fab-font-size-3xl);
+}
+
+h2 {
+  font-size: var(--fab-font-size-2xl);
+}
+
+h3 {
+  font-size: var(--fab-font-size-xl);
+}
+
+h4 {
+  font-size: var(--fab-font-size-l);
+}
+
+h5 {
+  font-size: var(--fab-font-size-m);
+}
+
+h6 {
+  font-size: var(--fab-font-size-s);
+}
+
+p {
+  text-wrap: pretty;
+}

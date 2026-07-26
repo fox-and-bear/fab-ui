@@ -1,0 +1,22 @@
+/**
+ * _border.css
+ *
+ * XXX
+ */
+@layer abstracts;
+
+:root {
+
+  /**
+   * Border (line) styles and widths
+   */
+  --fab-border-style: solid;
+
+  --fab-border-width-scale: 1;
+  --fab-border-width-step: 0.0625em;
+
+  --fab-border-width-s: calc( var(--fab-border-width-scale) * calc( 1 * var(--fab-border-width-step) ) );
+  --fab-border-width-m: calc( var(--fab-border-width-scale) * calc( 2 * var(--fab-border-width-step) ) );
+  --fab-border-width-l: calc( var(--fab-border-width-scale) * calc( 3 * var(--fab-border-width-step) ) );
+  --fab-border-width-xl: calc( var(--fab-border-width-scale) * calc( 5 * var(--fab-border-width-step) ) );
+}

@@ -1,0 +1,8 @@
+@import "_fonts/index.css" layer(primitives);
+@import "_primitives/index.css" layer(primitives);
+@import "_tokens/index.css" layer(tokens);
+@import "base/index.css" layer(base);
+@import "components/index.css" layer(components);
+@import "layout/index.css" layer(layout);
+
+@layer primitives, tokens, base, components, layout;

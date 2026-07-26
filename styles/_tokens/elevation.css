@@ -1,0 +1,32 @@
+/* drop shadows for elevations - should use primitive values TBC*/
+:root {
+  /* call-outs, inset shadows */
+  --elevation-01-inset: inset 0px 4px 10px -2px rgba(26, 27, 40, 1);
+
+  /* No elevation - only useful for transitions */
+  --elevation-00: 0px 0px 0px rgba(0, 0, 0, 0);
+
+  /* e.g. Cards, pressed button  */
+  --elevation-01:
+    0px 1px 2px rgba(0, 0, 0, 0.32), 0px 0px 1px rgba(40, 41, 61, 0.08);
+
+  /* e.g. Buttons, notification badges  */
+  --elevation-02:
+    0px 2px 4px rgba(0, 0, 0, 0.32), 0px 0px 1px rgba(0, 0, 0, 0.04);
+
+  /* e.g. Navigation Menu bar  */
+  --elevation-03:
+    0px 4px 8px rgba(0, 0, 0, 0.32), 0px 0px 2px rgba(0, 0, 0, 0.04);
+
+  /* e.g. Card raised, button raised  */
+  --elevation-04:
+    0px 8px 16px rgba(0, 0, 0, 0.32), 0px 2px 4px rgba(0, 0, 0, 0.04);
+
+  /* e.g. Picker, popover   */
+  --elevation-05:
+    0px 16px 24px rgba(0, 0, 0, 0.32), 0px 2px 8px rgba(0, 0, 0, 0.04);
+
+  /* e.g. Modal, dialogues */
+  --elevation-06:
+    0px 20px 32px rgba(0, 0, 0, 0.32), 0px 2px 8px rgba(0, 0, 0, 0.08);
+}

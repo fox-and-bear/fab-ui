@@ -22,8 +22,7 @@
 }
 
 #example-calculations {
-  /* Set your base color tints/shades */
-  --adjust-colour: var(--lime); /* default base colour */
+  --colour-500: var(--lime);
 
   --colour-100: oklch(
     from var(--colour-500) calc(l + (var(--lighter) - l) * var(--_step-4))
@@ -41,7 +40,6 @@
     from var(--colour-500) calc(l + (var(--lighter) - l) * var(--_step-1))
       calc(c - (c - var(--target-chroma)) * var(--_step-1)) h
   );
-  --colour-500: var(--adjust-colour);
   --colour-600: oklch(
     from var(--colour-500) calc(l - (l - var(--darker)) * var(--_step-1))
       calc(c - (c - var(--target-chroma)) * var(--_step-1)) h

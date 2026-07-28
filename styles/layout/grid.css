@@ -1,458 +1,73 @@
-/*
-  Page layout utilities.
-  Apply one of these classes to the page/container and use semantic children:
-  header, .sidebar, main, aside, footer.
+/* This might be too heavy handed  */
+body > * {
+  container-type: inline-size;
+}
 
-  ------------------------------------------------------------
-  
-  Layout index
-
-  .layout-stack
-  .layout-sidebar
-  .layout-holy-grail
-  .layout-dashboard
-  .layout-split
-
-------------------------------------------------------------
-
-  .layout-stack
-
-  +------------------+
-  |      header      |
-  +------------------+
-  |       main       |
-  |     content      |
-  +------------------+
-  |      footer      |
-  +------------------+
-
-  .layout-sidebar
-
-  Mobile
-  +------------------+
-  |      header      |
-  +------------------+
-  |     sidebar      |
-  +------------------+
-  |       main       |
-  +------------------+
-  |      footer      |
-  +------------------+
-
-  Desktop
-  +---------------------------+
-  |          header           |
-  +---------------------------+
-  | sidebar |      main       |
-  | sidebar |    content      |
-  +---------------------------+
-  |          footer           |
-  +---------------------------+
-
-  .layout-holy-grail
-
-  Mobile
-  +------------------+
-  |      header      |
-  +------------------+
-  |     sidebar      |
-  +------------------+
-  |       main       |
-  +------------------+
-  |      aside       |
-  +------------------+
-  |      footer      |
-  +------------------+
-
-  Desktop
-  +----------------------------------+
-  |              header              |
-  +----------------------------------+
-  | sidebar |      main      | aside |
-  | sidebar |    content     | aside |
-  +----------------------------------+
-  |              footer              |
-  +----------------------------------+
-
-  .layout-dashboard
-
-  Mobile
-  +------------------+
-  |      header      |
-  +------------------+
-  |     sidebar      |
-  +------------------+
-  |       main       |
-  |   widgets/panels |
-  +------------------+
-  |      footer      |
-  +------------------+
-
-  Desktop
-  +---------------------------+
-  |          header           |
-  +---------+-----------------+
-  | sidebar |      main       |
-  | sidebar |  widgets/panels |
-  | sidebar |  widgets/panels |
-  +---------+-----------------+
-  |          footer           |
-  +---------------------------+
-
-  .layout-split
-
-  Mobile
-  +------------------+
-  |      header      |
-  +------------------+
-  |       main       |
-  +------------------+
-  |      aside       |
-  +------------------+
-  |      footer      |
-  +------------------+
-
-  Desktop
-  +---------------------------+
-  |          header           |
-  +---------------------------+
-  |      main     |   aside   |
-  |      main     |   aside   |
-  +---------------------------+
-  |          footer           |
-  +---------------------------+
-*/
-
-:is(.layout-stack, .layout-sidebar, .layout-holy-grail, .layout-dashboard, .layout-split) {
+:is(.layout-stack, .layout-sidebar, .layout-holy-grail) {
   --layout-gap: 0;
   --layout-gutter: minmax(var(--space-md), 1fr);
   --layout-content-max: 72rem;
-  --layout-sidebar-width: minmax(14rem, 18rem);
-  --layout-aside-width: minmax(12rem, 16rem);
+  --layout-sidebar-width: 16rem;
+  --layout-aside-width: 12rem;
   --layout-split-panel-min: minmax(0, 1fr);
 
   display: grid;
   min-block-size: 100dvh;
   gap: var(--layout-gap);
-  grid-template-columns: var(--grid-template-columns-layout);
-  grid-template-rows: var(--grid-template-rows-layout);
+  grid-template-rows: auto 1fr auto;
 
   > header {
-    grid-column: var(--grid-column-header, var(--grid-column-full-bleed));
-    grid-row: var(--grid-row-header);
+    grid-area: header;
   }
 
   > .sidebar {
-    grid-column: var(--grid-column-sidebar, auto);
-    grid-row: var(--grid-row-sidebar, auto);
+    grid-area: sidebar;
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--layout-sidebar-width);
   }
 
   > main {
-    grid-column: var(--grid-column-main, var(--grid-column-content));
-    grid-row: var(--grid-row-main, var(--grid-row-content));
-    min-inline-size: 0;
+    grid-area: main;
   }
 
   > aside {
-    grid-column: var(--grid-column-aside, auto);
-    grid-row: var(--grid-row-aside, auto);
+    grid-area: aside;
   }
 
   > footer {
-    grid-column: var(--grid-column-footer, var(--grid-column-full-bleed));
-    grid-row: var(--grid-row-footer);
+    grid-area: footer;
   }
 }
 
 .layout-stack {
-  /*
-    Named columns
-    [page-start] | gutter | [content-start] main content [content-end] | gutter | [page-end]
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
 
-    Aside behavior
-    aside intentionally aliases the shared content track in both axes;
-    this layout does not create a dedicated aside column or row.
-
-    Named rows
-    [page-start header-start]
-    | header |
-    [header-end content-start]
-    | main content |
-    [content-end footer-start]
-    | footer |
-    [footer-end page-end]
-  */
-  --grid-template-columns-named: [page-start] var(--layout-gutter) [content-start]
-    minmax(0, min(100%, var(--layout-content-max))) [content-end] var(--layout-gutter) [page-end];
-  --grid-template-rows-named: [page-start header-start] auto [header-end content-start] 1fr
-    [content-end footer-start] auto [footer-end page-end];
-  --grid-template-columns-layout: var(--grid-template-columns-named);
-  --grid-template-rows-layout: var(--grid-template-rows-named);
-  --grid-column-full-bleed: page-start / page-end;
-  --grid-column-content: content-start / content-end;
-  --grid-column-main: content-start / content-end;
-  --grid-column-aside: content-start / content-end;
-  --grid-column-sidebar: content-start / content-end;
-  --grid-row-header: header-start / header-end;
-  --grid-row-sidebar: content-start / content-end;
-  --grid-row-content: content-start / content-end;
-  --grid-row-main: content-start / content-end;
-  --grid-row-aside: content-start / content-end;
-  --grid-row-footer: footer-start / footer-end;
+  main {
+    max-inline-size: var(--layout-content-max);
+    margin-inline: auto;
+  }
 }
 
 .layout-sidebar {
-  /*
-    Mobile named columns
-    [page-start] | gutter | [content-start] content stack [content-end] | gutter | [page-end]
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main"
+    "sidebar footer";
 
-    Aside behavior
-    aside intentionally aliases the shared content track in both axes;
-    this layout adds a sidebar track, but not a dedicated aside track.
-
-    Mobile named rows
-    [page-start header-start]
-    | header |
-    [header-end sidebar-start]
-    | sidebar |
-    [sidebar-end content-start]
-    | main |
-    [content-end footer-start]
-    | footer |
-    [footer-end page-end]
-  */
-  --grid-template-columns-layout: [page-start] var(--layout-gutter) [content-start]
-    minmax(0, min(100%, var(--layout-content-max))) [content-end] var(--layout-gutter) [page-end];
-  --grid-template-rows-layout: [page-start header-start] auto [header-end sidebar-start] auto
-    [sidebar-end content-start] 1fr [content-end footer-start] auto [footer-end page-end];
-  --grid-column-full-bleed: page-start / page-end;
-  --grid-column-content: content-start / content-end;
-  --grid-column-main: content-start / content-end;
-  --grid-column-aside: content-start / content-end;
-  --grid-column-sidebar: content-start / content-end;
-  --grid-row-header: header-start / header-end;
-  --grid-row-sidebar: sidebar-start / sidebar-end;
-  --grid-row-content: content-start / content-end;
-  --grid-row-main: content-start / content-end;
-  --grid-row-aside: content-start / content-end;
-  --grid-row-footer: footer-start / footer-end;
+  grid-template-columns: var(--layout-sidebar-width) 1fr;
 }
 
 .layout-holy-grail {
-  /*
-    Mobile named columns
-    [page-start] | gutter | [content-start] content stack [content-end] | gutter | [page-end]
+  grid-template-areas:
+    "header header header"
+    "sidebar main aside"
+    "footer footer footer";
 
-    Aside behavior
-    aside gets its own dedicated row here, and a dedicated column at desktop width.
-
-    Mobile named rows
-    [page-start header-start]
-    | header |
-    [header-end sidebar-start]
-    | sidebar |
-    [sidebar-end content-start]
-    | main |
-    [content-end aside-start]
-    | aside |
-    [aside-end footer-start]
-    | footer |
-    [footer-end page-end]
-  */
-  --grid-template-columns-layout: [page-start] var(--layout-gutter) [content-start]
-    minmax(0, min(100%, var(--layout-content-max))) [content-end] var(--layout-gutter) [page-end];
-  --grid-template-rows-layout: [page-start header-start] auto [header-end sidebar-start] auto
-    [sidebar-end content-start] 1fr [content-end aside-start] auto [aside-end footer-start] auto
-    [footer-end page-end];
-  --grid-column-full-bleed: page-start / page-end;
-  --grid-column-content: content-start / content-end;
-  --grid-column-main: content-start / content-end;
-  --grid-column-sidebar: content-start / content-end;
-  --grid-column-aside: content-start / content-end;
-  --grid-row-header: header-start / header-end;
-  --grid-row-sidebar: sidebar-start / sidebar-end;
-  --grid-row-content: content-start / content-end;
-  --grid-row-main: content-start / content-end;
-  --grid-row-aside: aside-start / aside-end;
-  --grid-row-footer: footer-start / footer-end;
-}
-
-.layout-dashboard {
-  /*
-    Mobile named columns
-    [page-start] | gutter | [content-start] content stack [content-end] | gutter | [page-end]
-
-    Aside behavior
-    aside intentionally aliases the shared content track in both axes;
-    this layout reserves the extra structure for sidebar plus dashboard content.
-
-    Mobile named rows
-    [page-start header-start]
-    | header |
-    [header-end sidebar-start]
-    | sidebar |
-    [sidebar-end content-start]
-    | main/widgets |
-    [content-end footer-start]
-    | footer |
-    [footer-end page-end]
-  */
-  --grid-template-columns-layout: [page-start] var(--layout-gutter) [content-start]
-    minmax(0, min(100%, var(--layout-content-max))) [content-end] var(--layout-gutter) [page-end];
-  --grid-template-rows-layout: [page-start header-start] auto [header-end sidebar-start] auto
-    [sidebar-end content-start] 1fr [content-end footer-start] auto [footer-end page-end];
-  --grid-column-full-bleed: page-start / page-end;
-  --grid-column-content: content-start / content-end;
-  --grid-column-main: content-start / content-end;
-  --grid-column-aside: content-start / content-end;
-  --grid-column-sidebar: content-start / content-end;
-  --grid-row-header: header-start / header-end;
-  --grid-row-sidebar: sidebar-start / sidebar-end;
-  --grid-row-content: content-start / content-end;
-  --grid-row-main: content-start / content-end;
-  --grid-row-aside: content-start / content-end;
-  --grid-row-footer: footer-start / footer-end;
-}
-
-.layout-split {
-  /*
-    Mobile named columns
-    [page-start] | gutter | [content-start main-start aside-start] content [main-end aside-end content-end] | gutter | [page-end]
-
-    Aside behavior
-    aside has its own dedicated row on mobile and its own dedicated column on desktop.
-
-    Mobile named rows
-    [page-start header-start]
-    | header |
-    [header-end content-start main-start]
-    | main |
-    [content-end main-end aside-start]
-    | aside |
-    [aside-end footer-start]
-    | footer |
-    [footer-end page-end]
-  */
-  --grid-template-columns-layout: [page-start] var(--layout-gutter) [content-start]
-    minmax(0, min(100%, var(--layout-content-max))) [content-end] var(--layout-gutter) [page-end];
-  --grid-template-rows-layout: [page-start header-start] auto [header-end content-start main-start]
-    1fr [content-end main-end aside-start] 1fr [aside-end footer-start] auto [footer-end page-end];
-  --grid-column-full-bleed: page-start / page-end;
-  --grid-column-content: content-start / content-end;
-  --grid-column-main: content-start / content-end;
-  --grid-column-aside: content-start / content-end;
-  --grid-row-header: header-start / header-end;
-  --grid-row-content: content-start / content-end;
-  --grid-row-main: main-start / main-end;
-  --grid-row-aside: aside-start / aside-end;
-  --grid-row-footer: footer-start / footer-end;
-}
-
-@media (width >= 60rem) {
-  .layout-sidebar {
-    /*
-      Desktop named columns
-      [page-start sidebar-start] sidebar [sidebar-end content-start] main [content-end page-end]
-
-      Aside behavior
-      aside still aliases the shared content track; only sidebar gets a dedicated desktop column.
-
-      Desktop named rows
-      [page-start header-start]
-      | header |
-      [header-end content-start]
-      | sidebar + main |
-      [content-end footer-start]
-      | footer |
-      [footer-end page-end]
-    */
-    --grid-template-columns-layout: [page-start sidebar-start] var(--layout-sidebar-width)
-      [sidebar-end content-start] minmax(0, 1fr) [content-end page-end];
-    --grid-template-rows-layout: [page-start header-start] auto [header-end content-start] 1fr
-      [content-end footer-start] auto [footer-end page-end];
-    --grid-column-sidebar: sidebar-start / sidebar-end;
-    --grid-row-sidebar: content-start / content-end;
-  }
-
-  .layout-holy-grail {
-    /*
-      Desktop named columns
-      [page-start sidebar-start] sidebar [sidebar-end content-start] main [content-end aside-start] aside [aside-end page-end]
-
-      Aside behavior
-      aside has a dedicated desktop column and shares the main content row by design.
-
-      Desktop named rows
-      [page-start header-start]
-      | header |
-      [header-end content-start]
-      | sidebar + main + aside |
-      [content-end footer-start]
-      | footer |
-      [footer-end page-end]
-    */
-    --grid-template-columns-layout: [page-start sidebar-start] var(--layout-sidebar-width)
-      [sidebar-end content-start] minmax(0, 1fr) [content-end aside-start] var(--layout-aside-width)
-      [aside-end page-end];
-    --grid-template-rows-layout: [page-start header-start] auto [header-end content-start] 1fr
-      [content-end footer-start] auto [footer-end page-end];
-    --grid-column-sidebar: sidebar-start / sidebar-end;
-    --grid-column-aside: aside-start / aside-end;
-    --grid-row-sidebar: content-start / content-end;
-    --grid-row-aside: content-start / content-end;
-  }
-
-  .layout-dashboard {
-    /*
-      Desktop named columns
-      [page-start sidebar-start] sidebar [sidebar-end content-start] dashboard main [content-end page-end]
-
-      Aside behavior
-      aside still aliases the shared content track; this layout only promotes sidebar to a dedicated desktop column.
-
-      Desktop named rows
-      [page-start header-start]
-      | header |
-      [header-end content-start]
-      | persistent sidebar + main |
-      [content-end footer-start]
-      | footer |
-      [footer-end page-end]
-    */
-    --grid-template-columns-layout: [page-start sidebar-start] var(--layout-sidebar-width)
-      [sidebar-end content-start] minmax(0, 1fr) [content-end page-end];
-    --grid-template-rows-layout: [page-start header-start] auto [header-end content-start] 1fr
-      [content-end footer-start] auto [footer-end page-end];
-    --grid-column-sidebar: sidebar-start / sidebar-end;
-    --grid-row-sidebar: header-end / footer-start;
-  }
-
-  .layout-split {
-    /*
-      Desktop named columns
-      [page-start] | gutter | [content-start main-start] main [main-end aside-start] aside [aside-end content-end] | gutter | [page-end]
-
-      Aside behavior
-      aside keeps a dedicated desktop column while sharing the main content row.
-
-      Desktop named rows
-      [page-start header-start]
-      | header |
-      [header-end content-start main-start aside-start]
-      | main + aside |
-      [content-end main-end aside-end footer-start]
-      | footer |
-      [footer-end page-end]
-    */
-    --grid-template-columns-layout: [page-start] var(--layout-gutter) [content-start]
-      minmax(0, var(--layout-split-panel-min)) [main-end aside-start]
-      minmax(0, var(--layout-split-panel-min)) [aside-end content-end] var(--layout-gutter)
-      [page-end];
-    --grid-template-rows-layout: [page-start header-start] auto [header-end content-start main-start
-      aside-start] 1fr [content-end main-end aside-end footer-start] auto [footer-end page-end];
-    --grid-column-main: main-start / main-end;
-    --grid-column-aside: aside-start / aside-end;
-  }
+  grid-template-columns: var(--layout-sidebar-width) 1fr var(--layout-aside-width);
 }
 
 /* Class starts-with "grid-" */

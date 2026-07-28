@@ -97,14 +97,16 @@ a:hover::before {
   transform: scaleX(1);
 }
 
-select,
-option,
-textarea,
-input {
-  height: var(--input-height);
 
+/* select, */
+/* option, */
+/* *:not([class*="ts-"]) > input */
+select:not([multiple]),
+select:not([multiple]) option,
+textarea,
+input:not([class="ts-input"]) {
+  height: var(--input-height);
   width: var(--input-width);
-  max-width: var(--input-max-width);
   padding: var(--space-3xs) var(--space-xs);
   padding-inline-end: var(--space-3xs);
   border: 1px solid var(--colour-border);
@@ -323,3 +325,4 @@ input[type="radio"]:checked {
   outline-color: var(--colour-background);
   outline-offset: -4px;
 }
+

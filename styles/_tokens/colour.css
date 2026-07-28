@@ -209,5 +209,8 @@
     var(--colour-secondary-disabled)
   );
 
-  --colour-border: var(--colour-text-darker);
+  --colour-border: oklch(
+    from var(--colour-text) calc(l - (l - var(--darker)) * var(--_step-2))
+      calc(c - (c - var(--target-chroma)) * var(--_step-2)) h
+  );
 }

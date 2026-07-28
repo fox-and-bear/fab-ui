@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.6.2/dist/js/tom-select.complete.min.js"></script>
+
     <link rel="stylesheet" href="styles/index.css" />
     <title>Document</title>
+    <script type="module" src="components/fab-select/fab-select.js" defer></script>
   </head>
-    <body class="layout-stack">
+    <body class="layout-sidebar">
     <div class="cubetainer" id="colour-test">
       <div class="cube">
         <div class="face left"></div>
@@ -193,16 +196,82 @@ series -->
       </svg> -->
     </header>
 
-    <!-- <div class="sidebar">
+    <div class="sidebar">
+      <div class="sidebar-content">
+        <header>
+        <svg
+        id="logo"
+        width="128"
+        height="39"
+        viewBox="0 0 128 39"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M22.32 38.75H15.5C6.93966 38.75 0 31.8104 0 23.25C0 14.6953 6.94524 7.75003 15.5 7.75003C24.0603 7.75003 31 14.6897 31 23.25V36.58C31 37.7777 30.0277 38.75 28.83 38.75C27.6323 38.75 26.66 37.7777 26.66 36.58V23.25C26.66 17.0865 21.6636 12.09 15.5 12.09C9.34061 12.09 4.34 17.0906 4.34 23.25C4.34 29.4136 9.33642 34.41 15.5 34.41H22.32V38.75Z"
+          fill="var(--colour-text)" />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M22.3199 30.0699V23.2499C22.3199 19.486 19.264 16.43 15.4999 16.43C11.736 16.43 8.68011 19.486 8.68011 23.2499C8.68011 27.0139 11.736 30.0699 15.4999 30.0699H22.3199Z"
+          fill="var(--colour-primary)" />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M64 9.92C64 17.1577 60.4542 24.3945 55.0494 29.7994C49.6445 35.2042 42.4077 38.75 35.17 38.75C33.9715 38.75 33 37.7785 33 36.58V9.92C33 8.72231 33.9723 7.75 35.17 7.75C36.3677 7.75 37.34 8.72231 37.34 9.92V34.2831C42.7239 33.6575 47.9398 30.7712 51.9805 26.7305C56.5623 22.1487 59.66 16.0555 59.66 9.92V7.75H64V9.92Z"
+          fill="var(--colour-text)" />
+
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M86.32 7.75H79.5C70.9397 7.75 64 14.6897 64 23.25C64 31.8048 70.9452 38.75 79.5 38.75C88.0603 38.75 95 31.8103 95 23.25V2.17C95 0.972315 94.0277 0 92.83 0C91.6323 0 90.66 0.972315 90.66 2.17V23.25C90.66 29.4136 85.6636 34.41 79.5 34.41C73.3406 34.41 68.34 29.4094 68.34 23.25C68.34 17.0864 73.3364 12.09 79.5 12.09H86.32V7.75Z"
+          fill="var(--colour-primary)" />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M86.3199 16.4301V23.2501C86.3199 27.0141 83.264 30.07 79.4999 30.07C75.736 30.07 72.6801 27.0141 72.6801 23.2501C72.6801 19.4861 75.736 16.4301 79.4999 16.4301H86.3199Z"
+          fill="var(--colour-text)" />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M105.68 7.75H112.5C121.06 7.75 128 14.6897 128 23.25C128 31.8048 121.055 38.75 112.5 38.75C103.94 38.75 97 31.8103 97 23.25V2.17C97 0.972315 97.9723 0 99.17 0C100.368 0 101.34 0.972315 101.34 2.17V23.25C101.34 29.4136 106.336 34.41 112.5 34.41C118.659 34.41 123.66 29.4094 123.66 23.25C123.66 17.0864 118.664 12.09 112.5 12.09H105.68V7.75Z"
+          fill="var(--colour-text)" />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M105.68 16.4301V23.2501C105.68 27.0141 108.736 30.07 112.5 30.07C116.264 30.07 119.32 27.0141 119.32 23.2501C119.32 19.4861 116.264 16.4301 112.5 16.4301H105.68Z"
+          fill="var(--colour-text)" />
+      </svg>
+      </header>
       <nav class="primary-navigation">
+        <span class="nav-heading">Foundations</span>
         <ul>
-          <li><a href="#">Colours</a></li>
+          <li><a href="/">Colours</a></li>
           <li><a href="#">Typography</a></li>
           <li><a href="#">Elevation</a></li>
-          <li><a href="#">Buttons</a></li>
         </ul>
-      </nav>
-    </div> -->
+
+        <span class="nav-heading">Components</span>
+        <ul>
+          <li><a href="#">Buttons</a></li>
+          <li><a href="#">Form Elements</a></li>
+        </ul>
+      </nav>    
+      
+      <div class="user-info">
+        <img src="./image/Avatar.svg" alt="User Avatar" />
+        <span class="user-name">Kristian</span>
+        <button class="icon ghost">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.167 12C12.0875 12 12.834 12.7465 12.834 13.667C12.834 14.5875 12.0875 15.334 11.167 15.334C10.2465 15.334 9.5 14.5875 9.5 13.667C9.5 12.7465 10.2465 12 11.167 12ZM11.167 13.334C10.9829 13.334 10.834 13.4829 10.834 13.667C10.834 13.8511 10.9829 14 11.167 14C11.3511 14 11.5 13.8511 11.5 13.667C11.5 13.4829 11.3511 13.334 11.167 13.334ZM11.167 7C12.0875 7 12.834 7.74652 12.834 8.66699C12.834 9.58747 12.0875 10.334 11.167 10.334C10.2465 10.334 9.5 9.58747 9.5 8.66699C9.5 7.74652 10.2465 7 11.167 7ZM11.167 8.33398C10.9829 8.33398 10.834 8.4829 10.834 8.66699C10.834 8.85109 10.9829 9 11.167 9C11.3511 9 11.5 8.85109 11.5 8.66699C11.5 8.4829 11.3511 8.33398 11.167 8.33398ZM11.167 2C12.0875 2 12.834 2.74652 12.834 3.66699C12.834 4.58747 12.0875 5.33398 11.167 5.33398C10.2465 5.33398 9.5 4.58747 9.5 3.66699C9.5 2.74652 10.2465 2 11.167 2ZM11.167 3.33398C10.9829 3.33398 10.834 3.4829 10.834 3.66699C10.834 3.85109 10.9829 4 11.167 4C11.3511 4 11.5 3.85109 11.5 3.66699C11.5 3.4829 11.3511 3.33398 11.167 3.33398Z" fill="#C8C8D0"/>
+          </svg>
+        </button>
+
+      </div>
+     </div>
+
+    </div>
 
     <main>
       <section>
@@ -527,6 +596,8 @@ series -->
         </table>
       </section>
 
+      
+
       <h1 class="numbered-heading">02 <span>buttons</span></h1>
       <p>
         Buttons have various styles and states. Default is the primary button with slightly rounded
@@ -832,7 +903,106 @@ series -->
             <textarea placeholder="Textarea field disabled" disabled></textarea>
           </td>
         </tr>
-
+        <tr>
+          <th scope="row">FaB Select</th>
+          <td>
+        <fab-select placeholder="Select framework" mode="single">
+          <optgroup label="JavaScript Frameworks">
+            <option value="react">React</option>
+            <option value="vue">Vue</option>
+            <option value="angular">Angular</option>
+          </optgroup>
+          <optgroup label="CSS Frameworks">
+            <option value="tailwind">Tailwind CSS</option>
+            <option value="bootstrap">Bootstrap</option>
+            <option value="bulma">Bulma</option>
+          </optgroup>
+          <optgroup label="Backend">
+            <option value="nodejs">Node.js</option>
+            <option value="python">Python</option>
+            <option value="go">Go</option>
+          </optgroup>
+        </fab-select>
+          </td>
+          <td>
+            <fab-select placeholder="Select framework" mode="single" disabled>
+              <optgroup label="JavaScript Frameworks">
+                <option value="react">React</option>
+                <option value="vue">Vue</option>
+                <option value="angular">Angular</option>
+              </optgroup>
+              <optgroup label="CSS Frameworks">
+                <option value="tailwind">Tailwind CSS</option>
+                <option value="bootstrap">Bootstrap</option>
+                <option value="bulma">Bulma</option>
+              </optgroup>
+              <optgroup label="Backend">
+                <option value="nodejs">Node.js</option>
+                <option value="python">Python</option>
+                <option value="go">Go</option>
+              </optgroup>
+            </fab-select>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">FaB Select Multiple</th>
+          <td>
+        <fab-select placeholder="Select framework" mode="multi">
+          <optgroup label="JavaScript Frameworks">
+            <option value="react">React</option>
+            <option value="vue">Vue</option>
+            <option value="angular">Angular</option>
+          </optgroup>
+          <optgroup label="CSS Frameworks">
+            <option value="tailwind">Tailwind CSS</option>
+            <option value="bootstrap">Bootstrap</option>
+            <option value="bulma">Bulma</option>
+          </optgroup>
+          <optgroup label="Backend">
+            <option value="nodejs">Node.js</option>
+            <option value="python">Python</option>
+            <option value="go">Go</option>
+          </optgroup>
+        </fab-select>
+          </td>
+          <td>
+            <fab-select placeholder="Select framework" mode="multi" disabled>
+              <optgroup label="JavaScript Frameworks">
+                <option value="react">React</option>
+                <option value="vue">Vue</option>
+                <option value="angular">Angular</option>
+              </optgroup>
+              <optgroup label="CSS Frameworks">
+                <option value="tailwind">Tailwind CSS</option>
+                <option value="bootstrap">Bootstrap</option>
+                <option value="bulma">Bulma</option>
+              </optgroup>
+              <optgroup label="Backend">
+                <option value="nodejs">Node.js</option>
+                <option value="python">Python</option>
+                <option value="go">Go</option>
+              </optgroup>
+            </fab-select>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Tom Select</th>
+          <td>
+            <select id="select-animal" class="demo-animals" placeholder="Select animal..."></select>
+          </td>
+          <td>
+            <select id="select-animal-disabled" class="demo-animals" placeholder="Select animal..." disabled></select>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Tom Select Multi</th>
+          <td>
+            <select id="select-animal-multi" class="demo-animals" multiple placeholder="Select animal..."></select>
+          </td>
+          <td>
+            <select id="select-animal-multi-disabled" class="demo-animals" multiple placeholder="Select animal..." disabled></select>
+          </td>
+        </tr>
         <tr>
           <th scope="row">Select</th>
           <td>
@@ -846,6 +1016,30 @@ series -->
           <td>
             <select disabled>
               <option value="">Select field disabled</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Select Multiple</th>
+          <td>
+            <select multiple title="Select Multiple">
+              <optgroup label="Group 1">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+              </optgroup>
+              <optgroup label="Group 2">
+                <option value="3">Option 3</option>
+                <option value="4">Option 4</option>
+              </optgroup>
+              
+            </select>
+          </td>
+          <td>
+            <select multiple disabled title="Select Multiple">
+              <option value="">Multi-Select disabled</option>
               <option value="1">Option 1</option>
               <option value="2">Option 2</option>
               <option value="3">Option 3</option>
@@ -995,6 +1189,10 @@ series -->
       </table>
 
     
+
+     
+
+
     </main>
     
     <footer></footer>
@@ -1046,5 +1244,47 @@ series -->
         document.onmousemove = null;
       }
     }
+
+    const tomSelectOpts = {
+      options: [
+        {class: 'mammal', value: "dog", name: "Dog" },
+        {class: 'mammal', value: "cat", name: "Cat" },
+        {class: 'mammal', value: "horse", name: "Horse" },
+        {class: 'mammal', value: "kangaroo", name: "Kangaroo" },
+        {class: 'bird', value: 'duck', name: 'Duck'},
+        {class: 'bird', value: 'chicken', name: 'Chicken'},
+        {class: 'bird', value: 'ostrich', name: 'Ostrich'},
+        {class: 'bird', value: 'seagull', name: 'Seagull'},
+        {class: 'reptile', value: 'snake', name: 'Snake'},
+        {class: 'reptile', value: 'lizard', name: 'Lizard'},
+        {class: 'reptile', value: 'alligator', name: 'Alligator'},
+        {class: 'reptile', value: 'turtle', name: 'Turtle'}
+      ],
+      optgroups: [
+        {value: 'mammal', label: 'Mammal', label_scientific: 'Mammalia'},
+        {value: 'bird', label: 'Bird', label_scientific: 'Aves'},
+        {value: 'reptile', label: 'Reptile', label_scientific: 'Reptilia'}
+      ],
+      optgroupField: 'class',
+      labelField: 'name',
+      searchField: ['name'],
+      render:{
+          optgroup_header:function(data, escape){
+              return '<div class="optgroup-header">' + escape(data.label) + 
+              '<span class="scientific"> (' + escape(data.label_scientific) + ')</span></div>';
+          }
+      },
+      onInitialize: function() {
+        this.control_input.classList.add('ts-input');
+      },
+      maxItems: 1,
+    };
+
+
+new TomSelect('#select-animal', tomSelectOpts);
+new TomSelect('#select-animal-disabled', tomSelectOpts);
+new TomSelect('#select-animal-multi', { ...tomSelectOpts, plugins: { remove_button: { title: 'Remove this item' } } });
+new TomSelect('#select-animal-multi-disabled', { ...tomSelectOpts, plugins: { remove_button: { title: 'Remove this item' } } });
+
   </script>
 </html>

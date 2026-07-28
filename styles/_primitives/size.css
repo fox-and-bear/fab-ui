@@ -78,7 +78,7 @@
 :root { 
   /* --input-height: 40px; */
   --input-height: clamp(1.875rem, 1.6193rem + 1.1364vw, 2.5rem);
-  --input-width: 100%;
-  --input-max-width: 400px;
+  --input-width: min(100%, 400px);
+  /* --input-max-width: 400px; */
   /* --button-max-width: 200px; */
 }

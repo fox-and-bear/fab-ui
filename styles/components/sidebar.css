@@ -1,1 +1,66 @@
 /* Sidebar placement is owned by styles/layout/grid.css. */
+.sidebar {
+  padding: var(--space-sm);
+
+  .sidebar-content {
+    background-color: var(--colour-background);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--colour-border);
+    box-shadow: var(--elevation-02);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    header {
+      padding: var(--space-sm);
+      display: grid;
+      place-content: center;
+      > svg {
+          display: block;
+        }
+    }
+
+    .primary-navigation {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding-inline: var(--space-sm);
+      border-block: 2px solid var(--colour-border);
+
+      .nav-heading {
+        text-transform: uppercase;
+        font-size: var(--font-size-caption);
+        padding: var(--space-3xs) var(--space-2xs);
+        color: var(--colour-text-disabled);
+        margin-block-start: var(--space-md);
+      }
+      ul {
+        list-style: none;
+        li {
+          padding: var(--space-2xs) var(--space-2xs);
+          border-radius: var(--radius-sm);
+          &:hover {
+            background-color: var(--colour-background-darker);
+          }
+          a {
+            display: block;
+            text-decoration: none;
+            color: var(--colour-text);
+          }
+        }
+      }
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+          padding: var(--space-sm);
+
+
+      .user-name {
+        flex: 1;
+      }
+    }
+  }
+}

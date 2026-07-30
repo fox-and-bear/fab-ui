@@ -8,7 +8,7 @@ body {
 }
 
 main {
-  background-color: light-dark(var(--colour-text), var(--colour-background));
+  background-color: light-dark(var(--colour-text-darker), var(--colour-background-darker));
 }
 
 blockquote {

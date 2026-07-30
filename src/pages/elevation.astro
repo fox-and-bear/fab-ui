@@ -1,0 +1,205 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const elevations = [
+  {
+    name: "01 Inset",
+    variable: "elevation-01-inset",
+    use: ["Call-outs"],
+  },
+  {
+    name: "00",
+    variable: "elevation-00",
+    use: ["Transitions"],
+  },
+  {
+    name: "01",
+    variable: "elevation-01",
+    use: ["Cards", "Pressed Buttons"],
+  },
+  {
+    name: "02",
+    variable: "elevation-02",
+    use: ["Buttons", "Notification Badges"],
+  },
+  {
+    name: "03",
+    variable: "elevation-03",
+    use: ["Navbar", "Menu Bars"],
+  },
+  {
+    name: "04",
+    variable: "elevation-04",
+    use: ["Card Raised", "Button Raised"],
+  },
+  {
+    name: "05",
+    variable: "elevation-05",
+    use: ["Popovers", "Pickers", "Tooltips"],
+  },
+  {
+    name: "06",
+    variable: "elevation-06",
+    use: ["Modals", "Dialogs"],
+  },
+];
+---
+
+<Layout title="Elevation" numeral="03">
+  <section id="elevation-section">
+    <h2>Box Shadow Tokens</h2>
+    {
+      elevations.map(({ name, variable, use }) => (
+        <div class="token-card" data-token={variable} data-type="elevation">
+          <h6 data-elevation={name}>{name}</h6>
+          <div class="shadow-swatch">
+            <div class="shadow-box" style={`box-shadow: var(--${variable});`} />
+          </div>
+          <code>--{variable}</code>
+          <ul>
+            {use.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+          <span class="token-range">
+            Shadow layer
+            <span class="token-current">—</span>
+          </span>
+        </div>
+      ))
+    }
+  </section>
+</Layout>
+
+<style>
+  section {
+    width: 100%;
+    max-width: 90rem;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  /* ── Section headers ── */
+  section > h2 {
+    grid-column: 1 / -1;
+    font-size: var(--font-size-body);
+    font-weight: 600;
+    color: var(--colour-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--colour-border);
+    margin-bottom: var(--space-md);
+  }
+
+  /* ── Card base ── */
+  .token-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-sm);
+    background: var(--colour-background);
+    border: 1px solid var(--colour-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
+    transition:
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+    position: relative;
+  }
+
+  /* .token-card:hover {
+      box-shadow: var(--elevation-03, 0 4px 16px rgba(0,0,0,.08));
+      transform: translateY(-2px);
+    } */
+
+  .token-card h6 {
+    font-size: var(--font-size-body);
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3xs);
+  }
+
+  .token-card code {
+    font-size: var(--font-size-caption);
+    color: var(--colour-primary);
+    word-break: break-all;
+    background: var(--colour-background-lighter, #f4f4f8);
+    padding: var(--space-4xs) var(--space-3xs);
+    border-radius: var(--radius-xs);
+    align-self: flex-start;
+    display: inline-block;
+  }
+
+  .token-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--font-size-caption);
+    color: var(--colour-text-darker);
+  }
+
+  .token-card ul li {
+    padding-left: var(--space-xs);
+    border-left: 1px solid var(--colour-primary);
+  }
+
+  /* ── Shadow swatch ── */
+  .shadow-swatch {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--colour-background) 0,
+      var(--colour-background) 6px,
+      var(--colour-background-lighter) 6px,
+      var(--colour-background-lighter) 12px
+    );
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .shadow-box {
+    width: 60%;
+    height: 60%;
+    background: var(--colour-background-lighter);
+    border-radius: var(--radius-xs);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .token-card:hover .shadow-box {
+    /* Slight animation on hover */
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+</style>
+
+<script>
+  import { initElevationUpdates } from "../scripts/elevations.ts";
+  import { initCopyToken } from "../scripts/copyToken.ts";
+
+  // Run both initializers on mount
+  document.addEventListener("DOMContentLoaded", () => {
+    initCopyToken(); // Adds click listeners to <code> elements
+    initElevationUpdates(); // Starts live shadow value polling
+  });
+</script>

@@ -1,0 +1,167 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Fonts" numeral="02">
+  <section>
+    <div class="summary">
+      <h1>Aa</h1>
+      <span class="uppercase"> Headings </span>
+      <ul class="font-list">
+        <li
+          style='
+                font-family: var(--font-family-heading);
+                font-feature-settings:
+                  "salt" 1,
+                  "dlig" 1;
+              '>
+          Quablo<span>Bold</span>
+        </li>
+      </ul>
+      <span class="uppercase"> Body </span>
+      <ul class="font-list">
+        <li style="font-family: var(--font-family-body); font-weight: 700">
+          DM Sans<span>Bold</span>
+        </li>
+        <li style="font-family: var(--font-family-body); font-weight: 500">
+          DM Sans<span>Medium</span>
+        </li>
+        <li style="font-family: var(--font-family-body)">DM Sans<span>Regular</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="headings">
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+      </div>
+    </div>
+    <div>
+      <div class="bodies">
+        <span class="uppercase">Body - Default</span>
+        <div>
+          Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+          there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+          the Semantics, a large language ocean.
+        </div>
+
+        <span class="uppercase">Body - Small</span>
+        <div style="font-size: var(--font-size-small)">
+          Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+          there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
+          the Semantics, a large language ocean.
+        </div>
+
+        <span class="uppercase">Lead</span>
+        <div class="lead">
+          A small river named Duden flows by their place and supplies it with the necessary
+          regelialia.
+        </div>
+
+        <span class="uppercase">Blockquote</span>
+        <div class="blockquote">
+          "One day however a small line of blind text by the name of Lorem Ipsum decided to leave
+          for the far World of Grammar."
+        </div>
+
+        <span class="uppercase">Small</span>
+        <div class="small">
+          The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild
+          Question Marks and devious Semikoli, but the Little Blind Text didn't listen.
+        </div>
+
+        <span class="uppercase">Tiny</span>
+        <div class="tiny">
+          She packed her seven versalia, put her initial into the belt and made herself on the way.
+        </div>
+
+        <span class="uppercase">Uppercase</span>
+        <div class="uppercase" style="font-size: var(--font-size-small); color: var(--colour-text)">
+          When she reached the first hills of the Italic Mountains...
+        </div>
+
+        <span class="uppercase">Small Label</span>
+        <div class="small-label">
+          she had a last view back on the skyline of her hometown Bookmarksgrove
+        </div>
+
+        <span class="uppercase">Medium Label</span>
+        <div class="medium-label">
+          the headline of Alphabet Village and the subline of her own road, the Line Lane.
+        </div>
+
+        <span class="uppercase">Large Label</span>
+        <div class="large-label">Pityful a rethoric question ran over her cheek</div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  section {
+    display: grid;
+    grid-template-columns: max-content max-content 1fr;
+    gap: var(--space-sm);
+    padding: var(--space-xl) var(--space-lg);
+
+    > * {
+      background-color: var(--colour-background);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--colour-border);
+      box-shadow: var(--elevation-02);
+    }
+  }
+
+  .summary {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-block: var(--space-md);
+    align-content: start;
+    padding-inline: var(--space-xl);
+
+    h1 {
+      font-family: var(--font-family-body);
+      font-weight: var(--font-weight-bold);
+      text-transform: capitalize;
+      color: var(--colour-text-darker);
+      margin-block-end: var(--space-xl);
+      margin-inline: auto;
+      border-bottom: 2px solid var(--colour-primary-lighter);
+    }
+  }
+
+  .uppercase {
+    opacity: 0.5;
+    font-size: var(--font-size-caption);
+    padding-block-start: var(--space-3xs);
+    margin-inline: auto;
+  }
+
+  .font-list {
+    list-style: none;
+    margin-block-start: var(--space-2xs);
+    margin-block-end: var(--space-md);
+
+    span {
+      font-family: var(--font-family-body);
+      font-weight: var(--font-weight-regular);
+      padding-left: var(--space-2xs);
+    }
+  }
+
+  .headings {
+    display: grid;
+    gap: var(--space-sm);
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .bodies {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-sm) var(--space-md);
+    padding: var(--space-lg);
+  }
+</style>

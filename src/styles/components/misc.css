@@ -5,10 +5,11 @@ h1.numbered-heading {
   font-feature-settings:
     "salt" 1,
     "dlig" 1;
-    margin-block: var(--space-sm);
-    max-height: calc(1.2cap);
-    padding-block-start: var(--space-xs);
-    overflow: hidden;
+  margin-block: var(--space-sm);
+  height: calc(1.2cap);
+  padding-block-start: 0.35cap; /* this needs to change depending on the font used. e.g. Quablo is 0.35, Chaney is 0.1 */
+
+  overflow: hidden;
 
   > span {
     text-transform: uppercase;
@@ -16,7 +17,7 @@ h1.numbered-heading {
     color: var(--colour-background);
     padding-inline: var(--space-xs);
     letter-spacing: var(--letter-spacing-tight);
-    /* max-height: calc(1cap + var(--space-xs)); */
+    height: max-content;
   }
 }
 
@@ -197,8 +198,7 @@ header {
 } */
 
 #colour-test {
-
-   --colour-1: var(--colour-primary);
+  --colour-1: var(--colour-primary);
   --colour-2: var(--colour-primary-darker);
   --colour-3: var(--colour-primary-lighter);
   --colour-4: var(--colour-primary-disabled);
@@ -220,7 +220,6 @@ header {
   --outline-width: 5px;
   --outline-offset: calc(var(--outline-width) * -1);
   --face-radius: calc(var(--cube-size) * 0.14);
-
 
   &::after {
     content: "";
@@ -345,7 +344,6 @@ header {
   }
 }
 
-
 .swatch {
   position: relative;
   height: 50px;
@@ -353,4 +351,87 @@ header {
   border-radius: var(--radius-sm);
   margin-inline: auto;
   box-shadow: var(--elevation-02);
+}
+
+/* TOKEN COPY THINGY */
+
+.token-card code {
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  background: var(--colour-background-lighter);
+  border-radius: var(--radius-xs);
+  padding: var(--space-4xs) var(--space-3xs);
+
+  align-self: flex-start;
+}
+
+.token-card code:hover {
+  background: var(--colour-primary) !important;
+  color: var(--colour-primary-on) !important;
+  box-shadow: 0 2px 8px rgba(109, 76, 255, 0.3);
+}
+
+.token-card code:active {
+  box-shadow: none;
+}
+
+/* Small copy icon hint */
+.token-card code::after {
+  content: "📋";
+  font-size: 0.8em;
+  margin-left: var(--space-3xs);
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.token-card code:hover::after {
+  opacity: 1;
+}
+
+@keyframes copySuccess {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.token-card code.success {
+  animation: copySuccess 0.3s ease;
+}
+
+.token-range {
+  font-size: var(--font-size-caption);
+  color: var(--colour-text-secondary, #8a8a96);
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-4xs);
+  margin-block-start: auto;
+}
+
+.token-current {
+  color: var(--colour-primary);
+  font-weight: 600;
+}
+
+.token-card code.success {
+  background-color: var(--colour-success);
+  color: var(--colour-success-on);
+}
+
+.token-card code.error {
+  background-color: var(--colour-danger);
+  color: var(--colour-danger-on);
+}
+
+/* Transition for smooth feedback */
+.token-card code {
+  transition: background-color 0.15s ease, color 0.15s ease;
 }

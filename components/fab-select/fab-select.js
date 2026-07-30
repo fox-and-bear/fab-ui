@@ -765,13 +765,13 @@ class FabSelect extends HTMLElement {
           --fab-bg: transparent;
           --fab-bg-disabled: transparent;
           --fab-surface: light-dark(oklch(1 0 0 / 1), oklch(0.29 0 286.18 / 1));
-          --fab-border: light-dark(oklch(0.86 0 286.31 / 1), oklch(0.35 0 286.22 / 1));
-          --fab-border-hover: var(--fab-accent);
+          --fab-border: light-dark(oklch(0.86 0 286.31 / 1), #808178);
+          --fab-border-hover: #aeafa6;
           --fab-text: light-dark(oklch(0.23 0 286.09 / 1), oklch(0.97 0 286.35 / 1));
           --fab-text-muted: light-dark(oklch(0.65 0.03 285.64 / 1), oklch(0.65 0.03 285.64 / 1));
           --fab-placeholder: light-dark(oklch(0.65 0.03 285.64 / 1), oklch(0.65 0.03 285.64 / 1));
           --fab-accent: oklch(0.92 0.20 116.39 / 1);
-          --fab-accent-weak: oklch(0.92 0.20 116.39 / .05);
+          --fab-accent-weak: oklch(0.92 0.20 116.39 / .5);
           --fab-accent-ring: oklch(0.92 0.20 116.39 / .05);
           --fab-error: oklch(0.66 0.22 25.73 / 1);
           --fab-error-ring: oklch(0.66 0.22 25.73 / 0.15);
@@ -815,6 +815,7 @@ class FabSelect extends HTMLElement {
         }
 
         .wrapper { position: relative; width: 100%; }
+        .wrapper:has(.dropdown.open) .trigger { border-color: var(--fab-accent-weak); }
         .trigger {
           display: flex; align-items: center; justify-content: space-between;
           width: min(100%, var(--fab-width, 400px));

@@ -4,1287 +4,315 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.6.2/dist/js/tom-select.complete.min.js"></script>
-
+    <script src="scripts/copyToken.js" defer></script>
     <link rel="stylesheet" href="styles/index.css" />
-    <title>Document</title>
+    <title>Colour Tokens</title>
     <script type="module" src="components/fab-select/fab-select.js" defer></script>
   </head>
-    <body class="layout-sidebar">
-    <div class="cubetainer" id="colour-test">
-      <div class="cube">
-        <div class="face left"></div>
-        <div class="face right"></div>
-        <div class="face top"></div>
+  <style>
+    section {
+      width: 100%;
+      max-width: 90rem;
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(50rem, 100%), 1fr));
+      gap: var(--space-sm);
+      margin-bottom: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg);
+    }
 
-        <div class="face hidden left"></div>
-        <div class="face hidden right"></div>
-        <div class="face hidden top"></div>
-      </div>
-    </div>
+    section > h2 {
+      grid-column: 1 / -1;
+      font-size: var(--font-size-body);
+      font-weight: 600;
+      color: var(--colour-text-darker);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--colour-border);
+      margin-bottom: var(--space-md);
+    }
 
-    <!-- albums
-live acts
-movies
-music videos
-tv shows
-playlists
---
-blu-ray
-compact disc
-digital download
-dvd
-cassette tape
-video cassette
-vinyl
---
-people/groups
-labels/companies
-series -->
+    /* ── Token card base ── */
+    .token-card {
+      background: var(--colour-background);
+      border: 1px solid var(--colour-border);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
+      transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+    }
 
-    <header>
-      <h1 class="numbered-heading">01 <span>colours</span></h1>
-      <!--
-       <svg
-        id="logo-vertical"
-        width="64"
-        height="73"
-        viewBox="0 0 64 73"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M22.32 31H15.5C6.93966 31 0 24.0603 0 15.5C0 6.94524 6.94524 0 15.5 0C24.0603 0 31 6.93966 31 15.5V28.83C31 30.0277 30.0277 31 28.83 31C27.6323 31 26.66 30.0277 26.66 28.83V15.5C26.66 9.33643 21.6636 4.34 15.5 4.34C9.34061 4.34 4.34 9.34061 4.34 15.5C4.34 21.6636 9.33642 26.66 15.5 26.66H22.32V31Z"
-          fill="var(--colour-text)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M22.3199 22.3199V15.5C22.3199 11.736 19.264 8.68 15.4999 8.68C11.736 8.68 8.68011 11.736 8.68011 15.5C8.68011 19.264 11.736 22.3199 15.4999 22.3199H22.3199Z"
-          fill="var(--colour-primary)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M64 2.17003C64 9.40776 60.4542 16.6446 55.0494 22.0494C49.6445 27.4543 42.4077 31 35.17 31C33.9715 31 33 30.0285 33 28.83V2.17003C33 0.972345 33.9723 3.05176e-05 35.17 3.05176e-05C36.3677 3.05176e-05 37.34 0.972345 37.34 2.17003V26.5331C42.7239 25.9075 47.9398 23.0213 51.9805 18.9806C56.5623 14.3988 59.66 8.30555 59.66 2.17003V3.05176e-05H64V2.17003Z"
-          fill="var(--colour-text)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M22.32 40.8872H15.5C6.93966 40.8872 0 47.8269 0 56.3872C0 64.942 6.94524 71.8872 15.5 71.8872C24.0603 71.8872 31 64.9476 31 56.3872V35.3072C31 34.1095 30.0277 33.1372 28.83 33.1372C27.6323 33.1372 26.66 34.1095 26.66 35.3072V56.3872C26.66 62.5508 21.6636 67.5472 15.5 67.5472C9.34061 67.5472 4.34 62.5466 4.34 56.3872C4.34 50.2236 9.33642 45.2272 15.5 45.2272H22.32V40.8872Z"
-          fill="var(--colour-primary)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M22.3199 49.5673V56.3873C22.3199 60.1513 19.264 63.2073 15.4999 63.2073C11.736 63.2073 8.68011 60.1513 8.68011 56.3873C8.68011 52.6233 11.736 49.5673 15.4999 49.5673H22.3199Z"
-          fill="var(--colour-text)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M41.68 40.8049H48.5C57.0603 40.8049 64 47.7937 64 56.4147C64 65.03 57.0547 72.0244 48.5 72.0244C39.9396 72.0244 33 65.0356 33 56.4147V35.1854C33 33.9792 33.9723 33 35.17 33C36.3677 33 37.34 33.9792 37.34 35.1854V56.4147C37.34 62.6219 42.3364 67.6537 48.5 67.6537C54.6594 67.6537 59.66 62.6177 59.66 56.4147C59.66 50.2074 54.6635 45.1756 48.5 45.1756H41.68V40.8049Z"
-          fill="var(--colour-text)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M41.68 49.5465V56.4147C41.68 60.2054 44.736 63.283 48.5001 63.283C52.2639 63.283 55.3199 60.2054 55.3199 56.4147C55.3199 52.6241 52.2639 49.5465 48.5001 49.5465H41.68Z"
-          fill="var(--colour-text)"
-        />
-      </svg>
+    /* ── Swatch grid ── */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+      box-shadow: var(--elevation-02);
 
-    -->
-      <svg
-        id="logo"
-        width="128"
-        height="39"
-        viewBox="0 0 128 39"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M22.32 38.75H15.5C6.93966 38.75 0 31.8104 0 23.25C0 14.6953 6.94524 7.75003 15.5 7.75003C24.0603 7.75003 31 14.6897 31 23.25V36.58C31 37.7777 30.0277 38.75 28.83 38.75C27.6323 38.75 26.66 37.7777 26.66 36.58V23.25C26.66 17.0865 21.6636 12.09 15.5 12.09C9.34061 12.09 4.34 17.0906 4.34 23.25C4.34 29.4136 9.33642 34.41 15.5 34.41H22.32V38.75Z"
-          fill="var(--colour-text)" />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M22.3199 30.0699V23.2499C22.3199 19.486 19.264 16.43 15.4999 16.43C11.736 16.43 8.68011 19.486 8.68011 23.2499C8.68011 27.0139 11.736 30.0699 15.4999 30.0699H22.3199Z"
-          fill="var(--colour-primary)" />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M64 9.92C64 17.1577 60.4542 24.3945 55.0494 29.7994C49.6445 35.2042 42.4077 38.75 35.17 38.75C33.9715 38.75 33 37.7785 33 36.58V9.92C33 8.72231 33.9723 7.75 35.17 7.75C36.3677 7.75 37.34 8.72231 37.34 9.92V34.2831C42.7239 33.6575 47.9398 30.7712 51.9805 26.7305C56.5623 22.1487 59.66 16.0555 59.66 9.92V7.75H64V9.92Z"
-          fill="var(--colour-text)" />
-
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M86.32 7.75H79.5C70.9397 7.75 64 14.6897 64 23.25C64 31.8048 70.9452 38.75 79.5 38.75C88.0603 38.75 95 31.8103 95 23.25V2.17C95 0.972315 94.0277 0 92.83 0C91.6323 0 90.66 0.972315 90.66 2.17V23.25C90.66 29.4136 85.6636 34.41 79.5 34.41C73.3406 34.41 68.34 29.4094 68.34 23.25C68.34 17.0864 73.3364 12.09 79.5 12.09H86.32V7.75Z"
-          fill="var(--colour-primary)" />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M86.3199 16.4301V23.2501C86.3199 27.0141 83.264 30.07 79.4999 30.07C75.736 30.07 72.6801 27.0141 72.6801 23.2501C72.6801 19.4861 75.736 16.4301 79.4999 16.4301H86.3199Z"
-          fill="var(--colour-text)" />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M105.68 7.75H112.5C121.06 7.75 128 14.6897 128 23.25C128 31.8048 121.055 38.75 112.5 38.75C103.94 38.75 97 31.8103 97 23.25V2.17C97 0.972315 97.9723 0 99.17 0C100.368 0 101.34 0.972315 101.34 2.17V23.25C101.34 29.4136 106.336 34.41 112.5 34.41C118.659 34.41 123.66 29.4094 123.66 23.25C123.66 17.0864 118.664 12.09 112.5 12.09H105.68V7.75Z"
-          fill="var(--colour-text)" />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M105.68 16.4301V23.2501C105.68 27.0141 108.736 30.07 112.5 30.07C116.264 30.07 119.32 27.0141 119.32 23.2501C119.32 19.4861 116.264 16.4301 112.5 16.4301H105.68Z"
-          fill="var(--colour-text)" />
-      </svg>
-
-      <!--
-      <svg
-        id="logo-icon"
-        width="36"
-        height="40"
-        viewBox="0 0 36 40"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M12.24 17H8.5C3.80562 17 0 13.1944 0 8.5C0 3.80868 3.80868 0 8.5 0C13.1944 0 17 3.80562 17 8.5V15.81C17 16.4668 16.4668 17 15.81 17C15.1532 17 14.62 16.4668 14.62 15.81V8.5C14.62 5.11998 11.88 2.38 8.5 2.38C5.12227 2.38 2.38 5.12227 2.38 8.5C2.38 11.88 5.11998 14.62 8.5 14.62H12.24V17Z"
-          fill="var(--colour-text)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M12.24 12.24V8.50003C12.24 6.43591 10.5642 4.76005 8.49997 4.76005C6.43593 4.76005 4.76011 6.43591 4.76011 8.50003C4.76011 10.5642 6.43593 12.24 8.49997 12.24H12.24Z"
-          fill="var(--colour-primary)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M36 1.19C36 5.15908 34.0555 9.12764 31.0916 12.0916C28.1276 15.0555 24.1591 17 20.19 17C19.5328 17 19 16.4672 19 15.81V1.19C19 0.533205 19.5332 0 20.19 0C20.8468 0 21.38 0.533205 21.38 1.19V14.5504C24.3325 14.2073 27.1928 12.6245 29.4087 10.4087C31.9213 7.89608 33.62 4.55464 33.62 1.19V0H36V1.19Z"
-          fill="var(--colour-text)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M12.24 22.3252H8.5C3.80562 22.3252 0 26.1309 0 30.8252C0 35.5166 3.80868 39.3252 8.5 39.3252C13.1944 39.3252 17 35.5196 17 30.8252V19.2652C17 18.6084 16.4668 18.0752 15.81 18.0752C15.1532 18.0752 14.62 18.6084 14.62 19.2652V30.8252C14.62 34.2053 11.88 36.9452 8.5 36.9452C5.12227 36.9452 2.38 34.203 2.38 30.8252C2.38 27.4452 5.11997 24.7052 8.5 24.7052H12.24V22.3252Z"
-          fill="var(--colour-primary)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M12.24 27.0853V30.8253C12.24 32.8894 10.5642 34.5653 8.49997 34.5653C6.43593 34.5653 4.76011 32.8894 4.76011 30.8253C4.76011 28.7611 6.43593 27.0853 8.49997 27.0853H12.24Z"
-          fill="var(--colour-text)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M23.76 22.2801H27.5C32.1943 22.2801 36 26.1127 36 30.8403C36 35.5648 32.1913 39.4005 27.5 39.4005C22.8056 39.4005 19 35.5679 19 30.8403V19.1984C19 18.537 19.5332 18 20.19 18C20.8467 18 21.38 18.537 21.38 19.1984V30.8403C21.38 34.2442 24.1199 37.0036 27.5 37.0036C30.8777 37.0036 33.62 34.2419 33.62 30.8403C33.62 27.4363 30.88 24.6769 27.5 24.6769H23.76V22.2801Z"
-          fill="var(--colour-text)"
-        />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M23.7599 27.0739V30.8403C23.7599 32.9191 25.4358 34.6068 27.5 34.6068C29.564 34.6068 31.2398 32.9191 31.2398 30.8403C31.2398 28.7616 29.564 27.0739 27.5 27.0739H23.7599Z"
-          fill="var(--colour-text)"
-        />
-      </svg> -->
-    </header>
-
-    <div class="sidebar">
-      <div class="sidebar-content">
-        <header>
-        <svg
-        id="logo"
-        width="128"
-        height="39"
-        viewBox="0 0 128 39"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M22.32 38.75H15.5C6.93966 38.75 0 31.8104 0 23.25C0 14.6953 6.94524 7.75003 15.5 7.75003C24.0603 7.75003 31 14.6897 31 23.25V36.58C31 37.7777 30.0277 38.75 28.83 38.75C27.6323 38.75 26.66 37.7777 26.66 36.58V23.25C26.66 17.0865 21.6636 12.09 15.5 12.09C9.34061 12.09 4.34 17.0906 4.34 23.25C4.34 29.4136 9.33642 34.41 15.5 34.41H22.32V38.75Z"
-          fill="var(--colour-text)" />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M22.3199 30.0699V23.2499C22.3199 19.486 19.264 16.43 15.4999 16.43C11.736 16.43 8.68011 19.486 8.68011 23.2499C8.68011 27.0139 11.736 30.0699 15.4999 30.0699H22.3199Z"
-          fill="var(--colour-primary)" />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M64 9.92C64 17.1577 60.4542 24.3945 55.0494 29.7994C49.6445 35.2042 42.4077 38.75 35.17 38.75C33.9715 38.75 33 37.7785 33 36.58V9.92C33 8.72231 33.9723 7.75 35.17 7.75C36.3677 7.75 37.34 8.72231 37.34 9.92V34.2831C42.7239 33.6575 47.9398 30.7712 51.9805 26.7305C56.5623 22.1487 59.66 16.0555 59.66 9.92V7.75H64V9.92Z"
-          fill="var(--colour-text)" />
-
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M86.32 7.75H79.5C70.9397 7.75 64 14.6897 64 23.25C64 31.8048 70.9452 38.75 79.5 38.75C88.0603 38.75 95 31.8103 95 23.25V2.17C95 0.972315 94.0277 0 92.83 0C91.6323 0 90.66 0.972315 90.66 2.17V23.25C90.66 29.4136 85.6636 34.41 79.5 34.41C73.3406 34.41 68.34 29.4094 68.34 23.25C68.34 17.0864 73.3364 12.09 79.5 12.09H86.32V7.75Z"
-          fill="var(--colour-primary)" />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M86.3199 16.4301V23.2501C86.3199 27.0141 83.264 30.07 79.4999 30.07C75.736 30.07 72.6801 27.0141 72.6801 23.2501C72.6801 19.4861 75.736 16.4301 79.4999 16.4301H86.3199Z"
-          fill="var(--colour-text)" />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M105.68 7.75H112.5C121.06 7.75 128 14.6897 128 23.25C128 31.8048 121.055 38.75 112.5 38.75C103.94 38.75 97 31.8103 97 23.25V2.17C97 0.972315 97.9723 0 99.17 0C100.368 0 101.34 0.972315 101.34 2.17V23.25C101.34 29.4136 106.336 34.41 112.5 34.41C118.659 34.41 123.66 29.4094 123.66 23.25C123.66 17.0864 118.664 12.09 112.5 12.09H105.68V7.75Z"
-          fill="var(--colour-text)" />
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M105.68 16.4301V23.2501C105.68 27.0141 108.736 30.07 112.5 30.07C116.264 30.07 119.32 27.0141 119.32 23.2501C119.32 19.4861 116.264 16.4301 112.5 16.4301H105.68Z"
-          fill="var(--colour-text)" />
-      </svg>
-      </header>
-      <nav class="primary-navigation">
-        <span class="nav-heading">Foundations</span>
-        <ul>
-          <li><a href="/">Colours</a></li>
-          <li><a href="#">Typography</a></li>
-          <li><a href="#">Elevation</a></li>
-        </ul>
-
-        <span class="nav-heading">Components</span>
-        <ul>
-          <li><a href="#">Buttons</a></li>
-          <li><a href="#">Form Elements</a></li>
-        </ul>
-      </nav>    
-      
-      <div class="user-info">
-        <img src="./image/Avatar.svg" alt="User Avatar" />
-        <span class="user-name">Kristian</span>
-        <button class="icon ghost">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11.167 12C12.0875 12 12.834 12.7465 12.834 13.667C12.834 14.5875 12.0875 15.334 11.167 15.334C10.2465 15.334 9.5 14.5875 9.5 13.667C9.5 12.7465 10.2465 12 11.167 12ZM11.167 13.334C10.9829 13.334 10.834 13.4829 10.834 13.667C10.834 13.8511 10.9829 14 11.167 14C11.3511 14 11.5 13.8511 11.5 13.667C11.5 13.4829 11.3511 13.334 11.167 13.334ZM11.167 7C12.0875 7 12.834 7.74652 12.834 8.66699C12.834 9.58747 12.0875 10.334 11.167 10.334C10.2465 10.334 9.5 9.58747 9.5 8.66699C9.5 7.74652 10.2465 7 11.167 7ZM11.167 8.33398C10.9829 8.33398 10.834 8.4829 10.834 8.66699C10.834 8.85109 10.9829 9 11.167 9C11.3511 9 11.5 8.85109 11.5 8.66699C11.5 8.4829 11.3511 8.33398 11.167 8.33398ZM11.167 2C12.0875 2 12.834 2.74652 12.834 3.66699C12.834 4.58747 12.0875 5.33398 11.167 5.33398C10.2465 5.33398 9.5 4.58747 9.5 3.66699C9.5 2.74652 10.2465 2 11.167 2ZM11.167 3.33398C10.9829 3.33398 10.834 3.4829 10.834 3.66699C10.834 3.85109 10.9829 4 11.167 4C11.3511 4 11.5 3.85109 11.5 3.66699C11.5 3.4829 11.3511 3.33398 11.167 3.33398Z" fill="#C8C8D0"/>
-          </svg>
-        </button>
-
-      </div>
-     </div>
-
-    </div>
-
-    <main>
-      <section>
-        <div
-          style="
-            display: flex;
-            gap: var(--space-sm);
-            grid-template-columns: 1fr 1fr;
-            padding-inline-start: var(--space-md);
-            padding-block-start: var(--space-md);
-          ">
-          <div>
-            <h5>Primary</h5>
-            <div style="display: flex; gap: var(--space-md); align-items: center">
-              <blockquote>
-                <i>Lime Cream</i> <code>(--colour-primary)</code> is the main accent colour for the
-                site. It is used for buttons, links, and other interactive elements.
-              </blockquote>
-
-              <div class="inline-cube">
-                <div class="cube">
-                  <div class="face left"></div>
-                  <div class="face right"></div>
-                  <div class="face top"></div>
-
-                  <div class="face hidden left"></div>
-                  <div class="face hidden right"></div>
-                  <div class="face hidden top"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h5>Text & Background</h5>
-            <div style="display: flex; gap: var(--space-md); align-items: center">
-              <blockquote>
-                <code>--colour-text</code> and <code>--colour-background</code> have their own
-                selection of tints and shades.
-              </blockquote>
-              <div
-                style="
-                  display: flex;
-                  gap: var(--space-md);
-                  align-items: center;
-                  box-shadow: var(--elevation-02);
-                  padding: var(--space-xs);
-                  border-radius: var(--radius-full) 0 0 var(--radius-full);
-                ">
-                <div
-                  class="inline-cube"
-                  style="
-                    --colour-1: var(--colour-text);
-                    --colour-2: var(--colour-text-darker);
-                    --colour-3: var(--colour-text-lighter);
-                    --colour-4: var(--colour-text-disabled);
-                    --cube-size: 50px;
-                  ">
-                  <div class="cube">
-                    <div class="face left"></div>
-                    <div class="face right"></div>
-                    <div class="face top"></div>
-
-                    <div class="face hidden left"></div>
-                    <div class="face hidden right"></div>
-                    <div class="face hidden top"></div>
-                  </div>
-                </div>
-                <div
-                  class="inline-cube"
-                  style="
-                    --colour-1: var(--colour-background);
-                    --colour-2: var(--colour-background-darker);
-                    --colour-3: var(--colour-background-lighter);
-                    --colour-4: var(--colour-background-disabled);
-                    --cube-size: 50px;
-                  ">
-                  <div class="cube">
-                    <div class="face left"></div>
-                    <div class="face right"></div>
-                    <div class="face top"></div>
-
-                    <div class="face hidden left"></div>
-                    <div class="face hidden right"></div>
-                    <div class="face hidden top"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section style="margin-top: var(--space-lg); padding-inline-start: var(--space-md)">
-        <h5>Semantic Colours</h5>
-        <div style="display: flex; gap: var(--space-md); align-items: center">
-          <blockquote style="max-width: 50%">
-            <p>
-              Semantic colours are used throughout the site to indicate meaning and context. Danger,
-              success, warning, and info.
-            </p>
-          </blockquote>
-          <div
-            style="
-              display: flex;
-              gap: var(--space-md);
-              align-items: center;
-              box-shadow: var(--elevation-02);
-              padding: var(--space-xs);
-              border-radius: var(--radius-full) 0 0 var(--radius-full);
-              flex-grow: 1;
-            ">
-            <div
-              class="inline-cube"
-              style="
-                --colour-1: var(--colour-danger);
-                --colour-2: var(--colour-danger-darker);
-                --colour-3: var(--colour-danger-lighter);
-                --colour-4: var(--colour-danger-disabled);
-                --cube-size: 50px;
-              ">
-              <div class="cube">
-                <div class="face left"></div>
-                <div class="face right"></div>
-                <div class="face top"></div>
-                <div class="face hidden left"></div>
-                <div class="face hidden right"></div>
-                <div class="face hidden top"></div>
-              </div>
-            </div>
-            <div
-              class="inline-cube"
-              style="
-                --colour-1: var(--colour-success);
-                --colour-2: var(--colour-success-darker);
-                --colour-3: var(--colour-success-lighter);
-                --colour-4: var(--colour-success-disabled);
-                --cube-size: 50px;
-              ">
-              <div class="cube">
-                <div class="face left"></div>
-                <div class="face right"></div>
-                <div class="face top"></div>
-                <div class="face hidden left"></div>
-                <div class="face hidden right"></div>
-                <div class="face hidden top"></div>
-              </div>
-            </div>
-            <div
-              class="inline-cube"
-              style="
-                --colour-1: var(--colour-warning);
-                --colour-2: var(--colour-warning-darker);
-                --colour-3: var(--colour-warning-lighter);
-                --colour-4: var(--colour-warning-disabled);
-                --cube-size: 50px;
-              ">
-              <div class="cube">
-                <div class="face left"></div>
-                <div class="face right"></div>
-                <div class="face top"></div>
-                <div class="face hidden left"></div>
-                <div class="face hidden right"></div>
-                <div class="face hidden top"></div>
-              </div>
-            </div>
-            <div
-              class="inline-cube"
-              style="
-                --colour-1: var(--colour-info);
-                --colour-2: var(--colour-info-darker);
-                --colour-3: var(--colour-info-lighter);
-                --colour-4: var(--colour-info-disabled);
-                --cube-size: 50px;
-              ">
-              <div class="cube">
-                <div class="face left"></div>
-                <div class="face right"></div>
-                <div class="face top"></div>
-                <div class="face hidden left"></div>
-                <div class="face hidden right"></div>
-                <div class="face hidden top"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section style="margin-top: var(--space-lg)">
-        <table style="min-width: 100%">
-          <tr>
-            <th scope="col"></th>
-            <th scope="col"><code>-darker</code></th>
-            <th scope="col"><code>-lighter</code></th>
-            <th scope="col"><code>-disabled</code></th>
-            <th scope="col"><code>-on</code></th>
-            <th scope="col"><code>-disabled-on</code></th>
-          </tr>
-          <tr>
-            <th scope="row"><code>--colour-text</code></th>
-            <td><div class="swatch" style="background-color: var(--colour-text-darker)"></div></td>
-            <td><div class="swatch" style="background-color: var(--colour-text-lighter)"></div></td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-text-disabled)"></div>
-            </td>
-            <td><div class="swatch" style="background-color: var(--colour-text-on)"></div></td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-text-disabled-on)"></div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row"><code>--colour-background</code></th>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-background-darker)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-background-lighter)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-background-disabled)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-background-on)"></div>
-            </td>
-            <td>
-              <div
-                class="swatch"
-                style="background-color: var(--colour-background-disabled-on)"></div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row"><code>--colour-primary</code></th>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-primary-darker)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-primary-lighter)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-primary-disabled)"></div>
-            </td>
-            <td><div class="swatch" style="background-color: var(--colour-primary-on)"></div></td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-primary-disabled-on)"></div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row"><code>--colour-secondary</code></th>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-secondary-darker)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-secondary-lighter)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-secondary-disabled)"></div>
-            </td>
-            <td><div class="swatch" style="background-color: var(--colour-secondary-on)"></div></td>
-            <td>
-              <div
-                class="swatch"
-                style="background-color: var(--colour-secondary-disabled-on)"></div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row"><code>--colour-danger</code></th>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-danger-darker)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-danger-lighter)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-danger-disabled)"></div>
-            </td>
-            <td><div class="swatch" style="background-color: var(--colour-danger-on)"></div></td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-danger-disabled-on)"></div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row"><code>--colour-success</code></th>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-success-darker)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-success-lighter)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-success-disabled)"></div>
-            </td>
-            <td><div class="swatch" style="background-color: var(--colour-success-on)"></div></td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-success-disabled-on)"></div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row"><code>--colour-warning</code></th>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-warning-darker)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-warning-lighter)"></div>
-            </td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-warning-disabled)"></div>
-            </td>
-            <td><div class="swatch" style="background-color: var(--colour-warning-on)"></div></td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-warning-disabled-on)"></div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row"><code>--colour-info</code></th>
-            <td><div class="swatch" style="background-color: var(--colour-info-darker)"></div></td>
-            <td><div class="swatch" style="background-color: var(--colour-info-lighter)"></div></td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-info-disabled)"></div>
-            </td>
-            <td><div class="swatch" style="background-color: var(--colour-info-on)"></div></td>
-            <td>
-              <div class="swatch" style="background-color: var(--colour-info-disabled-on)"></div>
-            </td>
-          </tr>
-        </table>
-      </section>
-
-      
-
-      <h1 class="numbered-heading">02 <span>buttons</span></h1>
-      <p>
-        Buttons have various styles and states. Default is the primary button with slightly rounded
-        corners. <br />Secondary, danger, outline, and ghost buttons are also available.
-      </p>
-      <table style="min-width: 100%">
-        <thead>
-          <tr>
-            <th scope="col">Style</th>
-            <th scope="col">Class</th>
-            <th scope="col">Default</th>
-            <th scope="col">Disabled</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Primary</th>
-            <td><code></code></td>
-            <td><button>Button</button></td>
-            <td><button disabled>Button</button></td>
-          </tr>
-          <tr>
-            <th scope="row">Secondary</th>
-            <td><code>.secondary</code></td>
-            <td><button class="secondary">Button</button></td>
-            <td><button class="secondary" disabled>Button</button></td>
-          </tr>
-          <tr>
-            <th scope="row">Danger</th>
-            <td><code>.danger</code></td>
-            <td><button class="danger">Button</button></td>
-            <td><button class="danger" disabled>Button</button></td>
-          </tr>
-          <tr>
-            <th scope="row">Outline</th>
-            <td><code>.outline</code></td>
-            <td><button class="outline">Button</button></td>
-            <td><button class="outline" disabled>Button</button></td>
-          </tr>
-          <tr>
-            <th scope="row">Ghost</th>
-            <td><code>.ghost</code></td>
-            <td><button class="ghost">Button</button></td>
-            <td><button class="ghost" disabled>Button</button></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-        Buttons can also have SVG icons alone, or on the left or right side. The icon
-        <i>should</i> automatically adjust to the button size. The <code>path</code> element fills
-        with <code>currentColor</code> to match the button text color.
-      </p>
-      <p>
-        Icon <i>only</i> buttons need the <code>.icon</code> class to remove the default padding and
-        center the icon.
-      </p>
-
-      <table style="min-width: 100%">
-        <thead>
-          <tr>
-            <th scope="col">Style</th>
-            <th scope="col">Class</th>
-            <th scope="col">Default</th>
-            <th scope="col">Disabled</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Icon Only</th>
-            <td><code>.icon</code></td>
-            <td>
-              <button class="icon">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11.9961 1.25C13.0454 1.25 13.8719 2.04253 14.3995 3.11191L16.1616 6.66516C16.215 6.77513 16.3417 6.92998 16.5321 7.07164C16.7223 7.21315 16.9086 7.29121 17.0311 7.3118L20.2207 7.84613C21.3729 8.03973 22.3386 8.60449 22.6521 9.5879C22.9653 10.5705 22.5064 11.5916 21.6778 12.4216L21.677 12.4225L19.1991 14.9209C19.1009 15.0199 18.9909 15.2064 18.9219 15.4494C18.8534 15.6908 18.8473 15.9107 18.8784 16.0527L18.8788 16.0547L19.5877 19.1454C19.8818 20.4317 19.7843 21.7073 18.8771 22.3742C17.9667 23.0433 16.7227 22.7467 15.5925 22.0736L12.6026 20.289C12.477 20.214 12.2614 20.1532 12.0011 20.1532C11.7427 20.1532 11.5226 20.2132 11.3888 20.291L11.3869 20.2921L8.40288 22.0732C7.27405 22.7487 6.03154 23.04 5.12111 22.3702C4.21449 21.7032 4.11214 20.43 4.40711 19.1447L5.1159 16.0547L5.11633 16.0527C5.14741 15.9107 5.14133 15.6908 5.0728 15.4494C5.0038 15.2064 4.89379 15.0199 4.79558 14.9209L2.31585 12.4206C1.49265 11.5906 1.03521 10.5704 1.34595 9.58925C1.65759 8.60525 2.62143 8.0398 3.77433 7.84606L6.96132 7.31219L6.96233 7.31202C7.07917 7.29175 7.2627 7.21456 7.45248 7.07268C7.64261 6.93054 7.76959 6.77535 7.82312 6.66516L7.82582 6.65967L9.58562 3.11097L9.58632 3.10957C10.119 2.04108 10.948 1.25 11.9961 1.25Z"
-                    fill="currentColor" />
-                </svg>
-              </button>
-            </td>
-            <td>
-              <button class="icon" disabled>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11.9961 1.25C13.0454 1.25 13.8719 2.04253 14.3995 3.11191L16.1616 6.66516C16.215 6.77513 16.3417 6.92998 16.5321 7.07164C16.7223 7.21315 16.9086 7.29121 17.0311 7.3118L20.2207 7.84613C21.3729 8.03973 22.3386 8.60449 22.6521 9.5879C22.9653 10.5705 22.5064 11.5916 21.6778 12.4216L21.677 12.4225L19.1991 14.9209C19.1009 15.0199 18.9909 15.2064 18.9219 15.4494C18.8534 15.6908 18.8473 15.9107 18.8784 16.0527L18.8788 16.0547L19.5877 19.1454C19.8818 20.4317 19.7843 21.7073 18.8771 22.3742C17.9667 23.0433 16.7227 22.7467 15.5925 22.0736L12.6026 20.289C12.477 20.214 12.2614 20.1532 12.0011 20.1532C11.7427 20.1532 11.5226 20.2132 11.3888 20.291L11.3869 20.2921L8.40288 22.0732C7.27405 22.7487 6.03154 23.04 5.12111 22.3702C4.21449 21.7032 4.11214 20.43 4.40711 19.1447L5.1159 16.0547L5.11633 16.0527C5.14741 15.9107 5.14133 15.6908 5.0728 15.4494C5.0038 15.2064 4.89379 15.0199 4.79558 14.9209L2.31585 12.4206C1.49265 11.5906 1.03521 10.5704 1.34595 9.58925C1.65759 8.60525 2.62143 8.0398 3.77433 7.84606L6.96132 7.31219L6.96233 7.31202C7.07917 7.29175 7.2627 7.21456 7.45248 7.07268C7.64261 6.93054 7.76959 6.77535 7.82312 6.66516L7.82582 6.65967L9.58562 3.11097L9.58632 3.10957C10.119 2.04108 10.948 1.25 11.9961 1.25Z"
-                    fill="currentColor" />
-                </svg>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Icon Left</th>
-            <td><code></code></td>
-            <td>
-              <button>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11.9961 1.25C13.0454 1.25 13.8719 2.04253 14.3995 3.11191L16.1616 6.66516C16.215 6.77513 16.3417 6.92998 16.5321 7.07164C16.7223 7.21315 16.9086 7.29121 17.0311 7.3118L20.2207 7.84613C21.3729 8.03973 22.3386 8.60449 22.6521 9.5879C22.9653 10.5705 22.5064 11.5916 21.6778 12.4216L21.677 12.4225L19.1991 14.9209C19.1009 15.0199 18.9909 15.2064 18.9219 15.4494C18.8534 15.6908 18.8473 15.9107 18.8784 16.0527L18.8788 16.0547L19.5877 19.1454C19.8818 20.4317 19.7843 21.7073 18.8771 22.3742C17.9667 23.0433 16.7227 22.7467 15.5925 22.0736L12.6026 20.289C12.477 20.214 12.2614 20.1532 12.0011 20.1532C11.7427 20.1532 11.5226 20.2132 11.3888 20.291L11.3869 20.2921L8.40288 22.0732C7.27405 22.7487 6.03154 23.04 5.12111 22.3702C4.21449 21.7032 4.11214 20.43 4.40711 19.1447L5.1159 16.0547L5.11633 16.0527C5.14741 15.9107 5.14133 15.6908 5.0728 15.4494C5.0038 15.2064 4.89379 15.0199 4.79558 14.9209L2.31585 12.4206C1.49265 11.5906 1.03521 10.5704 1.34595 9.58925C1.65759 8.60525 2.62143 8.0398 3.77433 7.84606L6.96132 7.31219L6.96233 7.31202C7.07917 7.29175 7.2627 7.21456 7.45248 7.07268C7.64261 6.93054 7.76959 6.77535 7.82312 6.66516L7.82582 6.65967L9.58562 3.11097L9.58632 3.10957C10.119 2.04108 10.948 1.25 11.9961 1.25Z"
-                    fill="currentColor" />
-                </svg>
-                Button
-              </button>
-            </td>
-            <td>
-              <button disabled>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11.9961 1.25C13.0454 1.25 13.8719 2.04253 14.3995 3.11191L16.1616 6.66516C16.215 6.77513 16.3417 6.92998 16.5321 7.07164C16.7223 7.21315 16.9086 7.29121 17.0311 7.3118L20.2207 7.84613C21.3729 8.03973 22.3386 8.60449 22.6521 9.5879C22.9653 10.5705 22.5064 11.5916 21.6778 12.4216L21.677 12.4225L19.1991 14.9209C19.1009 15.0199 18.9909 15.2064 18.9219 15.4494C18.8534 15.6908 18.8473 15.9107 18.8784 16.0527L18.8788 16.0547L19.5877 19.1454C19.8818 20.4317 19.7843 21.7073 18.8771 22.3742C17.9667 23.0433 16.7227 22.7467 15.5925 22.0736L12.6026 20.289C12.477 20.214 12.2614 20.1532 12.0011 20.1532C11.7427 20.1532 11.5226 20.2132 11.3888 20.291L11.3869 20.2921L8.40288 22.0732C7.27405 22.7487 6.03154 23.04 5.12111 22.3702C4.21449 21.7032 4.11214 20.43 4.40711 19.1447L5.1159 16.0547L5.11633 16.0527C5.14741 15.9107 5.14133 15.6908 5.0728 15.4494C5.0038 15.2064 4.89379 15.0199 4.79558 14.9209L2.31585 12.4206C1.49265 11.5906 1.03521 10.5704 1.34595 9.58925C1.65759 8.60525 2.62143 8.0398 3.77433 7.84606L6.96132 7.31219L6.96233 7.31202C7.07917 7.29175 7.2627 7.21456 7.45248 7.07268C7.64261 6.93054 7.76959 6.77535 7.82312 6.66516L7.82582 6.65967L9.58562 3.11097L9.58632 3.10957C10.119 2.04108 10.948 1.25 11.9961 1.25Z"
-                    fill="currentColor" />
-                </svg>
-                Button
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Icon Right</th>
-            <td><code></code></td>
-            <td>
-              <button>
-                Button
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11.9961 1.25C13.0454 1.25 13.8719 2.04253 14.3995 3.11191L16.1616 6.66516C16.215 6.77513 16.3417 6.92998 16.5321 7.07164C16.7223 7.21315 16.9086 7.29121 17.0311 7.3118L20.2207 7.84613C21.3729 8.03973 22.3386 8.60449 22.6521 9.5879C22.9653 10.5705 22.5064 11.5916 21.6778 12.4216L21.677 12.4225L19.1991 14.9209C19.1009 15.0199 18.9909 15.2064 18.9219 15.4494C18.8534 15.6908 18.8473 15.9107 18.8784 16.0527L18.8788 16.0547L19.5877 19.1454C19.8818 20.4317 19.7843 21.7073 18.8771 22.3742C17.9667 23.0433 16.7227 22.7467 15.5925 22.0736L12.6026 20.289C12.477 20.214 12.2614 20.1532 12.0011 20.1532C11.7427 20.1532 11.5226 20.2132 11.3888 20.291L11.3869 20.2921L8.40288 22.0732C7.27405 22.7487 6.03154 23.04 5.12111 22.3702C4.21449 21.7032 4.11214 20.43 4.40711 19.1447L5.1159 16.0547L5.11633 16.0527C5.14741 15.9107 5.14133 15.6908 5.0728 15.4494C5.0038 15.2064 4.89379 15.0199 4.79558 14.9209L2.31585 12.4206C1.49265 11.5906 1.03521 10.5704 1.34595 9.58925C1.65759 8.60525 2.62143 8.0398 3.77433 7.84606L6.96132 7.31219L6.96233 7.31202C7.07917 7.29175 7.2627 7.21456 7.45248 7.07268C7.64261 6.93054 7.76959 6.77535 7.82312 6.66516L7.82582 6.65967L9.58562 3.11097L9.58632 3.10957C10.119 2.04108 10.948 1.25 11.9961 1.25Z"
-                    fill="currentColor" />
-                </svg>
-              </button>
-            </td>
-            <td>
-              <button disabled>
-                Button
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M11.9961 1.25C13.0454 1.25 13.8719 2.04253 14.3995 3.11191L16.1616 6.66516C16.215 6.77513 16.3417 6.92998 16.5321 7.07164C16.7223 7.21315 16.9086 7.29121 17.0311 7.3118L20.2207 7.84613C21.3729 8.03973 22.3386 8.60449 22.6521 9.5879C22.9653 10.5705 22.5064 11.5916 21.6778 12.4216L21.677 12.4225L19.1991 14.9209C19.1009 15.0199 18.9909 15.2064 18.9219 15.4494C18.8534 15.6908 18.8473 15.9107 18.8784 16.0527L18.8788 16.0547L19.5877 19.1454C19.8818 20.4317 19.7843 21.7073 18.8771 22.3742C17.9667 23.0433 16.7227 22.7467 15.5925 22.0736L12.6026 20.289C12.477 20.214 12.2614 20.1532 12.0011 20.1532C11.7427 20.1532 11.5226 20.2132 11.3888 20.291L11.3869 20.2921L8.40288 22.0732C7.27405 22.7487 6.03154 23.04 5.12111 22.3702C4.21449 21.7032 4.11214 20.43 4.40711 19.1447L5.1159 16.0547L5.11633 16.0527C5.14741 15.9107 5.14133 15.6908 5.0728 15.4494C5.0038 15.2064 4.89379 15.0199 4.79558 14.9209L2.31585 12.4206C1.49265 11.5906 1.03521 10.5704 1.34595 9.58925C1.65759 8.60525 2.62143 8.0398 3.77433 7.84606L6.96132 7.31219L6.96233 7.31202C7.07917 7.29175 7.2627 7.21456 7.45248 7.07268C7.64261 6.93054 7.76959 6.77535 7.82312 6.66516L7.82582 6.65967L9.58562 3.11097L9.58632 3.10957C10.119 2.04108 10.948 1.25 11.9961 1.25Z"
-                    fill="currentColor" />
-                </svg>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>
-        Different corner styles can combine with the different button variants.
-        <br />
-        Classes of <i>.tl</i>, <i>.tr</i>, <i>.bl</i>, and <i>.br</i> can be used to adjust the
-        corners.
-      </p>
-
-      <table style="min-width: 100%">
-        <thead>
-          <tr>
-            <th scope="col">Corner Style</th>
-            <th scope="col">Class</th>
-            <th scope="col">Default</th>
-            <th scope="col">Disabled</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Top Left</th>
-            <td><code>.tl</code></td>
-            <td><button class="tl">Button</button></td>
-            <td><button class="tl" disabled>Button</button></td>
-          </tr>
-          <tr>
-            <th scope="row">Top Right</th>
-            <td><code>.tr</code></td>
-            <td><button class="tr">Button</button></td>
-            <td><button class="tr" disabled>Button</button></td>
-          </tr>
-          <tr>
-            <th scope="row">Bottom Left</th>
-            <td><code>.bl</code></td>
-            <td><button class="bl secondary">Button</button></td>
-            <td><button class="bl secondary" disabled>Button</button></td>
-          </tr>
-          <tr>
-            <th scope="row">Bottom Right</th>
-            <td><code>.br</code></td>
-            <td><button class="br outline">Button</button></td>
-            <td><button class="br outline" disabled>Button</button></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h5>Button Group</h5>
-      <code>.button-group</code>
-      <p>
-        Like buttons, button groups can have different corner styles. The default is a sharp top
-        left. <br />Classes of <i>.tl</i>, <i>.tr</i>, <i>.br</i>, and <i>.bl</i> can be used to
-        adjust the corners.
-      </p>
-
-      <table style="min-width: 100%">
-        <thead>
-          <tr>
-            <th scope="col">Corner Style</th>
-            <th scope="col">Class</th>
-            <th scope="col">Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Default</th>
-            <td><code></code></td>
-            <td>
-              <div class="button-group">
-                <button>Primary</button>
-                <button class="secondary">Secondary</button>
-                <button class="danger">Danger</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Top Right</th>
-            <td><code>.tr</code></td>
-            <td>
-              <div class="button-group tr">
-                <button>Primary</button>
-                <button class="secondary">Secondary</button>
-                <button class="danger">Danger</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Bottom Right</th>
-            <td><code>.br</code></td>
-            <td>
-              <div class="button-group br">
-                <button>Primary</button>
-                <button class="secondary">Secondary</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Bottom Left</th>
-            <td><code>.bl</code></td>
-            <td>
-              <div class="button-group bl">
-                <button>Primary</button>
-                <button class="outline">Secondary</button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-      <table style="min-width: 100%">
-        <tr>
-          <th scope="row">Field</th>
-          <th scope="row">Default</th>
-          <th scope="row">Disabled</th>
-        </tr>
-
-          
-        <tr>
-          <th scope="row">Text</th>
-          <td>
-            <input type="text" placeholder="Input field" />
-          </td>
-          <td>
-            <input type="text" placeholder="Input field disabled" disabled />
-          </td>
-        </tr>
-        
-        <tr>
-          <th scope="row">Textarea</th>
-          <td>
-            <textarea placeholder="Textarea field"></textarea>
-          </td>
-          <td>
-            <textarea placeholder="Textarea field disabled" disabled></textarea>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">FaB Select</th>
-          <td>
-        <fab-select placeholder="Select framework" mode="single">
-          <optgroup label="JavaScript Frameworks">
-            <option value="react">React</option>
-            <option value="vue">Vue</option>
-            <option value="angular">Angular</option>
-          </optgroup>
-          <optgroup label="CSS Frameworks">
-            <option value="tailwind">Tailwind CSS</option>
-            <option value="bootstrap">Bootstrap</option>
-            <option value="bulma">Bulma</option>
-          </optgroup>
-          <optgroup label="Backend">
-            <option value="nodejs">Node.js</option>
-            <option value="python">Python</option>
-            <option value="go">Go</option>
-          </optgroup>
-        </fab-select>
-          </td>
-          <td>
-            <fab-select placeholder="Select framework" mode="single" disabled>
-              <optgroup label="JavaScript Frameworks">
-                <option value="react">React</option>
-                <option value="vue">Vue</option>
-                <option value="angular">Angular</option>
-              </optgroup>
-              <optgroup label="CSS Frameworks">
-                <option value="tailwind">Tailwind CSS</option>
-                <option value="bootstrap">Bootstrap</option>
-                <option value="bulma">Bulma</option>
-              </optgroup>
-              <optgroup label="Backend">
-                <option value="nodejs">Node.js</option>
-                <option value="python">Python</option>
-                <option value="go">Go</option>
-              </optgroup>
-            </fab-select>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">FaB Select Multiple</th>
-          <td>
-        <fab-select placeholder="Select framework" mode="multi">
-          <optgroup label="JavaScript Frameworks">
-            <option value="react">React</option>
-            <option value="vue">Vue</option>
-            <option value="angular">Angular</option>
-          </optgroup>
-          <optgroup label="CSS Frameworks">
-            <option value="tailwind">Tailwind CSS</option>
-            <option value="bootstrap">Bootstrap</option>
-            <option value="bulma">Bulma</option>
-          </optgroup>
-          <optgroup label="Backend">
-            <option value="nodejs">Node.js</option>
-            <option value="python">Python</option>
-            <option value="go">Go</option>
-          </optgroup>
-        </fab-select>
-          </td>
-          <td>
-            <fab-select placeholder="Select framework" mode="multi" disabled>
-              <optgroup label="JavaScript Frameworks">
-                <option value="react">React</option>
-                <option value="vue">Vue</option>
-                <option value="angular">Angular</option>
-              </optgroup>
-              <optgroup label="CSS Frameworks">
-                <option value="tailwind">Tailwind CSS</option>
-                <option value="bootstrap">Bootstrap</option>
-                <option value="bulma">Bulma</option>
-              </optgroup>
-              <optgroup label="Backend">
-                <option value="nodejs">Node.js</option>
-                <option value="python">Python</option>
-                <option value="go">Go</option>
-              </optgroup>
-            </fab-select>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Tom Select</th>
-          <td>
-            <select id="select-animal" class="demo-animals" placeholder="Select animal..."></select>
-          </td>
-          <td>
-            <select id="select-animal-disabled" class="demo-animals" placeholder="Select animal..." disabled></select>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Tom Select Multi</th>
-          <td>
-            <select id="select-animal-multi" class="demo-animals" multiple placeholder="Select animal..."></select>
-          </td>
-          <td>
-            <select id="select-animal-multi-disabled" class="demo-animals" multiple placeholder="Select animal..." disabled></select>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Select</th>
-          <td>
-            <select>
-              <option value="">Select field</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-            </select>
-          </td>
-          <td>
-            <select disabled>
-              <option value="">Select field disabled</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Select Multiple</th>
-          <td>
-            <select multiple title="Select Multiple">
-              <optgroup label="Group 1">
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-              </optgroup>
-              <optgroup label="Group 2">
-                <option value="3">Option 3</option>
-                <option value="4">Option 4</option>
-              </optgroup>
-              
-            </select>
-          </td>
-          <td>
-            <select multiple disabled title="Select Multiple">
-              <option value="">Multi-Select disabled</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Search</th>
-          <td>
-            <input type="search" placeholder="Search field" />
-          </td>
-          <td>
-            <input type="search" placeholder="Search field disabled" disabled />
-          </td>
-        </tr>
-        
-        <tr>
-          <th scope="row">Number</th>
-          <td>
-            <input type="number" placeholder="Number field" />
-          </td>
-          <td>
-            <input type="number" placeholder="Number field disabled" disabled />
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Email</th>
-          <td>
-            <input type="email" placeholder="Email field" />
-          </td>
-          <td>
-            <input type="email" placeholder="Email field disabled" disabled />
-          </td>
-        </tr>
-        
-        <tr>
-          <th scope="row">Password</th>
-          <td>
-            <input type="password" placeholder="Password field" />
-          </td>
-          <td>
-            <input type="password" placeholder="Password field disabled" disabled />
-          </td>
-        </tr>
-        
-        <tr>
-          <th scope="row">URL</th>
-          <td>
-            <input type="url" placeholder="URL field" />
-          </td>
-          <td>
-            <input type="url" placeholder="URL field disabled" disabled />
-          </td>
-        </tr>
-        
-        <tr>
-          <th scope="row">Telephone</th>
-          <td>
-            <input type="tel" placeholder="Telephone field" />
-          </td>
-          <td>
-            <input type="tel" placeholder="Telephone field disabled" disabled />
-          </td>
-        </tr>
-
-        <tr>
-          <th scope="row">Date</th>
-          <td>
-            <input type="date" placeholder="Date field" />
-          </td>
-          <td>
-            <input type="date" placeholder="Date field disabled" disabled />
-          </td>
-        </tr>
-
-        <tr>
-          <th scope="row">Time</th>
-          <td>
-            <input type="time" placeholder="Time field" />
-          </td>
-          <td>
-            <input type="time" placeholder="Time field disabled" disabled />
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Month</th>
-          <td>
-            <input type="month" placeholder="Month field" />
-          </td>
-          <td>
-            <input type="month" placeholder="Month field disabled" disabled />
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Week</th>
-          <td>
-            <input type="week" placeholder="Week field" />
-          </td>
-          <td>
-            <input type="week" placeholder="Week field disabled" disabled />
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">DateTime-Local</th>
-          <td>
-            <input type="datetime-local" placeholder="DateTime-Local field" />
-          </td>
-          <td>
-            <input type="datetime-local" placeholder="DateTime-Local field disabled" disabled />
-          </td>
-        </tr>
-
-        <tr>
-          <th scope="row">Colour</th>
-          <td>
-            <input type="color" />
-          </td>
-          <td>
-            <input type="color" disabled />
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Checkbox</th>
-          <td>
-            <input type="checkbox" />
-            <input type="checkbox" checked />
-          </td>
-          <td>
-            <input type="checkbox" disabled />
-            <input type="checkbox" disabled checked />
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Radio</th>
-          <td>
-            <input type="radio" name="radio-group" id="radio1" checked />
-            <input type="radio" name="radio-group" id="radio2" />
-            <input type="radio" name="radio-group" id="radio3" />
-          </td>
-          <td>
-            <input type="radio" name="radio-group-disabled" id="radio4" disabled checked />
-            <input type="radio" name="radio-group-disabled" id="radio5" disabled />
-            <input type="radio" name="radio-group-disabled" id="radio6" disabled />
-          </td>
-        </tr>
-
-      </table>
-
-    
-
-     
-
-
-    </main>
-    
-    <footer></footer>
-  </body>
-  <script>
-    // Make the DIV element draggable:
-    dragElement(document.getElementById("colour-test"));
-
-    function dragElement(elmnt) {
-      var pos1 = 0,
-        pos2 = 0,
-        pos3 = 0,
-        pos4 = 0;
-      if (document.getElementById(elmnt.id + "header")) {
-        // if present, the header is where you move the DIV from:
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-      } else {
-        // otherwise, move the DIV from anywhere inside the DIV:
-        elmnt.onmousedown = dragMouseDown;
+      span {
+        display: grid;
+        place-items: center;
+        opacity: 0.6;
+        font-size: var(--font-size-small);
       }
 
-      function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-      }
+    }
+    #colours-section .token-card:nth-of-type(2) {
+      margin-bottom: var(--space-lg);
+    }
 
-      function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // set the element's new position:
-        elmnt.style.top = elmnt.offsetTop - pos2 + "px";
-        elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
-      }
+    .swatch-cell {
+      padding: var(--space-xs);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3xs);
+      position: relative;
+      cursor: pointer;
+    }
 
-      function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
+    .swatch {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-xs);
+      border: 1px solid var(--colour-border, #e4e4ea);
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .swatch:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 1;
+    }
+
+    /* Click feedback animation */
+    .swatch.copied {
+      animation: pulse 0.3s ease;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
       }
     }
 
-    const tomSelectOpts = {
-      options: [
-        {class: 'mammal', value: "dog", name: "Dog" },
-        {class: 'mammal', value: "cat", name: "Cat" },
-        {class: 'mammal', value: "horse", name: "Horse" },
-        {class: 'mammal', value: "kangaroo", name: "Kangaroo" },
-        {class: 'bird', value: 'duck', name: 'Duck'},
-        {class: 'bird', value: 'chicken', name: 'Chicken'},
-        {class: 'bird', value: 'ostrich', name: 'Ostrich'},
-        {class: 'bird', value: 'seagull', name: 'Seagull'},
-        {class: 'reptile', value: 'snake', name: 'Snake'},
-        {class: 'reptile', value: 'lizard', name: 'Lizard'},
-        {class: 'reptile', value: 'alligator', name: 'Alligator'},
-        {class: 'reptile', value: 'turtle', name: 'Turtle'}
-      ],
-      optgroups: [
-        {value: 'mammal', label: 'Mammal', label_scientific: 'Mammalia'},
-        {value: 'bird', label: 'Bird', label_scientific: 'Aves'},
-        {value: 'reptile', label: 'Reptile', label_scientific: 'Reptilia'}
-      ],
-      optgroupField: 'class',
-      labelField: 'name',
-      searchField: ['name'],
-      render:{
-          optgroup_header:function(data, escape){
-              return '<div class="optgroup-header">' + escape(data.label) + 
-              '<span class="scientific"> (' + escape(data.label_scientific) + ')</span></div>';
-          }
-      },
-      onInitialize: function() {
-        this.control_input.classList.add('ts-input');
-      },
-      maxItems: 1,
-    };
+    .swatch-label {
+      font-size: var(--font-size-caption);
+      color: var(--colour-text-darker);
+      text-transform: uppercase;
+      line-height: 1;
+    }
 
+    /* Copy success indicator overlay */
+    .swatch-cell::after {
+      content: "Copied!";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 50%) scale(0);
+      color: var(--_swatch-on);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: var(--font-size-caption);
+      opacity: 0;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+      z-index: 2;
+    }
 
-new TomSelect('#select-animal', tomSelectOpts);
-new TomSelect('#select-animal-disabled', tomSelectOpts);
-new TomSelect('#select-animal-multi', { ...tomSelectOpts, plugins: { remove_button: { title: 'Remove this item' } } });
-new TomSelect('#select-animal-multi-disabled', { ...tomSelectOpts, plugins: { remove_button: { title: 'Remove this item' } } });
+    .swatch-cell.copied::after {
+      transform: translate(-50%, -100%) scale(1);
+      opacity: 1;
+    }
+  </style>
 
+  <body class="layout-sidebar">
+    <header>
+      <h1 class="numbered-heading">01 <span>colours</span></h1>
+    </header>
+
+     <div class="sidebar">
+      <div class="sidebar-content">
+        <header>
+          <svg
+            id="logo"
+            width="128"
+            height="39"
+            viewBox="0 0 128 39"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M22.32 38.75H15.5C6.93966 38.75 0 31.8104 0 23.25C0 14.6953 6.94524 7.75003 15.5 7.75003C24.0603 7.75003 31 14.6897 31 23.25V36.58C31 37.7777 30.0277 38.75 28.83 38.75C27.6323 38.75 26.66 37.7777 26.66 36.58V23.25C26.66 17.0865 21.6636 12.09 15.5 12.09C9.34061 12.09 4.34 17.0906 4.34 23.25C4.34 29.4136 9.33642 34.41 15.5 34.41H22.32V38.75Z"
+              fill="var(--colour-text)" />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M22.3199 30.0699V23.2499C22.3199 19.486 19.264 16.43 15.4999 16.43C11.736 16.43 8.68011 19.486 8.68011 23.2499C8.68011 27.0139 11.736 30.0699 15.4999 30.0699H22.3199Z"
+              fill="var(--colour-primary)" />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M64 9.92C64 17.1577 60.4542 24.3945 55.0494 29.7994C49.6445 35.2042 42.4077 38.75 35.17 38.75C33.9715 38.75 33 37.7785 33 36.58V9.92C33 8.72231 33.9723 7.75 35.17 7.75C36.3677 7.75 37.34 8.72231 37.34 9.92V34.2831C42.7239 33.6575 47.9398 30.7712 51.9805 26.7305C56.5623 22.1487 59.66 16.0555 59.66 9.92V7.75H64V9.92Z"
+              fill="var(--colour-text)" />
+
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M86.32 7.75H79.5C70.9397 7.75 64 14.6897 64 23.25C64 31.8048 70.9452 38.75 79.5 38.75C88.0603 38.75 95 31.8103 95 23.25V2.17C95 0.972315 94.0277 0 92.83 0C91.6323 0 90.66 0.972315 90.66 2.17V23.25C90.66 29.4136 85.6636 34.41 79.5 34.41C73.3406 34.41 68.34 29.4094 68.34 23.25C68.34 17.0864 73.3364 12.09 79.5 12.09H86.32V7.75Z"
+              fill="var(--colour-primary)" />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M86.3199 16.4301V23.2501C86.3199 27.0141 83.264 30.07 79.4999 30.07C75.736 30.07 72.6801 27.0141 72.6801 23.2501C72.6801 19.4861 75.736 16.4301 79.4999 16.4301H86.3199Z"
+              fill="var(--colour-text)" />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M105.68 7.75H112.5C121.06 7.75 128 14.6897 128 23.25C128 31.8048 121.055 38.75 112.5 38.75C103.94 38.75 97 31.8103 97 23.25V2.17C97 0.972315 97.9723 0 99.17 0C100.368 0 101.34 0.972315 101.34 2.17V23.25C101.34 29.4136 106.336 34.41 112.5 34.41C118.659 34.41 123.66 29.4094 123.66 23.25C123.66 17.0864 118.664 12.09 112.5 12.09H105.68V7.75Z"
+              fill="var(--colour-text)" />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M105.68 16.4301V23.2501C105.68 27.0141 108.736 30.07 112.5 30.07C116.264 30.07 119.32 27.0141 119.32 23.2501C119.32 19.4861 116.264 16.4301 112.5 16.4301H105.68Z"
+              fill="var(--colour-text)" />
+          </svg>
+        </header>
+        <nav class="primary-navigation">
+          <span class="nav-heading">Foundations</span>
+          <ul>
+            <li><a href="/">Colours</a></li>
+            <li><a href="fonts.html">Typography</a></li>
+            <li><a href="elevation.html">Elevation</a></li>
+            <li><a href="spacing.html">Spacing</a></li>
+          </ul>
+
+          <span class="nav-heading">Components</span>
+          <ul>
+            <li><a href="/components/buttons.html">Buttons</a></li>
+            <li><a href="/components/form-elements.html">Form Elements</a></li>
+          </ul>
+        </nav>
+
+        <div class="user-info">
+          <img src="./image/Avatar.svg" alt="User Avatar" />
+          <span class="user-name">Kristian</span>
+          <button class="icon ghost">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M11.167 12C12.0875 12 12.834 12.7465 12.834 13.667C12.834 14.5875 12.0875 15.334 11.167 15.334C10.2465 15.334 9.5 14.5875 9.5 13.667C9.5 12.7465 10.2465 12 11.167 12ZM11.167 13.334C10.9829 13.334 10.834 13.4829 10.834 13.667C10.834 13.8511 10.9829 14 11.167 14C11.3511 14 11.5 13.8511 11.5 13.667C11.5 13.4829 11.3511 13.334 11.167 13.334ZM11.167 7C12.0875 7 12.834 7.74652 12.834 8.66699C12.834 9.58747 12.0875 10.334 11.167 10.334C10.2465 10.334 9.5 9.58747 9.5 8.66699C9.5 7.74652 10.2465 7 11.167 7ZM11.167 8.33398C10.9829 8.33398 10.834 8.4829 10.834 8.66699C10.834 8.85109 10.9829 9 11.167 9C11.3511 9 11.5 8.85109 11.5 8.66699C11.5 8.4829 11.3511 8.33398 11.167 8.33398ZM11.167 2C12.0875 2 12.834 2.74652 12.834 3.66699C12.834 4.58747 12.0875 5.33398 11.167 5.33398C10.2465 5.33398 9.5 4.58747 9.5 3.66699C9.5 2.74652 10.2465 2 11.167 2ZM11.167 3.33398C10.9829 3.33398 10.834 3.4829 10.834 3.66699C10.834 3.85109 10.9829 4 11.167 4C11.3511 4 11.5 3.85109 11.5 3.66699C11.5 3.4829 11.3511 3.33398 11.167 3.33398Z"
+                fill="#C8C8D0" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section id="colours-section"></section>
+    </main>
+  </body>
+  <script>
+    // Colour palette definition
+    const colourPalette = [
+      { name: "Text", variable: "colour-text" },
+      { name: "Background", variable: "colour-background" },
+      { name: "Primary", variable: "colour-primary" },
+      { name: "Secondary", variable: "colour-secondary" },
+      { name: "Danger", variable: "colour-danger" },
+      { name: "Success", variable: "colour-success" },
+      { name: "Warning", variable: "colour-warning" },
+      { name: "Info", variable: "colour-info" },
+    ];
+
+    const modifiers = [
+      { label: "darker", suffix: "-darker" },
+      { label: "lighter", suffix: "-lighter" },
+      { label: "disabled", suffix: "-disabled" },
+      { label: "on", suffix: "-on" },
+      { label: "disabled-on", suffix: "-disabled-on" },
+    ];
+
+    // Helper for swatch copy (doesn't modify copyToken.js)
+    function copyFromSwatch(variable, cellEl) {
+      navigator.clipboard
+        .writeText(variable)
+        .then(() => {
+          cellEl.classList.add("copied");
+          setTimeout(() => {
+            cellEl.classList.remove("copied");
+          }, 1500);
+        })
+        .catch((err) => {
+          console.error("Copy failed:", err);
+        });
+    }
+
+    // Render colour cards WITHOUT code elements in swatch cells
+    document.getElementById("colours-section").innerHTML =
+      `<h2>Colour Tokens</h2>` +
+      colourPalette
+        .map(
+          ({ name, variable }) => `
+      <div class="token-card" data-token="--${variable}" data-type="colour">
+        <div class="swatch-grid">
+            <span>${name}</span>
+            <div class="swatch-cell" style="--_swatch-on: var(--${variable}-on);" data-var="--${variable}">
+              <div class="swatch" style="background-color: var(--${variable});"></div>
+              <span class="swatch-label">Default</span>
+            </div>
+          ${modifiers
+            .map(
+              ({ label, suffix }) => `
+            <div class="swatch-cell" style="--_swatch-on: contrast-color(var(--${variable}${suffix}));" data-var="--${variable}${suffix}">
+              <div class="swatch" style="background-color: var(--${variable}${suffix});"></div>
+              <span class="swatch-label">${label}</span>
+            </div>
+          `,
+            )
+            .join("")}
+        </div>
+      </div>
+    `,
+        )
+        .join("");
+
+    // Attach click handlers to all swatch cells
+    document.querySelectorAll(".swatch-cell").forEach((cell) => {
+      const swatch = cell.querySelector(".swatch");
+      const variable = cell.dataset.var;
+
+      if (swatch && variable) {
+        // Click on the whole cell (but prevent double-trigger on swatch click)
+        cell.addEventListener("click", () => {
+          copyFromSwatch(variable, cell);
+        });
+
+        // Make swatch also clickable (optional, redundant but explicit)
+        swatch.style.cursor = "pointer";
+      }
+    });
+
+    // Optional: Add tooltip hint
+    document.querySelectorAll(".swatch-cell").forEach((cell) => {
+      cell.title = "Click to copy CSS variable";
+    });
   </script>
 </html>

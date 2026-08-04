@@ -1,3 +1,34 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--colour-background);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--elevation-06);
+  width: max-content;
+
+  & header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--space-md);
+  }
+
+  & footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    padding-block-start: var(--space-sm);
+    gap: var(--space-xs);
+    border-block-start: 1px solid var(--colour-border);
+    opacity: 0.8;
+    font-size: var(--font-size-small);
+  }
+}
+
 .token-section {
   --token-checkerboard: repeating-linear-gradient(
     45deg,

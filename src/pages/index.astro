@@ -22,7 +22,7 @@ const modifiers = [
 ---
 
 <Layout title="Colours" numeral="01">
-  <section id="colours-section">
+  <section id="colours-section" class="token-section">
     <h2>Colour Tokens</h2>
     {
       colourPalette.map(({ name, variable }) => (
@@ -53,38 +53,10 @@ const modifiers = [
 </Layout>
 
 <style>
-  section {
-    width: 100%;
-    max-width: 90rem;
-    margin-inline: auto;
-    display: grid;
+  #colours-section {
     grid-template-columns: repeat(auto-fill, minmax(min(50rem, 100%), 1fr));
     gap: var(--space-sm);
-    margin-bottom: var(--space-2xl);
-    padding: var(--space-xl) var(--space-lg);
-  }
-
-  section > h2 {
-    grid-column: 1 / -1;
-    font-size: var(--font-size-body);
-    font-weight: 600;
-    color: var(--colour-text-darker);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding-bottom: var(--space-xs);
-    border-bottom: 1px solid var(--colour-border);
-    margin-bottom: var(--space-md);
-  }
-
-  /* ── Token card base ── */
-  :global(.token-card) {
-    background: var(--colour-background);
-    border: 1px solid var(--colour-border);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
-    transition:
-      box-shadow 0.2s ease,
-      transform 0.2s ease;
+    padding-block: var(--space-xl);
   }
 
   /* ── Swatch grid ── */
@@ -180,7 +152,7 @@ const modifiers = [
 </style>
 
 <script>
-  import { initCopyToken } from "../scripts/copyToken.ts";
+  import { initCopyToken } from "../scripts/copyToken";
 
   document.addEventListener("DOMContentLoaded", initCopyToken);
 </script>

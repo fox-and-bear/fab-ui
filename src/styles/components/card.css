@@ -1,0 +1,84 @@
+.token-section {
+  --token-checkerboard: repeating-linear-gradient(
+    45deg,
+    var(--colour-background) 0,
+    var(--colour-background) 6px,
+    var(--colour-background-darker) 6px,
+    var(--colour-background-darker) 12px
+  );
+
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+  display: grid;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+  padding-inline: var(--space-lg);
+}
+
+.token-section > h2 {
+  grid-column: 1 / -1;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  color: var(--colour-text-darker);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--colour-border);
+}
+
+.token-section > p {
+  grid-column: 1 / -1;
+  color: var(--colour-text-darker);
+  font-size: var(--font-size-small);
+}
+
+.token-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-sm);
+  background: var(--colour-background);
+  border: 1px solid var(--colour-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.token-card h6 {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.token-card code {
+  font-size: var(--font-size-caption);
+  color: var(--colour-primary);
+  word-break: break-all;
+  background: var(--colour-background-lighter, #f4f4f8);
+  padding: var(--space-4xs) var(--space-3xs);
+  border-radius: var(--radius-xs);
+  align-self: flex-start;
+  display: inline-block;
+}
+
+.token-range {
+  font-size: var(--font-size-caption);
+  color: var(--colour-text-disabled);
+  font-variant-numeric: tabular-nums;
+}
+
+.token-checkerboard {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--colour-background) 0,
+    var(--colour-background) 6px,
+    var(--colour-background-darker) 6px,
+    var(--colour-background-darker) 12px
+  );
+}

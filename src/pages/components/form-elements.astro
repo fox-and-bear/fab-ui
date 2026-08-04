@@ -1,0 +1,507 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const textInputs = [
+  { label: "Text", type: "text", placeholder: "Input field" },
+  { label: "Search", type: "search", placeholder: "Search field" },
+  { label: "Email", type: "email", placeholder: "Email field" },
+  { label: "Password", type: "password", placeholder: "Password field" },
+  { label: "Number", type: "number", placeholder: "Number field" },
+  { label: "URL", type: "url", placeholder: "URL field" },
+  { label: "Telephone", type: "tel", placeholder: "Telephone field" },
+] as const;
+
+const dateInputs = [
+  { label: "Date", type: "date" },
+  { label: "Time", type: "time" },
+  { label: "Month", type: "month" },
+  { label: "Week", type: "week" },
+  { label: "DateTime-Local", type: "datetime-local" },
+] as const;
+---
+
+<Layout title="Form Elements" numeral="06">
+  <section id="form-overview" class="token-section form-section">
+    <h2>Overview</h2>
+
+    <article class="token-card intro-card">
+      <h6>Quick Preview</h6>
+      <div class="preview-grid">
+        <input type="text" placeholder="Type here" />
+        <select>
+          <option value="">Select option</option>
+          <option value="one">Option one</option>
+          <option value="two">Option two</option>
+        </select>
+        <button>Submit</button>
+      </div>
+    </article>
+  </section>
+
+  <section id="form-text-inputs" class="token-section form-section">
+    <h2>Text Inputs</h2>
+    <p>Default and disabled states for text-based fields.</p>
+
+    <div class="table-wrap token-card">
+      <table class="form-table">
+        <thead>
+          <tr>
+            <th scope="col">Field</th>
+            <th scope="col">Default</th>
+            <th scope="col">Disabled</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            textInputs.map(({ label, type, placeholder }) => (
+              <tr>
+                <th scope="row">{label}</th>
+                <td>
+                  <input type={type} placeholder={placeholder} />
+                </td>
+                <td>
+                  <input type={type} placeholder={`${placeholder} disabled`} disabled />
+                </td>
+              </tr>
+            ))
+          }
+          <tr>
+            <th scope="row">Textarea</th>
+            <td>
+              <textarea placeholder="Textarea field"></textarea>
+            </td>
+            <td>
+              <textarea placeholder="Textarea field disabled" disabled></textarea>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="form-selects" class="token-section form-section">
+    <h2>Select Controls</h2>
+    <p>Comparison between native select, Fab Select, and Tom Select behavior.</p>
+
+    <div class="table-wrap token-card">
+      <table class="form-table">
+        <thead>
+          <tr>
+            <th scope="col">Field</th>
+            <th scope="col">Default</th>
+            <th scope="col">Disabled</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Native Select</th>
+            <td>
+              <select>
+                <option value="">Select field</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </td>
+            <td>
+              <select disabled>
+                <option value="">Select field disabled</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Native Multi Select</th>
+            <td>
+              <select multiple title="Select Multiple">
+                <optgroup label="Group 1">
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                </optgroup>
+                <optgroup label="Group 2">
+                  <option value="3">Option 3</option>
+                  <option value="4">Option 4</option>
+                </optgroup>
+              </select>
+            </td>
+            <td>
+              <select multiple disabled title="Select Multiple">
+                <option value="">Multi-select disabled</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Fab Select</th>
+            <td>
+              <fab-select placeholder="Select framework" mode="single">
+                <optgroup label="JavaScript Frameworks">
+                  <option value="react">React</option>
+                  <option value="vue">Vue</option>
+                  <option value="angular">Angular</option>
+                </optgroup>
+                <optgroup label="CSS Frameworks">
+                  <option value="tailwind">Tailwind CSS</option>
+                  <option value="bootstrap">Bootstrap</option>
+                  <option value="bulma">Bulma</option>
+                </optgroup>
+                <optgroup label="Backend">
+                  <option value="nodejs">Node.js</option>
+                  <option value="python">Python</option>
+                  <option value="go">Go</option>
+                </optgroup>
+              </fab-select>
+            </td>
+            <td>
+              <fab-select placeholder="Select framework" mode="single" disabled>
+                <optgroup label="JavaScript Frameworks">
+                  <option value="react">React</option>
+                  <option value="vue">Vue</option>
+                  <option value="angular">Angular</option>
+                </optgroup>
+                <optgroup label="CSS Frameworks">
+                  <option value="tailwind">Tailwind CSS</option>
+                  <option value="bootstrap">Bootstrap</option>
+                  <option value="bulma">Bulma</option>
+                </optgroup>
+                <optgroup label="Backend">
+                  <option value="nodejs">Node.js</option>
+                  <option value="python">Python</option>
+                  <option value="go">Go</option>
+                </optgroup>
+              </fab-select>
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Fab Select Multi</th>
+            <td>
+              <fab-select placeholder="Select framework" mode="multi">
+                <optgroup label="JavaScript Frameworks">
+                  <option value="react">React</option>
+                  <option value="vue">Vue</option>
+                  <option value="angular">Angular</option>
+                </optgroup>
+                <optgroup label="CSS Frameworks">
+                  <option value="tailwind">Tailwind CSS</option>
+                  <option value="bootstrap">Bootstrap</option>
+                  <option value="bulma">Bulma</option>
+                </optgroup>
+                <optgroup label="Backend">
+                  <option value="nodejs">Node.js</option>
+                  <option value="python">Python</option>
+                  <option value="go">Go</option>
+                </optgroup>
+              </fab-select>
+            </td>
+            <td>
+              <fab-select placeholder="Select framework" mode="multi" disabled>
+                <optgroup label="JavaScript Frameworks">
+                  <option value="react">React</option>
+                  <option value="vue">Vue</option>
+                  <option value="angular">Angular</option>
+                </optgroup>
+                <optgroup label="CSS Frameworks">
+                  <option value="tailwind">Tailwind CSS</option>
+                  <option value="bootstrap">Bootstrap</option>
+                  <option value="bulma">Bulma</option>
+                </optgroup>
+                <optgroup label="Backend">
+                  <option value="nodejs">Node.js</option>
+                  <option value="python">Python</option>
+                  <option value="go">Go</option>
+                </optgroup>
+              </fab-select>
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Tom Select</th>
+            <td>
+              <select id="select-animal"></select>
+            </td>
+            <td>
+              <select id="select-animal-disabled" disabled></select>
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">Tom Select Multi</th>
+            <td>
+              <select id="select-animal-multi" multiple></select>
+            </td>
+            <td>
+              <select id="select-animal-multi-disabled" multiple disabled> </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="form-choice-controls" class="token-section form-section">
+    <h2>Choice Controls and Date Inputs</h2>
+    <p>Boolean controls and date/time field types in default and disabled states.</p>
+
+    <div class="table-wrap token-card">
+      <table class="form-table">
+        <thead>
+          <tr>
+            <th scope="col">Field</th>
+            <th scope="col">Default</th>
+            <th scope="col">Disabled</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            dateInputs.map(({ label, type }) => (
+              <tr>
+                <th scope="row">{label}</th>
+                <td>
+                  <input type={type} />
+                </td>
+                <td>
+                  <input type={type} disabled />
+                </td>
+              </tr>
+            ))
+          }
+          <tr>
+            <th scope="row">Colour</th>
+            <td>
+              <input type="color" />
+            </td>
+            <td>
+              <input type="color" disabled />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Checkbox</th>
+            <td>
+              <div class="choice-row">
+                <input type="checkbox" />
+                <input type="checkbox" checked />
+              </div>
+            </td>
+            <td>
+              <div class="choice-row">
+                <input type="checkbox" disabled />
+                <input type="checkbox" disabled checked />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Radio</th>
+            <td>
+              <div class="choice-row">
+                <input type="radio" name="radio-group" checked />
+                <input type="radio" name="radio-group" />
+                <input type="radio" name="radio-group" />
+              </div>
+            </td>
+            <td>
+              <div class="choice-row">
+                <input type="radio" name="radio-group-disabled" disabled checked />
+                <input type="radio" name="radio-group-disabled" disabled />
+                <input type="radio" name="radio-group-disabled" disabled />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .form-section {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    /* padding-block: var(--space-xl); */
+  }
+
+  .intro-card {
+    background:
+      radial-gradient(
+        circle at top left,
+        color-mix(in oklab, var(--colour-primary) 12%, transparent),
+        transparent 40%
+      ),
+      var(--token-checkerboard);
+  }
+
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+    gap: var(--space-sm);
+    align-items: center;
+    padding: var(--space-xs);
+    border: 1px solid var(--colour-border);
+    border-radius: var(--radius-sm);
+    /* background:
+      radial-gradient(
+        circle at top left,
+        color-mix(in oklab, var(--colour-primary) 12%, transparent),
+        transparent 40%
+      ),
+      var(--token-checkerboard); */
+    background:
+      linear-gradient(
+        155deg,
+        color-mix(in oklab, var(--colour-info) 12%, transparent),
+        transparent 50%
+      ),
+      var(--colour-background);
+  }
+
+  .form-table {
+    width: 100%;
+    max-width: unset;
+    margin: 0;
+    table-layout: fixed;
+  }
+
+  .form-table th,
+  .form-table td {
+    vertical-align: middle;
+  }
+
+  .form-table td > :is(input, select, textarea, fab-select, .ts-wrapper) {
+    width: min(100%, 26rem);
+  }
+
+  .form-table textarea {
+    min-height: 6rem;
+  }
+
+  .choice-row {
+    display: inline-flex;
+    gap: var(--space-xs);
+    align-items: center;
+  }
+
+  .choice-row input[type="radio"],
+  .choice-row input[type="checkbox"] {
+    width: auto;
+  }
+
+  @media (max-width: 48rem) {
+    .form-section {
+      padding-block: var(--space-lg);
+    }
+
+    .form-table th,
+    .form-table td {
+      padding-inline: var(--space-xs);
+    }
+  }
+</style>
+
+<script>
+  type TomSelectConfig = Record<string, unknown>;
+  type TomSelectInstance = { control_input?: HTMLInputElement };
+  type TomSelectConstructor = new (
+    element: Element,
+    settings: TomSelectConfig,
+  ) => TomSelectInstance;
+
+  const TomSelectCtor = (window as Window & { TomSelect?: TomSelectConstructor }).TomSelect;
+
+  const tomSelectOptions = {
+    options: [
+      { class: "mammal", value: "dog", name: "Dog" },
+      { class: "mammal", value: "cat", name: "Cat" },
+      { class: "mammal", value: "horse", name: "Horse" },
+      { class: "mammal", value: "kangaroo", name: "Kangaroo" },
+      { class: "bird", value: "duck", name: "Duck" },
+      { class: "bird", value: "chicken", name: "Chicken" },
+      { class: "bird", value: "ostrich", name: "Ostrich" },
+      { class: "bird", value: "seagull", name: "Seagull" },
+      { class: "reptile", value: "snake", name: "Snake" },
+      { class: "reptile", value: "lizard", name: "Lizard" },
+      { class: "reptile", value: "alligator", name: "Alligator" },
+      { class: "reptile", value: "turtle", name: "Turtle" },
+    ],
+    optgroups: [
+      { value: "mammal", label: "Mammal", label_scientific: "Mammalia" },
+      { value: "bird", label: "Bird", label_scientific: "Aves" },
+      { value: "reptile", label: "Reptile", label_scientific: "Reptilia" },
+    ],
+    optgroupField: "class",
+    labelField: "name",
+    searchField: ["name"],
+    render: {
+      optgroup_header(
+        data: { label: string; label_scientific: string },
+        escape: (value: string) => string,
+      ) {
+        return `<div class="optgroup-header">${escape(data.label)}<span class="scientific"> (${escape(data.label_scientific)})</span></div>`;
+      },
+    },
+    onInitialize(this: TomSelectInstance) {
+      this.control_input?.classList.add("ts-input");
+    },
+    maxItems: 1,
+  };
+
+  //   totally overkill for the demo but whatever
+  function cloneTomSelectConfig(base: TomSelectConfig, overrides: TomSelectConfig = {}) {
+    const merged = { ...base, ...overrides } as TomSelectConfig & {
+      options?: Array<Record<string, unknown>>;
+      optgroups?: Array<Record<string, unknown>>;
+      searchField?: string[];
+    };
+
+    const baseOptions = (base as { options?: Array<Record<string, unknown>> }).options ?? [];
+    const overrideOptions = (overrides as { options?: Array<Record<string, unknown>> }).options;
+    merged.options = (overrideOptions ?? baseOptions).map((option) => ({ ...option }));
+
+    const baseOptgroups = (base as { optgroups?: Array<Record<string, unknown>> }).optgroups ?? [];
+    const overrideOptgroups = (overrides as { optgroups?: Array<Record<string, unknown>> })
+      .optgroups;
+    merged.optgroups = (overrideOptgroups ?? baseOptgroups).map((group) => ({ ...group }));
+
+    const baseSearchField = (base as { searchField?: string[] }).searchField ?? [];
+    const overrideSearchField = (overrides as { searchField?: string[] }).searchField;
+    merged.searchField = [...(overrideSearchField ?? baseSearchField)];
+
+    return merged;
+  }
+
+  function initTomSelect(selector: string, config: TomSelectConfig = {}) {
+    const el = document.querySelector(selector);
+    const tomSelectElement = el as (Element & { tomselect?: TomSelectInstance }) | null;
+
+    if (!el || !TomSelectCtor || tomSelectElement?.tomselect) {
+      return;
+    }
+
+    const instanceConfig = cloneTomSelectConfig(tomSelectOptions, config);
+    new TomSelectCtor(el, instanceConfig);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initTomSelect("#select-animal", { placeholder: "Select animal..." });
+    initTomSelect("#select-animal-disabled", { placeholder: "Select animal..." });
+    initTomSelect("#select-animal-multi", {
+      maxItems: null,
+      placeholder: "Select animal...",
+      plugins: {
+        remove_button: { title: "Remove this item" },
+      },
+    });
+    initTomSelect("#select-animal-multi-disabled", {
+      maxItems: null,
+      placeholder: "Select animal...",
+      plugins: {
+        remove_button: { title: "Remove this item" },
+      },
+    });
+  });
+</script>

@@ -36,7 +36,7 @@ const radii = [
 ---
 
 <Layout title="Spacing" numeral="04">
-  <section id="spacing-section">
+  <section id="spacing-section" class="token-section">
     <h2>Spacing Tokens</h2>
     <p>
       All spacings are clamped based on screen size, only applicable to smaller screen sizes &lt;
@@ -61,7 +61,7 @@ const radii = [
     }
   </section>
 
-  <section id="spacing-paired-section">
+  <section id="spacing-paired-section" class="token-section">
     <h2>Paired Spacing Tokens</h2>
     <p>
       Paired spacings are used to create a greater variation in spacing, so should be used
@@ -86,7 +86,7 @@ const radii = [
     }
   </section>
 
-  <section id="radii-section">
+  <section id="radii-section" class="token-section">
     <h2>Radius Tokens</h2>
     {
       radii.map(({ name, variable, range }) => (
@@ -108,74 +108,16 @@ const radii = [
   main {
   }
 
-  section {
-    width: 100%;
-    max-width: 90rem;
-    margin-inline: auto;
+  #spacing-section,
+  #spacing-paired-section,
+  #radii-section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(13rem, 100%), 1fr));
     gap: var(--space-md);
-    margin-bottom: var(--space-2xl);
-    padding-inline: var(--space-lg);
   }
 
   #spacing-section {
     padding-block-start: var(--space-xl);
-  }
-
-  section > h2 {
-    grid-column: 1 / -1;
-    font-size: var(--font-size-body);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding-bottom: var(--space-xs);
-    border-bottom: 1px solid var(--colour-border);
-  }
-
-  section > p {
-    grid-column: 1 / -1;
-    color: var(--colour-text-darker);
-    font-size: var(--font-size-small);
-  }
-
-  :global(.token-card) {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2xs);
-    padding: var(--space-sm);
-    background: var(--colour-background);
-    border: 1px solid var(--colour-border);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
-    transition:
-      box-shadow 0.2s ease,
-      transform 0.2s ease;
-  }
-
-  :global(.token-card h6) {
-    font-size: var(--font-size-body);
-    font-weight: 700;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  :global(.token-card code) {
-    font-size: var(--font-size-caption);
-    color: var(--colour-primary);
-    word-break: break-all;
-    background: var(--colour-background-lighter);
-    padding: var(--space-4xs) var(--space-3xs);
-    border-radius: var(--radius-xs);
-    align-self: flex-start;
-  }
-
-  :global(.token-range) {
-    font-size: var(--font-size-caption);
-    color: var(--colour-text-disabled);
-    font-variant-numeric: tabular-nums;
   }
 
   /* Paired indicator (if you add data-pair later) */
@@ -202,13 +144,7 @@ const radii = [
     min-height: 3.5rem;
     display: flex;
     align-items: stretch;
-    background: repeating-linear-gradient(
-      45deg,
-      var(--colour-background) 0,
-      var(--colour-background) 6px,
-      var(--colour-background-darker) 6px,
-      var(--colour-background-darker) 12px
-    );
+    background: var(--token-checkerboard);
     border: 1px solid var(--colour-border);
     border-radius: var(--radius-xs);
     overflow: hidden;
@@ -235,13 +171,7 @@ const radii = [
     width: 100%;
     aspect-ratio: 1 / 1;
     border: 1px solid var(--colour-border);
-    background: repeating-linear-gradient(
-      45deg,
-      var(--colour-background) 0,
-      var(--colour-background) 6px,
-      var(--colour-background-darker) 6px,
-      var(--colour-background-darker) 12px
-    );
+    background: var(--token-checkerboard);
     box-shadow: var(--elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
     position: relative;
   }
@@ -258,8 +188,8 @@ const radii = [
 </style>
 
 <script>
-  import { initCopyToken } from "../scripts/copyToken.ts";
-  import { initSpacingUpdates } from "../scripts/spacing.ts";
+  import { initCopyToken } from "../scripts/copyToken";
+  import { initSpacingUpdates } from "../scripts/spacing";
 
   // Initialize both on mount
   document.addEventListener("DOMContentLoaded", () => {

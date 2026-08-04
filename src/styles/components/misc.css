@@ -7,7 +7,7 @@ h1.numbered-heading {
     "dlig" 1;
   margin-block: var(--space-sm);
   height: calc(1.2cap);
-  padding-block-start: 0.35cap; /* this needs to change depending on the font used. e.g. Quablo is 0.35, Chaney is 0.1 */
+  padding-block-start: 0; /* this needs to change depending on the font used. e.g. Quablo is 0.35, Chaney is 0.1 */
 
   overflow: hidden;
 

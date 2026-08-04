@@ -46,7 +46,7 @@ const elevations = [
 ---
 
 <Layout title="Elevation" numeral="03">
-  <section id="elevation-section">
+  <section id="elevation-section" class="token-section">
     <h2>Box Shadow Tokens</h2>
     {
       elevations.map(({ name, variable, use }) => (
@@ -72,44 +72,13 @@ const elevations = [
 </Layout>
 
 <style>
-  section {
-    width: 100%;
-    max-width: 90rem;
-    margin-inline: auto;
-    display: grid;
+  #elevation-section {
     grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
     gap: var(--space-md);
-    margin-bottom: var(--space-2xl);
-
-    padding: var(--space-xl) var(--space-lg);
+    padding-block: var(--space-xl);
   }
 
-  /* ── Section headers ── */
-  section > h2 {
-    grid-column: 1 / -1;
-    font-size: var(--font-size-body);
-    font-weight: 600;
-    color: var(--colour-text);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding-bottom: var(--space-xs);
-    border-bottom: 1px solid var(--colour-border);
-    margin-bottom: var(--space-md);
-  }
-
-  /* ── Card base ── */
   .token-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2xs);
-    padding: var(--space-sm);
-    background: var(--colour-background);
-    border: 1px solid var(--colour-border);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
-    transition:
-      box-shadow 0.2s ease,
-      transform 0.2s ease;
     position: relative;
   }
 
@@ -119,23 +88,9 @@ const elevations = [
     } */
 
   .token-card h6 {
-    font-size: var(--font-size-body);
-    font-weight: 700;
-    margin: 0;
-    display: flex;
     align-items: baseline;
+    justify-content: flex-start;
     gap: var(--space-3xs);
-  }
-
-  .token-card code {
-    font-size: var(--font-size-caption);
-    color: var(--colour-primary);
-    word-break: break-all;
-    background: var(--colour-background-lighter, #f4f4f8);
-    padding: var(--space-4xs) var(--space-3xs);
-    border-radius: var(--radius-xs);
-    align-self: flex-start;
-    display: inline-block;
   }
 
   .token-card ul {
@@ -155,13 +110,13 @@ const elevations = [
   .shadow-swatch {
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: repeating-linear-gradient(
-      45deg,
-      var(--colour-background) 0,
-      var(--colour-background) 6px,
-      var(--colour-background-lighter) 6px,
-      var(--colour-background-lighter) 12px
-    );
+    background:
+      radial-gradient(
+        circle at top left,
+        color-mix(in oklab, var(--colour-primary) 12%, transparent),
+        transparent 40%
+      ),
+      var(--token-checkerboard);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
@@ -194,8 +149,8 @@ const elevations = [
 </style>
 
 <script>
-  import { initElevationUpdates } from "../scripts/elevations.ts";
-  import { initCopyToken } from "../scripts/copyToken.ts";
+  import { initElevationUpdates } from "../scripts/elevations";
+  import { initCopyToken } from "../scripts/copyToken";
 
   // Run both initializers on mount
   document.addEventListener("DOMContentLoaded", () => {

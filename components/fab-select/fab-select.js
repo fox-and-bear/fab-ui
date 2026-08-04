@@ -78,6 +78,9 @@ class FabSelect extends HTMLElement {
     this._handleTriggerKeydownBound = null;
     this._handleOptionsKeydownBound = null;
     this._handleSearchKeydownBound = null;
+    this._handleWindowResizeBound = null;
+    this._handleFormSubmitBound = null;
+    this._handleFormResetBound = null;
   }
 
   // =====================
@@ -95,12 +98,6 @@ class FabSelect extends HTMLElement {
     if (this.asyncUrl) {
       this.loadAsync();
     }
-    // DEBUG
-    console.log("[FabSelect] Debug:");
-    console.log("- shadowRoot:", !!this._shadow);
-    console.log("- elements cached:", Object.keys(this._elements));
-    console.log("- trigger exists:", !!this._trigger);
-    console.log("- dropdown exists:", !!this._dropdown);
   }
 
   disconnectedCallback() {
@@ -299,7 +296,7 @@ class FabSelect extends HTMLElement {
    * @param {{value:string, label:string, disabled?:boolean, group?:string}[]} options
    * @public
    */
-  setOptions(options) {
+  setOptions(options, { append = false } = {}) {
     // Validate and normalize options
     const validatedOptions = options
       .filter((opt) => opt && typeof opt.value !== "undefined" && typeof opt.label !== "undefined")
@@ -317,7 +314,16 @@ class FabSelect extends HTMLElement {
       );
     }
 
-    this._options = validatedOptions;
+    if (append) {
+      const optionsMap = new Map(this._options.map((opt) => [opt.value, opt]));
+      validatedOptions.forEach((opt) => {
+        optionsMap.set(opt.value, opt);
+      });
+      this._options = Array.from(optionsMap.values());
+    } else {
+      this._options = validatedOptions;
+    }
+
     this._groups = [...new Set(this._options.filter((o) => o.group).map((o) => o.group))];
     this._renderOptions();
     this._updateDisplay();
@@ -492,6 +498,7 @@ class FabSelect extends HTMLElement {
     ) {
       this._renderOptions();
     }
+    this._positionDropdown();
     this._dropdown.classList.add("open");
     this._trigger.focus();
     this.dispatchEvent(new CustomEvent(FabSelect.EVENT_TYPES.OPEN));
@@ -630,10 +637,22 @@ class FabSelect extends HTMLElement {
    * @private
    */
   _checkFormAssociation() {
+    if (this._formElement && this._handleFormSubmitBound && this._handleFormResetBound) {
+      this._formElement.removeEventListener("submit", this._handleFormSubmitBound);
+      this._formElement.removeEventListener("reset", this._handleFormResetBound);
+    }
+
     this._formElement = this.closest("form");
     if (this._formElement) {
-      this._formElement.addEventListener("submit", this._handleFormSubmit.bind(this));
-      this._formElement.addEventListener("reset", this._handleFormReset.bind(this));
+      if (!this._handleFormSubmitBound) {
+        this._handleFormSubmitBound = this._handleFormSubmit.bind(this);
+      }
+      if (!this._handleFormResetBound) {
+        this._handleFormResetBound = this._handleFormReset.bind(this);
+      }
+
+      this._formElement.addEventListener("submit", this._handleFormSubmitBound);
+      this._formElement.addEventListener("reset", this._handleFormResetBound);
     }
   }
 
@@ -708,11 +727,6 @@ class FabSelect extends HTMLElement {
           throw new Error("Invalid API response format");
         }
 
-        if (!append) {
-          this._options = [];
-          this._groups = [];
-        }
-
         this.setOptions(
           loadedOptions.map((opt, idx) => ({
             value: String(opt.value),
@@ -721,6 +735,7 @@ class FabSelect extends HTMLElement {
             group: opt.group || null,
             id: `fab-option-${Date.now()}-${idx}`,
           })),
+          { append },
         );
 
         this._isLoading = false;
@@ -764,8 +779,8 @@ class FabSelect extends HTMLElement {
         :host {
           --fab-bg: transparent;
           --fab-bg-disabled: transparent;
-          --fab-surface: light-dark(oklch(1 0 0 / 1), oklch(0.29 0 286.18 / 1));
-          --fab-border: light-dark(oklch(0.86 0 286.31 / 1), #808178);
+          --fab-surface: light-dark(oklch(1 0 0 / 1), #1b1c2d);
+          --fab-border: light-dark(oklch(0.86 0 286.31 / 1), #4c4d63);
           --fab-border-hover: #aeafa6;
           --fab-text: light-dark(oklch(0.23 0 286.09 / 1), oklch(0.97 0 286.35 / 1));
           --fab-text-muted: light-dark(oklch(0.65 0.03 285.64 / 1), oklch(0.65 0.03 285.64 / 1));
@@ -815,6 +830,10 @@ class FabSelect extends HTMLElement {
         }
 
         .wrapper { position: relative; width: 100%; }
+        .wrapper.dropdown-up .dropdown {
+          top: auto;
+          bottom: calc(100% + 4px);
+        }
         .wrapper:has(.dropdown.open) .trigger { border-color: var(--fab-accent-weak); }
         .trigger {
           display: flex; align-items: center; justify-content: space-between;
@@ -869,13 +888,17 @@ class FabSelect extends HTMLElement {
         @keyframes spin { to { transform: rotate(360deg); } }
         .dropdown {
           position: absolute; top: calc(100% + 4px); left: 0; right: 0;
-          background: var(--fab-surface); border: 1px solid var(--fab-border);
+          background: var(--fab-surface); 
+          border: 1px solid var(--fab-border);
           border-radius: var(--fab-radius); box-shadow: var(--fab-shadow);
           z-index: 1000; max-height: 0; overflow: hidden;
           transition: max-height var(--fab-dropdown-transition), opacity var(--fab-dropdown-transition);
           opacity: 0;
         }
-        .dropdown.open { max-height: var(--fab-dropdown-max-height); opacity: 1; }
+        .dropdown.open {
+          max-height: var(--fab-dropdown-open-max-height, var(--fab-dropdown-max-height));
+          opacity: 1;
+        }
         .search-container {
           padding: var(--fab-padding-y); border-bottom: 1px solid var(--fab-divider);
           position: sticky; top: 0; background: var(--fab-surface);
@@ -883,6 +906,7 @@ class FabSelect extends HTMLElement {
         }
         .search-input {
           flex: 1; padding: 0.5rem 0.75rem; border: 1px solid var(--fab-border);
+          width: 100%;
           border-radius: var(--fab-radius-sm); font-size: var(--fab-font-size-sm);
           outline: none; background: var(--fab-surface); color: var(--fab-text);
           transition: border-color var(--fab-transition), box-shadow var(--fab-transition);
@@ -904,7 +928,7 @@ class FabSelect extends HTMLElement {
           padding: 0.5rem 1rem; border-bottom: 1px solid var(--fab-divider);
         }
         .options-list {
-          max-height: var(--fab-options-max-height); overflow-y: auto;
+          max-height: var(--fab-options-open-max-height, var(--fab-options-max-height)); overflow-y: auto;
           list-style: none; margin: 0; padding: 0;
         }
         .option-group { padding: 0.5rem 1rem 0; }
@@ -1025,12 +1049,6 @@ class FabSelect extends HTMLElement {
       ${this.required ? '<div class="helper-text" part="helper-text" aria-live="polite"></div>' : ""}
       <div class="visually-hidden" part="announcer" aria-live="polite" aria-atomic="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;"></div>
     `;
-
-    // Wire up refresh button event listener
-    const refreshBtn = this._shadow.querySelector(".refresh-btn");
-    if (refreshBtn) {
-      refreshBtn.addEventListener("click", () => this.refreshAsync());
-    }
 
     this._updateDisplay();
   }
@@ -1247,6 +1265,7 @@ class FabSelect extends HTMLElement {
     this._handleTriggerKeydownBound = this._handleTriggerKeydown.bind(this);
     this._handleOptionsKeydownBound = this._handleOptionsKeydown.bind(this);
     this._handleSearchKeydownBound = this._handleSearchKeydown.bind(this);
+    this._handleWindowResizeBound = this._handleWindowResize.bind(this);
 
     this._trigger.addEventListener("click", () => {
       if (!this.disabled && this._searchInput) {
@@ -1315,6 +1334,7 @@ class FabSelect extends HTMLElement {
 
     document.addEventListener("click", this._handleClickOutsideBound);
     window.addEventListener("scroll", this._handleScrollOutsideBound, true);
+    window.addEventListener("resize", this._handleWindowResizeBound);
   }
 
   /**
@@ -1576,6 +1596,7 @@ class FabSelect extends HTMLElement {
     // Remove all event listeners using bound references
     document.removeEventListener("click", this._handleClickOutsideBound);
     window.removeEventListener("scroll", this._handleScrollOutsideBound, true);
+    window.removeEventListener("resize", this._handleWindowResizeBound);
     if (this._trigger) {
       this._trigger.removeEventListener("keydown", this._handleTriggerKeydownBound);
     }
@@ -1584,6 +1605,11 @@ class FabSelect extends HTMLElement {
     }
     if (this._searchInput) {
       this._searchInput.removeEventListener("keydown", this._handleSearchKeydownBound);
+    }
+
+    if (this._formElement && this._handleFormSubmitBound && this._handleFormResetBound) {
+      this._formElement.removeEventListener("submit", this._handleFormSubmitBound);
+      this._formElement.removeEventListener("reset", this._handleFormResetBound);
     }
 
     // Clean up debounce timer
@@ -1619,6 +1645,51 @@ class FabSelect extends HTMLElement {
     if (!this.contains(e.target) && this._isOpen) {
       this.close();
     }
+  }
+
+  /**
+   * Repositions dropdown when viewport changes while open
+   * @private
+   */
+  _handleWindowResize() {
+    if (this._isOpen) {
+      this._positionDropdown();
+    }
+  }
+
+  /**
+   * Computes dropdown direction and available height to avoid viewport clipping
+   * @private
+   */
+  _positionDropdown() {
+    const wrapper = this._elements?.wrapper;
+    if (!wrapper) return;
+
+    const gap = 4;
+    const edgePadding = 8;
+    const minPreferredHeight = 180;
+    const chromeReserve = 64;
+
+    const triggerRect = this.getBoundingClientRect();
+    const spaceBelow = Math.max(0, window.innerHeight - triggerRect.bottom - gap - edgePadding);
+    const spaceAbove = Math.max(0, triggerRect.top - gap - edgePadding);
+
+    const openUp = spaceBelow < minPreferredHeight && spaceAbove > spaceBelow;
+    wrapper.classList.toggle("dropdown-up", openUp);
+
+    const availableSpace = openUp ? spaceAbove : spaceBelow;
+
+    const computed = getComputedStyle(this);
+    const configuredDropdownMax =
+      parseFloat(computed.getPropertyValue("--fab-dropdown-max-height")) || 400;
+    const configuredOptionsMax =
+      parseFloat(computed.getPropertyValue("--fab-options-max-height")) || 280;
+
+    const dropdownMax = Math.max(140, Math.min(configuredDropdownMax, availableSpace));
+    const optionsMax = Math.max(80, Math.min(configuredOptionsMax, dropdownMax - chromeReserve));
+
+    this.style.setProperty("--fab-dropdown-open-max-height", `${Math.round(dropdownMax)}px`);
+    this.style.setProperty("--fab-options-open-max-height", `${Math.round(optionsMax)}px`);
   }
 
   // =====================
@@ -1759,9 +1830,6 @@ class FabSelect extends HTMLElement {
       this.dispatchEvent(
         new Event(FabSelect.EVENT_TYPES.INPUT, { bubbles: true, cancelable: true }),
       );
-      this.dispatchEvent(
-        new Event(FabSelect.EVENT_TYPES.CHANGE, { bubbles: true, cancelable: true }),
-      );
     }
   }
 
@@ -1836,20 +1904,29 @@ class FabSelect extends HTMLElement {
    * @private
    */
   _validate(checkOnly = false) {
-    const isValid = !this.required || this._selectedValues.length > 0;
-
-    if (isValid && this._customError) {
-      return false;
-    }
+    const hasRequiredError = this.required && this._selectedValues.length === 0;
+    const customError = this._customError ? String(this._customError).trim() : "";
+    const hasCustomError = customError.length > 0;
+    const isValid = !hasRequiredError && !hasCustomError;
 
     if (!checkOnly) {
       this.toggleAttribute("invalid", !isValid);
+
+      const trigger = this._elements.trigger;
+      if (trigger) {
+        trigger.setAttribute("aria-invalid", !isValid ? "true" : "false");
+      }
+
       if (this._helperText) {
-        if (!isValid) {
+        if (hasCustomError) {
+          delete this._helperText.hidden;
+          this._helperText.textContent = customError;
+        } else if (hasRequiredError) {
           delete this._helperText.hidden;
           this._helperText.textContent = "This field is required";
         } else {
           this._helperText.setAttribute("hidden", "");
+          this._helperText.textContent = "";
         }
       }
     }

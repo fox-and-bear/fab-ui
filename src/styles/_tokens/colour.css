@@ -7,7 +7,8 @@
   --fab-colour-danger: var(--red);
   --fab-colour-success: var(--green);
   --fab-colour-warning: var(--yellow);
-  --fab-colour-info: var(--teal);
+  --fab-colour-info: var(--teal); 
+  
 
   /* This is only used in demos - stripy line background rather than checkerboard */
   --fab-background-checkerboard: repeating-linear-gradient(

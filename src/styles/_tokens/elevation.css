@@ -1,32 +1,55 @@
-/* drop shadows for elevations - should use primitive values TBC*/
+/* drop shadows for elevations */
 :root {
+  --shadow-color: 0, 0, 0;
+  --shadow-strong: 0.2;
+  --shadow-medium: 0.15;
+  --shadow-light: 0.12;
+  --shadow-very-light: 0.08;
+
   /* call-outs, inset shadows */
   --fab-elevation-01-inset: inset 0px 4px 10px -2px rgba(26, 27, 40, 1);
-
+  
   /* No elevation - only useful for transitions */
-  --fab-elevation-00: 0px 0px 0px rgba(0, 0, 0, 0);
+  --fab-elevation-00: 0px 0px 0px rgba(var(--shadow-color), 0);
 
   /* e.g. Cards, pressed button  */
   --fab-elevation-01:
-    0px 1px 2px rgba(0, 0, 0, 0.32), 0px 0px 1px rgba(40, 41, 61, 0.08);
+    0px 1px 2px rgba(var(--shadow-color), var(--shadow-strong)),
+    0px 2px 4px rgba(var(--shadow-color), 0.16),
+    0px 4px 8px rgba(var(--shadow-color), var(--shadow-very-light));
 
   /* e.g. Buttons, notification badges  */
   --fab-elevation-02:
-    0px 2px 4px rgba(0, 0, 0, 0.32), 0px 0px 1px rgba(0, 0, 0, 0.04);
+    0px 1px 3px rgba(var(--shadow-color), var(--shadow-strong)),
+    0px 2px 4px rgba(var(--shadow-color), var(--shadow-medium)),
+    0px 4px 8px rgba(var(--shadow-color), var(--shadow-light)),
+    0px 8px 16px rgba(var(--shadow-color), var(--shadow-very-light));
 
   /* e.g. Navigation Menu bar  */
   --fab-elevation-03:
-    0px 4px 8px rgba(0, 0, 0, 0.32), 0px 0px 2px rgba(0, 0, 0, 0.04);
+    0px 2px 4px rgba(var(--shadow-color), var(--shadow-strong)),
+    0px 4px 8px rgba(var(--shadow-color), var(--shadow-medium)),
+    0px 8px 16px rgba(var(--shadow-color), var(--shadow-light)),
+    0px 12px 24px rgba(var(--shadow-color), var(--shadow-very-light));
 
   /* e.g. Card raised, button raised  */
   --fab-elevation-04:
-    0px 8px 16px rgba(0, 0, 0, 0.32), 0px 2px 4px rgba(0, 0, 0, 0.04);
+    0px 2px 4px rgba(var(--shadow-color), var(--shadow-strong)),
+    0px 8px 16px rgba(var(--shadow-color), var(--shadow-medium)),
+    0px 12px 24px rgba(var(--shadow-color), var(--shadow-light)),
+    0px 16px 32px rgba(var(--shadow-color), var(--shadow-very-light));
 
   /* e.g. Picker, popover   */
   --fab-elevation-05:
-    0px 16px 24px rgba(0, 0, 0, 0.32), 0px 2px 8px rgba(0, 0, 0, 0.04);
+    0px 3px 6px rgba(var(--shadow-color), var(--shadow-strong)),
+    0px 12px 20px rgba(var(--shadow-color), var(--shadow-medium)),
+    0px 20px 32px rgba(var(--shadow-color), var(--shadow-light)),
+    0px 28px 48px rgba(var(--shadow-color), var(--shadow-very-light));
 
   /* e.g. Modal, dialogues */
   --fab-elevation-06:
-    0px 20px 32px rgba(0, 0, 0, 0.32), 0px 2px 8px rgba(0, 0, 0, 0.08);
+    0px 4px 8px rgba(var(--shadow-color), var(--shadow-strong)),
+    0px 16px 24px rgba(var(--shadow-color), var(--shadow-medium)),
+    0px 24px 40px rgba(var(--shadow-color), var(--shadow-light)),
+    0px 32px 56px rgba(var(--shadow-color), var(--shadow-very-light));
 }

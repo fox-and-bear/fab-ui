@@ -63,18 +63,6 @@ a {
   transition:
     color 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
-
-  /* &:hover {
-    color: var(--fab-colour-primary-on);
-    box-shadow: inset 200px 0 0 0 var(--fab-colour-primary);
-  }
-
-  &:visited {
-    color: var(--fab-colour-primary-darker);
-    &:hover {
-      color: var(--fab-colour-primary-on);
-    }
-  } */
 }
 
 a {

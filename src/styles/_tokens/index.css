@@ -5,3 +5,8 @@
 @import "./typography.css";
 @import "./spacing.css";
 @import "./radius.css";
+
+/* Unify input values */
+:root {
+  --fab-input-height: var(--input-height);
+}

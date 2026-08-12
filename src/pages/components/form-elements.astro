@@ -322,42 +322,42 @@ const dateInputs = [
 <style>
   .form-section {
     grid-template-columns: 1fr;
-    gap: var(--space-sm);
-    /* padding-block: var(--space-xl); */
+    gap: var(--fab-space-sm);
+    /* padding-block: var(--fab-space-xl); */
   }
 
   .intro-card {
     background:
       radial-gradient(
         circle at top left,
-        color-mix(in oklab, var(--colour-primary) 12%, transparent),
+        color-mix(in oklab, var(--fab-colour-primary) 12%, transparent),
         transparent 40%
       ),
-      var(--token-checkerboard);
+      var(--fab-token-checkerboard);
   }
 
   .preview-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
-    gap: var(--space-sm);
+    gap: var(--fab-space-sm);
     align-items: center;
-    padding: var(--space-xs);
-    border: 1px solid var(--colour-border);
-    border-radius: var(--radius-sm);
+    padding: var(--fab-space-xs);
+    border: 1px solid var(--fab-colour-border);
+    border-radius: var(--fab-radius-sm);
     /* background:
       radial-gradient(
         circle at top left,
-        color-mix(in oklab, var(--colour-primary) 12%, transparent),
+        color-mix(in oklab, var(--fab-colour-primary) 12%, transparent),
         transparent 40%
       ),
-      var(--token-checkerboard); */
+      var(--fab-fab-token-checkerboard); */
     background:
       linear-gradient(
         155deg,
-        color-mix(in oklab, var(--colour-info) 12%, transparent),
+        color-mix(in oklab, var(--fab-colour-info) 12%, transparent),
         transparent 50%
       ),
-      var(--colour-background);
+      var(--fab-colour-background);
   }
 
   .form-table {
@@ -382,7 +382,7 @@ const dateInputs = [
 
   .choice-row {
     display: inline-flex;
-    gap: var(--space-xs);
+    gap: var(--fab-space-xs);
     align-items: center;
   }
 
@@ -393,12 +393,12 @@ const dateInputs = [
 
   @media (max-width: 48rem) {
     .form-section {
-      padding-block: var(--space-lg);
+      padding-block: var(--fab-space-lg);
     }
 
     .form-table th,
     .form-table td {
-      padding-inline: var(--space-xs);
+      padding-inline: var(--fab-space-xs);
     }
   }
 </style>

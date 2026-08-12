@@ -227,8 +227,8 @@ const groups = [
 <style>
   .button-section {
     grid-template-columns: repeat(auto-fill, minmax(min(24rem, 100%), 1fr));
-    gap: var(--space-sm);
-    padding-block: var(--space-xl);
+    gap: var(--fab-space-sm);
+    padding-block: var(--fab-space-xl);
   }
 
   .lead-card {
@@ -237,64 +237,64 @@ const groups = [
     background:
       radial-gradient(
         circle at top left,
-        color-mix(in oklab, var(--colour-primary) 12%, transparent),
+        color-mix(in oklab, var(--fab-colour-primary) 12%, transparent),
         transparent 40%
       ),
-      var(--token-checkerboard);
+      var(--fab-token-checkerboard);
   }
 
   .preview-strip {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-xs);
+    gap: var(--fab-space-xs);
     align-items: center;
     justify-content: center;
-    padding-block: var(--space-md);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--colour-border);
-    box-shadow: var(--elevation-02);
+    padding-block: var(--fab-space-md);
+    border-radius: var(--fab-radius-sm);
+    border: 1px solid var(--fab-colour-border);
+    box-shadow: var(--fab-elevation-02);
     background:
       linear-gradient(
         155deg,
-        color-mix(in oklab, var(--colour-info) 12%, transparent),
+        color-mix(in oklab, var(--fab-colour-info) 12%, transparent),
         transparent 50%
       ),
-      var(--colour-background);
+      var(--fab-colour-background);
   }
 
   .demo-grid {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
-    gap: var(--space-sm);
+    gap: var(--fab-space-sm);
   }
 
   .demo-card {
-    gap: var(--space-xs);
+    gap: var(--fab-space-xs);
   }
 
   .demo-row {
     min-height: 6rem;
     display: flex;
-    gap: var(--space-2xs);
+    gap: var(--fab-space-2xs);
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
-    padding: var(--space-sm);
-    border: 1px solid var(--colour-border);
-    border-radius: var(--radius-sm);
+    padding: var(--fab-space-sm);
+    border: 1px solid var(--fab-colour-border);
+    border-radius: var(--fab-radius-sm);
     background:
       radial-gradient(
         circle at top right,
-        color-mix(in oklab, var(--colour-primary) 16%, transparent),
+        color-mix(in oklab, var(--fab-colour-primary) 16%, transparent),
         transparent 40%
       ),
-      var(--token-checkerboard);
+      var(--fab-token-checkerboard);
   }
 
   .demo-row svg {
-    width: var(--font-size-body);
-    height: var(--font-size-body);
+    width: var(--fab-font-size-body);
+    height: var(--fab-font-size-body);
   }
 
   .button-table {
@@ -320,24 +320,24 @@ const groups = [
 
   .group-stack {
     display: grid;
-    gap: var(--space-sm);
+    gap: var(--fab-space-sm);
   }
 
   .group-row {
     display: grid;
     grid-template-columns: 8rem 1fr;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--fab-space-sm);
   }
 
   .group-row > span {
-    font-size: var(--font-size-small);
-    color: var(--colour-text-darker);
+    font-size: var(--fab-font-size-small);
+    color: var(--fab-colour-text-darker);
   }
 
   @media (max-width: 48rem) {
     .button-section {
-      padding-block: var(--space-lg);
+      padding-block: var(--fab-space-lg);
     }
 
     .group-row {

@@ -6,6 +6,7 @@
   --ts-text-muted: var(--fab-colour-text-disabled-on);
   --ts-text-disabled: var(--fab-colour-text-disabled);
   --ts-bg: var(--fab-colour-background);
+  --ts-surface: var(--fab-colour-background);
   --ts-bg-item: var(--fab-colour-background-lighter);
   --ts-bg-item-active: var(--fab-colour-background-darker);
   --ts-bg-disabled: var(--fab-colour-background);
@@ -17,20 +18,22 @@
   --ts-highlight: var(--fab-colour-primary-lighter);
   --ts-header-bg: var(--fab-colour-background);
   --ts-header-text: var(--fab-colour-primary-disabled);
+  --ts-shadow: 0 4px 16px oklch(0 0 0 / 0.12);
 
   /* Spacing */
   --ts-pad: var(--fab-space-2xs);
   --ts-item-pad-x: 6px;
-  --ts-item-pad-y: 0px; /* was 3px */
+  --ts-item-pad-y: var(--space-4xs);
   --ts-item-margin: 3px;
 
   /* Layout */
   --ts-pr-clear-button: 0px;
   --ts-pr-caret: 30px;
-  --ts-pr-min: .75rem;
+  --ts-pr-min: 0.75rem;
   --ts-radius: var(--fab-radius-sm);
-  --ts-font-size: var(--fab-font-size-small);
-  --ts-line-height: inherit;
+  --ts-radius-sm: 6px;
+  --ts-font-size: var(--fab-font-size-body);
+  --ts-line-height: var(--fab-line-height-relaxed);
 
   --ts-header-font-size: var(--fab-font-size-caption);
 
@@ -40,6 +43,10 @@
 
   /* Dropdown */
   --ts-dd-max-height: 200px;
+  --ts-dd-offset: 0.35rem;
+  --ts-dd-duration: 0.18s;
+  --ts-dd-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ts-dd-gap: 4px;
 }
 
 /* --fab---fab---fab---fab---fab- Base control --fab---fab---fab---fab---fab- */
@@ -48,7 +55,7 @@
   border: 1px solid var(--ts-border);
   padding: var(--ts-control-pad);
   /* width: var(--ts-control-width); */
-  height: var(--ts-control-height);
+  min-height: var(--ts-control-height);
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -57,6 +64,7 @@
   border-radius: var(--ts-radius);
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 2px;
 
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
@@ -67,7 +75,8 @@
   .dropdown-active & {
     border-radius: var(--ts-radius) var(--ts-radius) 0 0;
     border-color: var(--ts-border-active);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 12l4 -4 4 4'/%3e%3c/svg%3e");  }
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 12l4 -4 4 4'/%3e%3c/svg%3e");
+  }
 
   & > * {
     vertical-align: baseline;
@@ -88,11 +97,10 @@
     background: none;
     line-height: inherit;
     -webkit-user-select: auto;
-       -moz-user-select: auto;
-        -ms-user-select: auto;
-            user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
     box-shadow: none;
-    
 
     &::-ms-clear {
       display: none;
@@ -137,12 +145,12 @@
 
   &.multi {
     &.has-items .ts-control {
-      padding: var(--ts-pad)
+      padding: var(--ts-control-pad);
     }
 
     & .ts-control > div {
       cursor: pointer;
-      margin: 0 var(--ts-item-margin) var(--ts-item-margin) 0;
+      margin: 0 var(--ts-item-margin) 0 0;
       padding: var(--ts-item-pad-y) var(--ts-item-pad-x);
       background: var(--ts-bg-item);
       color: var(--ts-text);
@@ -222,21 +230,19 @@
 
 .ts-dropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + var(--ts-dd-gap));
   left: 0;
   /* width: var(--ts-control-width); */
   width: 100%;
   z-index: 10;
-  border: 1px solid var(--ts-border-active);
-  background: var(--ts-bg);
-  /* margin: 0.25rem 0 0; */
-  border-top: 0 none;
+  border: 1px solid var(--ts-border);
+  background: var(--ts-surface);
   box-sizing: border-box;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 var(--ts-radius) var(--ts-radius);
+  box-shadow: var(--ts-shadow);
+  border-radius: var(--ts-radius);
+  transform-origin: top center;
 
   scrollbar-color: var(--ts-border) transparent;
-
 
   & [data-selectable] {
     cursor: pointer;
@@ -257,7 +263,14 @@
   & .optgroup-header,
   & .no-results,
   & .create {
-    padding: 5px var(--ts-pad);
+    padding: var(--space-3xs) var(--ts-pad);
+  }
+
+  & .option,
+  & .create,
+  & .no-results {
+    border-radius: var(--ts-radius-sm);
+    margin: 1px 0;
   }
 
   & .option,
@@ -275,28 +288,31 @@
 
   & .optgroup-header {
     color: var(--ts-header-text);
-    background: var(--ts-header-bg);
+    background: transparent;
     cursor: default;
     font-size: var(--ts-header-font-size);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    border-top: 1px solid var(--ts-bg-item);
+    margin-top: var(--space-4xs);
+    padding-top: var(--space-2xs);
   }
 
   & .selected {
-    background-color: var(--ts-bg-dropdown-active);
-    color: var(--ts-text-dropdown-active);
+    background-color: color-mix(in oklab, var(--ts-border-active) 20%, transparent);
+    color: var(--ts-text);
   }
 
   & .active {
     background-color: var(--ts-bg-dropdown-hover);
-    color: var(--ts-text-dropdown-active);
+    color: var(--ts-text);
     &.selected {
-      background-color: var(--ts-bg-dropdown-active);
-      color: var(--ts-text-dropdown-active);
+      background-color: color-mix(in oklab, var(--ts-border-active) 28%, transparent);
+      color: var(--ts-text);
     }
 
     &.create {
-      color: var(--ts-text-dropdown-active);
+      color: var(--ts-text);
     }
   }
 
@@ -324,6 +340,21 @@
   }
 }
 
+.ts-wrapper.dropdown-active .ts-dropdown {
+  animation: ts-dropdown-in var(--ts-dd-duration) var(--ts-dd-ease);
+}
+
+@keyframes ts-dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ts-dd-offset))) scale(1, 0.5);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
@@ -340,6 +371,7 @@
   max-height: var(--ts-dd-max-height);
   scroll-behavior: smooth;
   border-radius: inherit;
+  padding: var(--space-4xs);
 }
 
 /* --fab---fab---fab---fab---fab- Shared font / color --fab---fab---fab---fab---fab- */
@@ -365,7 +397,7 @@
   border: 0;
   clip: rect(0 0 0 0);
   -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
+  clip-path: inset(50%);
   overflow: hidden;
   padding: 0;
   position: absolute;
@@ -430,12 +462,20 @@
 .plugin-dropdown_input {
   & .dropdown-input {
     border: 1px solid var(--ts-border);
-    border-width: 0 0 1px;
     display: block;
-    padding: var(--ts-pad);
+    padding: var(--space-2xs) var(--space-xs);
     box-shadow: none;
-    width: 100%;
-    background: transparent;
+    width: calc(100% - (var(--space-4xs) * 2));
+    margin: var(--space-4xs);
+    border-radius: var(--ts-radius-sm);
+    background: var(--ts-surface);
+    color: var(--ts-text);
+
+    &:focus {
+      border-color: var(--ts-border-active);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--ts-border-active) 12%, transparent);
+      outline: none;
+    }
   }
 
   & .items-placeholder {

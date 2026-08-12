@@ -36,7 +36,7 @@ const radii = [
 ---
 
 <Layout title="Spacing" numeral="04">
-  <section id="spacing-section">
+  <section id="spacing-section" class="token-section">
     <h2>Spacing Tokens</h2>
     <p>
       All spacings are clamped based on screen size, only applicable to smaller screen sizes &lt;
@@ -61,7 +61,7 @@ const radii = [
     }
   </section>
 
-  <section id="spacing-paired-section">
+  <section id="spacing-paired-section" class="token-section">
     <h2>Paired Spacing Tokens</h2>
     <p>
       Paired spacings are used to create a greater variation in spacing, so should be used
@@ -86,7 +86,7 @@ const radii = [
     }
   </section>
 
-  <section id="radii-section">
+  <section id="radii-section" class="token-section">
     <h2>Radius Tokens</h2>
     {
       radii.map(({ name, variable, range }) => (
@@ -108,10 +108,9 @@ const radii = [
   main {
   }
 
-  section {
-    width: 100%;
-    max-width: 90rem;
-    margin-inline: auto;
+  #spacing-section,
+  #spacing-paired-section,
+  #radii-section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(13rem, 100%), 1fr));
     gap: var(--fab-space-md);
@@ -258,8 +257,8 @@ const radii = [
 </style>
 
 <script>
-  import { initCopyToken } from "../scripts/copyToken.ts";
-  import { initSpacingUpdates } from "../scripts/spacing.ts";
+  import { initCopyToken } from "../scripts/copyToken";
+  import { initSpacingUpdates } from "../scripts/spacing";
 
   // Initialize both on mount
   document.addEventListener("DOMContentLoaded", () => {

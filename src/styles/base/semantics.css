@@ -43,6 +43,9 @@ table {
   tbody tr:nth-child(odd) {
     background-color: var(--fab-colour-background-darker);
   }
+  tbody tr:nth-child(even) {
+    background-color: var(--colour-background);
+  }
 
   caption {
     padding: var(--fab-space-sm) var(--fab-space-md);

@@ -22,7 +22,7 @@ const modifiers = [
 ---
 
 <Layout title="Colours" numeral="01">
-  <section id="colours-section">
+  <section id="colours-section" class="token-section">
     <h2>Colour Tokens</h2>
     {
       colourPalette.map(({ name, variable }) => (
@@ -53,11 +53,7 @@ const modifiers = [
 </Layout>
 
 <style>
-  section {
-    width: 100%;
-    max-width: 90rem;
-    margin-inline: auto;
-    display: grid;
+  #colours-section {
     grid-template-columns: repeat(auto-fill, minmax(min(50rem, 100%), 1fr));
     gap: var(--fab-space-sm);
     margin-bottom: var(--fab-space-2xl);
@@ -180,7 +176,7 @@ const modifiers = [
 </style>
 
 <script>
-  import { initCopyToken } from "../scripts/copyToken.ts";
+  import { initCopyToken } from "../scripts/copyToken";
 
   document.addEventListener("DOMContentLoaded", initCopyToken);
 </script>

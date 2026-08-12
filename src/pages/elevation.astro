@@ -46,7 +46,7 @@ const elevations = [
 ---
 
 <Layout title="Elevation" numeral="03">
-  <section id="elevation-section">
+  <section id="elevation-section" class="token-section">
     <h2>Box Shadow Tokens</h2>
     {
       elevations.map(({ name, variable, use }) => (
@@ -72,11 +72,7 @@ const elevations = [
 </Layout>
 
 <style>
-  section {
-    width: 100%;
-    max-width: 90rem;
-    margin-inline: auto;
-    display: grid;
+  #elevation-section {
     grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
     gap: var(--fab-space-md);
     margin-bottom: var(--fab-space-2xl);
@@ -97,7 +93,6 @@ const elevations = [
     margin-bottom: var(--fab-space-md);
   }
 
-  /* ── Card base ── */
   .token-card {
     display: flex;
     flex-direction: column;
@@ -125,6 +120,8 @@ const elevations = [
     display: flex;
     align-items: baseline;
     gap: var(--fab-space-3xs);
+    justify-content: flex-start;
+    gap: var(--space-3xs);
   }
 
   .token-card code {
@@ -194,8 +191,8 @@ const elevations = [
 </style>
 
 <script>
-  import { initElevationUpdates } from "../scripts/elevations.ts";
-  import { initCopyToken } from "../scripts/copyToken.ts";
+  import { initElevationUpdates } from "../scripts/elevations";
+  import { initCopyToken } from "../scripts/copyToken";
 
   // Run both initializers on mount
   document.addEventListener("DOMContentLoaded", () => {

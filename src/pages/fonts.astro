@@ -10,7 +10,7 @@ import Layout from "../layouts/Layout.astro";
       <ul class="font-list">
         <li
           style='
-                font-family: var(--font-family-heading);
+                font-family: var(--fab-font-family-heading);
                 font-feature-settings:
                   "salt" 1,
                   "dlig" 1;
@@ -20,13 +20,13 @@ import Layout from "../layouts/Layout.astro";
       </ul>
       <span class="uppercase"> Body </span>
       <ul class="font-list">
-        <li style="font-family: var(--font-family-body); font-weight: 700">
+        <li style="font-family: var(--fab-font-family-body); font-weight: 700">
           DM Sans<span>Bold</span>
         </li>
-        <li style="font-family: var(--font-family-body); font-weight: 500">
+        <li style="font-family: var(--fab-font-family-body); font-weight: 500">
           DM Sans<span>Medium</span>
         </li>
-        <li style="font-family: var(--font-family-body)">DM Sans<span>Regular</span></li>
+        <li style="font-family: var(--fab-font-family-body)">DM Sans<span>Regular</span></li>
       </ul>
     </div>
     <div>
@@ -49,7 +49,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
 
         <span class="uppercase">Body - Small</span>
-        <div style="font-size: var(--font-size-small)">
+        <div style="font-size: var(--fab-font-size-small)">
           Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
           there live the blind texts. Separated they live in Bookmarksgrove right at the coast of
           the Semantics, a large language ocean.
@@ -79,7 +79,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
 
         <span class="uppercase">Uppercase</span>
-        <div class="uppercase" style="font-size: var(--font-size-small); color: var(--colour-text)">
+        <div class="uppercase" style="font-size: var(--fab-font-size-small); color: var(--fab-colour-text)">
           When she reached the first hills of the Italic Mountains...
         </div>
 
@@ -104,64 +104,64 @@ import Layout from "../layouts/Layout.astro";
   section {
     display: grid;
     grid-template-columns: max-content max-content 1fr;
-    gap: var(--space-sm);
-    padding: var(--space-xl) var(--space-lg);
+    gap: var(--fab-space-sm);
+    padding: var(--fab-space-xl) var(--fab-space-lg);
 
     > * {
-      background-color: var(--colour-background);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--colour-border);
-      box-shadow: var(--elevation-02);
+      background-color: var(--fab-colour-background);
+      border-radius: var(--fab-radius-md);
+      border: 1px solid var(--fab-colour-border);
+      box-shadow: var(--fab-elevation-02);
     }
   }
 
   .summary {
     display: grid;
     grid-template-columns: 1fr;
-    padding-block: var(--space-md);
+    padding-block: var(--fab-space-md);
     align-content: start;
-    padding-inline: var(--space-xl);
+    padding-inline: var(--fab-space-xl);
 
     h1 {
-      font-family: var(--font-family-body);
-      font-weight: var(--font-weight-bold);
+      font-family: var(--fab-font-family-body);
+      font-weight: var(--fab-font-weight-bold);
       text-transform: capitalize;
-      color: var(--colour-text-darker);
-      margin-block-end: var(--space-xl);
+      color: var(--fab-colour-text-darker);
+      margin-block-end: var(--fab-space-xl);
       margin-inline: auto;
-      border-bottom: 2px solid var(--colour-primary-lighter);
+      border-bottom: 2px solid var(--fab-colour-primary-lighter);
     }
   }
 
   .uppercase {
     opacity: 0.5;
-    font-size: var(--font-size-caption);
-    padding-block-start: var(--space-3xs);
+    font-size: var(--fab-font-size-caption);
+    padding-block-start: var(--fab-space-3xs);
     margin-inline: auto;
   }
 
   .font-list {
     list-style: none;
-    margin-block-start: var(--space-2xs);
-    margin-block-end: var(--space-md);
+    margin-block-start: var(--fab-space-2xs);
+    margin-block-end: var(--fab-space-md);
 
     span {
-      font-family: var(--font-family-body);
-      font-weight: var(--font-weight-regular);
-      padding-left: var(--space-2xs);
+      font-family: var(--fab-font-family-body);
+      font-weight: var(--fab-font-weight-regular);
+      padding-left: var(--fab-space-2xs);
     }
   }
 
   .headings {
     display: grid;
-    gap: var(--space-sm);
-    padding: var(--space-lg) var(--space-md);
+    gap: var(--fab-space-sm);
+    padding: var(--fab-space-lg) var(--fab-space-md);
   }
 
   .bodies {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: var(--space-sm) var(--space-md);
-    padding: var(--space-lg);
+    gap: var(--fab-space-sm) var(--fab-space-md);
+    padding: var(--fab-space-lg);
   }
 </style>

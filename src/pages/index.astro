@@ -2,14 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 
 const colourPalette = [
-  { name: "Text", variable: "colour-text" },
-  { name: "Background", variable: "colour-background" },
-  { name: "Primary", variable: "colour-primary" },
-  { name: "Secondary", variable: "colour-secondary" },
-  { name: "Danger", variable: "colour-danger" },
-  { name: "Success", variable: "colour-success" },
-  { name: "Warning", variable: "colour-warning" },
-  { name: "Info", variable: "colour-info" },
+  { name: "Text", variable: "fab-colour-text" },
+  { name: "Background", variable: "fab-colour-background" },
+  { name: "Primary", variable: "fab-colour-primary" },
+  { name: "Secondary", variable: "fab-colour-secondary" },
+  { name: "Danger", variable: "fab-colour-danger" },
+  { name: "Success", variable: "fab-colour-success" },
+  { name: "Warning", variable: "fab-colour-warning" },
+  { name: "Info", variable: "fab-colour-info" },
 ];
 
 const modifiers = [
@@ -31,7 +31,7 @@ const modifiers = [
             <span>{name}</span>
             <div
               class="swatch-cell"
-              style={`--_swatch-on: var(--${variable}-on);`}
+              style={`--fab_swatch-on: var(--${variable}-on);`}
               data-var={`--${variable}`}>
               <div class="swatch" style={`background-color: var(--${variable});`} />
               <span class="swatch-label">Default</span>
@@ -39,7 +39,7 @@ const modifiers = [
             {modifiers.map(({ label, suffix }) => (
               <div
                 class="swatch-cell"
-                style={`--_swatch-on: contrast-color(var(--${variable}${suffix}));`}
+                style={`--fab_swatch-on: contrast-color(var(--${variable}${suffix}));`}
                 data-var={`--${variable}${suffix}`}>
                 <div class="swatch" style={`background-color: var(--${variable}${suffix});`} />
                 <span class="swatch-label">{label}</span>
@@ -59,29 +59,29 @@ const modifiers = [
     margin-inline: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(50rem, 100%), 1fr));
-    gap: var(--space-sm);
-    margin-bottom: var(--space-2xl);
-    padding: var(--space-xl) var(--space-lg);
+    gap: var(--fab-space-sm);
+    margin-bottom: var(--fab-space-2xl);
+    padding: var(--fab-space-xl) var(--fab-space-lg);
   }
 
   section > h2 {
     grid-column: 1 / -1;
-    font-size: var(--font-size-body);
+    font-size: var(--fab-font-size-body);
     font-weight: 600;
-    color: var(--colour-text-darker);
+    color: var(--fab-colour-text-darker);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    padding-bottom: var(--space-xs);
-    border-bottom: 1px solid var(--colour-border);
-    margin-bottom: var(--space-md);
+    padding-bottom: var(--fab-space-xs);
+    border-bottom: 1px solid var(--fab-colour-border);
+    margin-bottom: var(--fab-space-md);
   }
 
   /* ── Token card base ── */
   :global(.token-card) {
-    background: var(--colour-background);
-    border: 1px solid var(--colour-border);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
+    background: var(--fab-colour-background);
+    border: 1px solid var(--fab-colour-border);
+    border-radius: var(--fab-radius-sm);
+    box-shadow: var(--fab-elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
     transition:
       box-shadow 0.2s ease,
       transform 0.2s ease;
@@ -92,26 +92,26 @@ const modifiers = [
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0;
-    box-shadow: var(--elevation-02);
+    box-shadow: var(--fab-elevation-02);
   }
 
   :global(.swatch-grid span) {
     display: grid;
     place-items: center;
     opacity: 0.6;
-    font-size: var(--font-size-small);
+    font-size: var(--fab-font-size-small);
   }
 
   :global(#colours-section .token-card:nth-of-type(2)) {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--fab-space-lg);
   }
 
   :global(.swatch-cell) {
-    padding: var(--space-xs);
+    padding: var(--fab-space-xs);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-3xs);
+    gap: var(--fab-space-3xs);
     position: relative;
     cursor: pointer;
   }
@@ -119,8 +119,8 @@ const modifiers = [
   :global(.swatch) {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: var(--radius-xs);
-    border: 1px solid var(--colour-border, #e4e4ea);
+    border-radius: var(--fab-radius-xs);
+    border: 1px solid var(--fab-colour-border, #e4e4ea);
     transition:
       transform 0.15s ease,
       box-shadow 0.15s ease;
@@ -147,8 +147,8 @@ const modifiers = [
   }
 
   :global(.swatch-label) {
-    font-size: var(--font-size-caption);
-    color: var(--colour-text-darker);
+    font-size: var(--fab-font-size-caption);
+    color: var(--fab-colour-text-darker);
     text-transform: uppercase;
     line-height: 1;
   }
@@ -160,12 +160,12 @@ const modifiers = [
     top: 50%;
     left: 50%;
     transform: translate(-50%, 50%) scale(0);
-    color: var(--_swatch-on);
+    color: var(--fab_swatch-on);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: var(--font-size-caption);
+    font-size: var(--fab-font-size-caption);
     opacity: 0;
     transition:
       transform 0.2s ease,

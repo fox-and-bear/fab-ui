@@ -1,12 +1,12 @@
 h1 {
-    color: var(--colour-primary)
+    color: var(--fab-colour-primary)
 }
 
 body {
-    color: var(--colour-text);
-    background-color: var(--colour-background-darker);
+    color: var(--fab-colour-text);
+    background-color: var(--fab-colour-background-darker);
 }
 
 main {
-    background-color: var(--colour-background);
+    background-color: var(--fab-colour-background);
 }

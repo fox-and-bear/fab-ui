@@ -2,35 +2,35 @@
 
 
 :root {
-  --font-family-heading: "Quablo", sans-serif;
-  --font-family-body: "DM Sans", sans-serif;
-  --font-family-monospace: "DM Mono", monospace;
+  --fab-font-family-body: "DM Sans", sans-serif;
+  --fab-font-family-monospace: "DM Mono", monospace;
+  --fab-font-family-heading: "Quablo", sans-serif;
 
-  --font-size-h1: var(--font-size-6);
-  --font-size-h2: var(--font-size-5);
-  --font-size-h3: var(--font-size-4);
-  --font-size-h4: var(--font-size-3);
-  --font-size-h5: var(--font-size-2);
-  --font-size-h6: var(--font-size-1);
-  --font-size-body: var(--font-size-0);
-  --font-size-small: var(--font-size--1);
-  --font-size-large: var(--font-size-lg);
-  --font-size-caption: var(--font-size--2);
+  --fab-font-size-h1: var(--font-size-6);
+  --fab-font-size-h2: var(--font-size-5);
+  --fab-font-size-h3: var(--font-size-4);
+  --fab-font-size-h4: var(--font-size-3);
+  --fab-font-size-h5: var(--font-size-2);
+  --fab-font-size-h6: var(--font-size-1);
+  --fab-font-size-body: var(--font-size-0);
+  --fab-font-size-small: var(--font-size--1);
+  --fab-font-size-large: var(--font-size-lg);
+  --fab-font-size-caption: var(--font-size--2);
 
-  --line-height-supertight: .8;
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
+  --fab-line-height-supertight: .8;
+  --fab-line-height-tight: 1.2;
+  --fab-line-height-normal: 1.5;
+  --fab-line-height-relaxed: 1.75;
 
-  --letter-spacing-tight: -7%;
-  --letter-spacing-normal: 0;
-  --letter-spacing-relaxed: 7%;
+  --fab-letter-spacing-tight: -7%;
+  --fab-letter-spacing-normal: 0;
+  --fab-letter-spacing-relaxed: 7%;
 
-  --font-weight-thin: 100;
-  --font-weight-light: 300;
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
-  --font-weight-black: 900;
-  --font-weight-ultra: 1000;
+  --fab-font-weight-thin: 100;
+  --fab-font-weight-light: 300;
+  --fab-font-weight-regular: 400;
+  --fab-font-weight-medium: 500;
+  --fab-font-weight-bold: 700;
+  --fab-font-weight-black: 900;
+  --fab-font-weight-ultra: 1000;
 }

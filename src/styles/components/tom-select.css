@@ -1,25 +1,25 @@
 &:root {
   /* Colors */
-  --ts-border: var(--colour-border);
-  --ts-border-active: var(--colour-primary);
-  --ts-text: var(--colour-text);
-  --ts-text-muted: var(--colour-text-disabled-on);
-  --ts-text-disabled: var(--colour-text-disabled);
-  --ts-bg: var(--colour-background);
-  --ts-bg-item: var(--colour-background-lighter);
-  --ts-bg-item-active: var(--colour-background-darker);
-  --ts-bg-disabled: var(--colour-background);
-  --ts-bg-disabled-border: var(--colour-background-lighter);
-  --ts-bg-disabled-item: var(--colour-background-lighter);
-  --ts-bg-dropdown-hover: var(--colour-background-lighter);
-  --ts-bg-dropdown-active: var(--colour-primary);
-  --ts-text-dropdown-active: var(--colour-primary-on);
-  --ts-highlight: var(--colour-primary-lighter);
-  --ts-header-bg: var(--colour-background);
-  --ts-header-text: var(--colour-primary-disabled);
+  --ts-border: var(--fab-colour-border);
+  --ts-border-active: var(--fab-colour-primary);
+  --ts-text: var(--fab-colour-text);
+  --ts-text-muted: var(--fab-colour-text-disabled-on);
+  --ts-text-disabled: var(--fab-colour-text-disabled);
+  --ts-bg: var(--fab-colour-background);
+  --ts-bg-item: var(--fab-colour-background-lighter);
+  --ts-bg-item-active: var(--fab-colour-background-darker);
+  --ts-bg-disabled: var(--fab-colour-background);
+  --ts-bg-disabled-border: var(--fab-colour-background-lighter);
+  --ts-bg-disabled-item: var(--fab-colour-background-lighter);
+  --ts-bg-dropdown-hover: var(--fab-colour-background-lighter);
+  --ts-bg-dropdown-active: var(--fab-colour-primary);
+  --ts-text-dropdown-active: var(--fab-colour-primary-on);
+  --ts-highlight: var(--fab-colour-primary-lighter);
+  --ts-header-bg: var(--fab-colour-background);
+  --ts-header-text: var(--fab-colour-primary-disabled);
 
   /* Spacing */
-  --ts-pad: var(--space-2xs);
+  --ts-pad: var(--fab-space-2xs);
   --ts-item-pad-x: 6px;
   --ts-item-pad-y: 0px; /* was 3px */
   --ts-item-margin: 3px;
@@ -28,21 +28,21 @@
   --ts-pr-clear-button: 0px;
   --ts-pr-caret: 30px;
   --ts-pr-min: .75rem;
-  --ts-radius: var(--radius-sm);
-  --ts-font-size: var(--font-size-small);
+  --ts-radius: var(--fab-radius-sm);
+  --ts-font-size: var(--fab-font-size-small);
   --ts-line-height: inherit;
 
-  --ts-header-font-size: var(--font-size-caption);
+  --ts-header-font-size: var(--fab-font-size-caption);
 
-  --ts-control-height: var(--input-height);
-  --ts-control-width: var(--input-width);
-  --ts-control-pad: var(--space-3xs) var(--space-xs);
+  --ts-control-height: var(--fab-input-height);
+  --ts-control-width: var(--fab-input-width);
+  --ts-control-pad: var(--fab-space-3xs) var(--fab-space-xs);
 
   /* Dropdown */
   --ts-dd-max-height: 200px;
 }
 
-/* ---------- Base control ---------- */
+/* --fab---fab---fab---fab---fab- Base control --fab---fab---fab---fab---fab- */
 
 .ts-control {
   border: 1px solid var(--ts-border);
@@ -120,7 +120,7 @@
   }
 }
 
-/* ---------- Wrapper ---------- */
+/* --fab---fab---fab---fab---fab- Wrapper --fab---fab---fab---fab---fab- */
 
 .ts-wrapper {
   position: relative;
@@ -198,7 +198,7 @@
   }
 }
 
-/* ---------- State modifiers ---------- */
+/* --fab---fab---fab---fab---fab- State modifiers --fab---fab---fab---fab---fab- */
 
 .full .ts-control {
   background-color: var(--ts-bg);
@@ -218,7 +218,7 @@
   left: -10000px;
 }
 
-/* ---------- Dropdown ---------- */
+/* --fab---fab---fab---fab---fab- Dropdown --fab---fab---fab---fab---fab- */
 
 .ts-dropdown {
   position: absolute;
@@ -333,7 +333,7 @@
   }
 }
 
-/* ---------- Dropdown content ---------- */
+/* --fab---fab---fab---fab---fab- Dropdown content --fab---fab---fab---fab---fab- */
 
 .ts-dropdown-content {
   overflow: hidden auto;
@@ -342,7 +342,7 @@
   border-radius: inherit;
 }
 
-/* ---------- Shared font / color ---------- */
+/* --fab---fab---fab---fab---fab- Shared font / color --fab---fab---fab---fab---fab- */
 
 .ts-dropdown,
 .ts-control,
@@ -359,7 +359,7 @@
   cursor: text;
 }
 
-/* ---------- Accessibility helper ---------- */
+/* --fab---fab---fab---fab---fab- Accessibility helper --fab---fab---fab---fab---fab- */
 
 .ts-hidden-accessible {
   border: 0;
@@ -373,7 +373,7 @@
   white-space: nowrap;
 }
 
-/* ---------- Plugin: drag_drop ---------- */
+/* --fab---fab---fab---fab---fab- Plugin: drag_drop --fab---fab---fab---fab---fab- */
 
 .ts-wrapper.plugin-drag_drop {
   & .ts-dragging {
@@ -385,7 +385,7 @@
   }
 }
 
-/* ---------- Plugin: checkbox_options ---------- */
+/* --fab---fab---fab---fab---fab- Plugin: checkbox_options --fab---fab---fab---fab---fab- */
 
 .plugin-checkbox_options {
   &:not(.rtl) .option input {
@@ -397,7 +397,7 @@
   }
 }
 
-/* ---------- Plugin: clear_button ---------- */
+/* --fab---fab---fab---fab---fab- Plugin: clear_button --fab---fab---fab---fab---fab- */
 
 .plugin-clear_button {
   --ts-pr-clear-button: 1em;
@@ -425,7 +425,7 @@
   }
 }
 
-/* ---------- Plugin: dropdown_input ---------- */
+/* --fab---fab---fab---fab---fab- Plugin: dropdown_input --fab---fab---fab---fab---fab- */
 
 .plugin-dropdown_input {
   & .dropdown-input {
@@ -455,7 +455,7 @@
   border: 1px solid var(--ts-border);
 }
 
-/* ---------- Plugin: input_autogrow ---------- */
+/* --fab---fab---fab---fab---fab- Plugin: input_autogrow --fab---fab---fab---fab---fab- */
 
 .ts-wrapper.plugin-input_autogrow {
   &.has-items .ts-control > input {
@@ -476,7 +476,7 @@
   }
 }
 
-/* ---------- Plugin: optgroup_columns ---------- */
+/* --fab---fab---fab---fab---fab- Plugin: optgroup_columns --fab---fab---fab---fab---fab- */
 
 .ts-dropdown.plugin-optgroup_columns {
   & .ts-dropdown-content {
@@ -504,7 +504,7 @@
   }
 }
 
-/* ---------- Plugin: remove_button ---------- */
+/* --fab---fab---fab---fab---fab- Plugin: remove_button --fab---fab---fab---fab---fab- */
 
 .ts-wrapper.plugin-remove_button {
   & .item {

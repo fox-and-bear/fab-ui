@@ -1,18 +1,18 @@
 /* Sidebar placement is owned by styles/layout/grid.css. */
 .sidebar {
-  padding: var(--space-sm);
+  padding: var(--fab-space-sm);
 
   .sidebar-content {
-    background-color: var(--colour-background);
-    border-radius: var(--radius-lg);
-    border: 2px solid var(--colour-border);
-    box-shadow: var(--elevation-02);
+    background-color: var(--fab-colour-background);
+    border-radius: var(--fab-radius-lg);
+    border: 2px solid var(--fab-colour-border);
+    box-shadow: var(--fab-elevation-02);
     height: 100%;
     display: flex;
     flex-direction: column;
 
     header {
-      padding: var(--space-sm);
+      padding: var(--fab-space-sm);
       display: grid;
       place-content: center;
       > svg {
@@ -24,28 +24,28 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding-inline: var(--space-sm);
-      border-block: 2px solid var(--colour-border);
+      padding-inline: var(--fab-space-sm);
+      border-block: 2px solid var(--fab-colour-border);
 
       .nav-heading {
         text-transform: uppercase;
-        font-size: var(--font-size-caption);
-        padding: var(--space-3xs) var(--space-2xs);
-        color: var(--colour-text-disabled);
-        margin-block-start: var(--space-md);
+        font-size: var(--fab-font-size-caption);
+        padding: var(--fab-space-3xs) var(--fab-space-2xs);
+        color: var(--fab-colour-text-disabled);
+        margin-block-start: var(--fab-space-md);
       }
       ul {
         list-style: none;
         li {
-          padding: var(--space-2xs) var(--space-2xs);
-          border-radius: var(--radius-sm);
+          padding: var(--fab-space-2xs) var(--fab-space-2xs);
+          border-radius: var(--fab-radius-sm);
           &:hover {
-            background-color: var(--colour-background-darker);
+            background-color: var(--fab-colour-background-darker);
           }
           a {
             display: block;
             text-decoration: none;
-            color: var(--colour-text);
+            color: var(--fab-colour-text);
           }
         }
       }
@@ -54,8 +54,8 @@
     .user-info {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
-          padding: var(--space-sm);
+      gap: var(--fab-space-sm);
+          padding: var(--fab-space-sm);
 
 
       .user-name {

@@ -2,36 +2,36 @@
 import Layout from "../layouts/Layout.astro";
 
 const spacings = [
-  { name: "4xs", variable: "space-4xs", range: "2px - 2px" },
-  { name: "3xs", variable: "space-3xs", range: "3px - 4px" },
-  { name: "2xs", variable: "space-2xs", range: "6px - 8px" },
-  { name: "xs", variable: "space-xs", range: "9px - 12px" },
-  { name: "sm", variable: "space-sm", range: "12px - 16px" },
-  { name: "md", variable: "space-md", range: "18px - 24px" },
-  { name: "lg", variable: "space-lg", range: "24px - 32px" },
-  { name: "xl", variable: "space-xl", range: "36px - 48px" },
-  { name: "2xl", variable: "space-2xl", range: "48px - 64px" },
+  { name: "4xs", variable: "fab-space-4xs", range: "2px - 2px" },
+  { name: "3xs", variable: "fab-space-3xs", range: "3px - 4px" },
+  { name: "2xs", variable: "fab-space-2xs", range: "6px - 8px" },
+  { name: "xs", variable: "fab-space-xs", range: "9px - 12px" },
+  { name: "sm", variable: "fab-space-sm", range: "12px - 16px" },
+  { name: "md", variable: "fab-space-md", range: "18px - 24px" },
+  { name: "lg", variable: "fab-space-lg", range: "24px - 32px" },
+  { name: "xl", variable: "fab-space-xl", range: "36px - 48px" },
+  { name: "2xl", variable: "fab-space-2xl", range: "48px - 64px" },
 ];
 const pairedSpacings = [
-  { name: "4xs → 3xs", variable: "space-4xs-p", range: "2px - 4px" },
-  { name: "3xs → 2xs", variable: "space-3xs-p", range: "3px - 8px" },
-  { name: "2xs → xs", variable: "space-2xs-p", range: "6px - 12px" },
-  { name: "xs → sm", variable: "space-xs-p", range: "9px - 16px" },
-  { name: "sm → md", variable: "space-sm-p", range: "12px - 24px" },
-  { name: "md → lg", variable: "space-md-p", range: "18px - 32px" },
-  { name: "lg → xl", variable: "space-lg-p", range: "24px - 48px" },
-  { name: "xl → 2xl", variable: "space-xl-p", range: "36px - 64px" },
-  { name: "2xl → 3xl", variable: "space-2xl-p", range: "48px - 96px" },
+  { name: "4xs → 3xs", variable: "fab-space-4xs-p", range: "2px - 4px" },
+  { name: "3xs → 2xs", variable: "fab-space-3xs-p", range: "3px - 8px" },
+  { name: "2xs → xs", variable: "fab-space-2xs-p", range: "6px - 12px" },
+  { name: "xs → sm", variable: "fab-space-xs-p", range: "9px - 16px" },
+  { name: "sm → md", variable: "fab-space-sm-p", range: "12px - 24px" },
+  { name: "md → lg", variable: "fab-space-md-p", range: "18px - 32px" },
+  { name: "lg → xl", variable: "fab-space-lg-p", range: "24px - 48px" },
+  { name: "xl → 2xl", variable: "fab-space-xl-p", range: "36px - 64px" },
+  { name: "2xl → 3xl", variable: "fab-space-2xl-p", range: "48px - 96px" },
 ];
 
 const radii = [
-  { name: "none", variable: "radius-none", range: "0px" },
-  { name: "xs", variable: "radius-xs", range: "3px - 4px" },
-  { name: "sm", variable: "radius-sm", range: "6px - 8px" },
-  { name: "md", variable: "radius-md", range: "18px - 24px" },
-  { name: "lg", variable: "radius-lg", range: "24px - 32px" },
-  { name: "xl", variable: "radius-xl", range: "36px - 48px" },
-  { name: "full", variable: "radius-full", range: "9999px" },
+  { name: "none", variable: "fab-radius-none", range: "0px" },
+  { name: "xs", variable: "fab-radius-xs", range: "3px - 4px" },
+  { name: "sm", variable: "fab-radius-sm", range: "6px - 8px" },
+  { name: "md", variable: "fab-radius-md", range: "18px - 24px" },
+  { name: "lg", variable: "fab-radius-lg", range: "24px - 32px" },
+  { name: "xl", variable: "fab-radius-xl", range: "36px - 48px" },
+  { name: "full", variable: "fab-radius-full", range: "9999px" },
 ];
 ---
 
@@ -114,47 +114,47 @@ const radii = [
     margin-inline: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(13rem, 100%), 1fr));
-    gap: var(--space-md);
-    margin-bottom: var(--space-2xl);
-    padding-inline: var(--space-lg);
+    gap: var(--fab-space-md);
+    margin-bottom: var(--fab-space-2xl);
+    padding-inline: var(--fab-space-lg);
   }
 
   #spacing-section {
-    padding-block-start: var(--space-xl);
+    padding-block-start: var(--fab-space-xl);
   }
 
   section > h2 {
     grid-column: 1 / -1;
-    font-size: var(--font-size-body);
+    font-size: var(--fab-font-size-body);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    padding-bottom: var(--space-xs);
-    border-bottom: 1px solid var(--colour-border);
+    padding-bottom: var(--fab-space-xs);
+    border-bottom: 1px solid var(--fab-colour-border);
   }
 
   section > p {
     grid-column: 1 / -1;
-    color: var(--colour-text-darker);
-    font-size: var(--font-size-small);
+    color: var(--fab-colour-text-darker);
+    font-size: var(--fab-font-size-small);
   }
 
   :global(.token-card) {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2xs);
-    padding: var(--space-sm);
-    background: var(--colour-background);
-    border: 1px solid var(--colour-border);
-    border-radius: var(--radius-sm);
-    box-shadow: var(--elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
+    gap: var(--fab-space-2xs);
+    padding: var(--fab-space-sm);
+    background: var(--fab-colour-background);
+    border: 1px solid var(--fab-colour-border);
+    border-radius: var(--fab-radius-sm);
+    box-shadow: var(--fab-elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
     transition:
       box-shadow 0.2s ease,
       transform 0.2s ease;
   }
 
   :global(.token-card h6) {
-    font-size: var(--font-size-body);
+    font-size: var(--fab-font-size-body);
     font-weight: 700;
     margin: 0;
     display: flex;
@@ -163,18 +163,18 @@ const radii = [
   }
 
   :global(.token-card code) {
-    font-size: var(--font-size-caption);
-    color: var(--colour-primary);
+    font-size: var(--fab-font-size-caption);
+    color: var(--fab-colour-primary);
     word-break: break-all;
-    background: var(--colour-background-lighter);
-    padding: var(--space-4xs) var(--space-3xs);
-    border-radius: var(--radius-xs);
+    background: var(--fab-colour-background-lighter);
+    padding: var(--fab-space-4xs) var(--fab-space-3xs);
+    border-radius: var(--fab-radius-xs);
     align-self: flex-start;
   }
 
   :global(.token-range) {
-    font-size: var(--font-size-caption);
-    color: var(--colour-text-disabled);
+    font-size: var(--fab-font-size-caption);
+    color: var(--fab-colour-text-disabled);
     font-variant-numeric: tabular-nums;
   }
 
@@ -186,12 +186,12 @@ const radii = [
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-left: var(--space-3xs);
-    padding: 2px var(--space-3xs);
+    margin-left: var(--fab-space-3xs);
+    padding: 2px var(--fab-space-3xs);
     padding-block-end: 0;
-    background: var(--colour-primary-darker);
-    color: var(--colour-primary-on);
-    border-radius: var(--radius-xs);
+    background: var(--fab-colour-primary-darker);
+    color: var(--fab-colour-primary-on);
+    border-radius: var(--fab-radius-xs);
     display: inline-grid;
     place-content: center;
   }
@@ -204,18 +204,18 @@ const radii = [
     align-items: stretch;
     background: repeating-linear-gradient(
       45deg,
-      var(--colour-background) 0,
-      var(--colour-background) 6px,
-      var(--colour-background-darker) 6px,
-      var(--colour-background-darker) 12px
+      var(--fab-colour-background) 0,
+      var(--fab-colour-background) 6px,
+      var(--fab-colour-background-darker) 6px,
+      var(--fab-colour-background-darker) 12px
     );
-    border: 1px solid var(--colour-border);
-    border-radius: var(--radius-xs);
+    border: 1px solid var(--fab-colour-border);
+    border-radius: var(--fab-radius-xs);
     overflow: hidden;
   }
 
   :global(.spacing-display .padding-block) {
-    background: var(--colour-primary);
+    background: var(--fab-colour-primary);
     opacity: 0.15;
     transition: opacity 0.2s ease;
     flex-shrink: 0;
@@ -223,7 +223,7 @@ const radii = [
 
   :global(.spacing-display .padding-content) {
     flex: 1;
-    border-inline: 2px solid var(--colour-primary);
+    border-inline: 2px solid var(--fab-colour-primary);
     opacity: 0.75;
   }
 
@@ -234,23 +234,23 @@ const radii = [
   :global(.radii-swatch) {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border: 1px solid var(--colour-border);
+    border: 1px solid var(--fab-colour-border);
     background: repeating-linear-gradient(
       45deg,
-      var(--colour-background) 0,
-      var(--colour-background) 6px,
-      var(--colour-background-darker) 6px,
-      var(--colour-background-darker) 12px
+      var(--fab-colour-background) 0,
+      var(--fab-colour-background) 6px,
+      var(--fab-colour-background-darker) 6px,
+      var(--fab-colour-background-darker) 12px
     );
-    box-shadow: var(--elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
+    box-shadow: var(--fab-elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
     position: relative;
   }
 
   :global(.radii-swatch::after) {
     content: "";
     position: absolute;
-    inset: var(--space-4xs);
-    border: 2px dashed var(--colour-primary);
+    inset: var(--fab-space-4xs);
+    border: 2px dashed var(--fab-colour-primary);
     border-radius: inherit;
     opacity: 0.25;
     pointer-events: none;

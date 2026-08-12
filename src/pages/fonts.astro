@@ -39,7 +39,6 @@ import Layout from "../layouts/Layout.astro";
         <h6>Heading 6</h6>
       </div>
     </div>
-    <div>
       <div class="bodies">
         <span class="uppercase">Body - Default</span>
         <div>
@@ -96,7 +95,6 @@ import Layout from "../layouts/Layout.astro";
         <span class="uppercase">Large Label</span>
         <div class="large-label">Pityful a rethoric question ran over her cheek</div>
       </div>
-    </div>
   </section>
 </Layout>
 
@@ -107,11 +105,18 @@ import Layout from "../layouts/Layout.astro";
     gap: var(--fab-space-sm);
     padding: var(--fab-space-xl) var(--fab-space-lg);
 
-    > * {
+    > *:not(.summary) {
       background-color: var(--fab-colour-background);
       border-radius: var(--fab-radius-md);
       border: 1px solid var(--fab-colour-border);
       box-shadow: var(--fab-elevation-02);
+    }
+
+    @container (width < 1200px) {
+      grid-template-columns: 1fr 1fr;
+      .bodies {
+        grid-column: 1 / -1;
+      }
     }
   }
 

@@ -7,7 +7,7 @@ h1.numbered-heading {
     "dlig" 1;
   margin-block: var(--fab-space-sm);
   height: calc(1.2cap);
-  padding-block-start: 0; /* this needs to change depending on the font used. e.g. Quablo is 0.35, Chaney is 0.1 */
+  padding-block-start: var(--fab-numbered-heading-offset, 0.35cap);
 
   overflow: hidden;
 
@@ -21,6 +21,13 @@ h1.numbered-heading {
   }
 }
 
+/* Safari aligns correctly with no offset; Chromium needs a slight top shift. */
+@supports (font: -apple-system-body) {
+  h1.numbered-heading {
+    padding-block-start: 0;
+  }
+}
+
 header {
   display: flex;
   align-items: center;
@@ -28,174 +35,8 @@ header {
   gap: var(--fab-space-md);
 
   padding-inline: var(--fab-space-md);
+  padding-block-start: var(--fab-space-md);
 }
-
-/* Modern CSS Theming Demo */
-
-@property --fab-contrast-color {
-  syntax: "<color>";
-  initial-value: white;
-  inherits: true;
-}
-
-@property --fab-bg {
-  syntax: "<color>";
-  initial-value: #6c1afb;
-  inherits: true;
-}
-
-/* Demo wrapper */
-.theming-demo {
-  color-scheme: light dark;
-  padding: 1.5rem 1.5rem 0;
-  background: light-dark(oklch(0.965 0.003 265), oklch(0.14 0.008 265));
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  transition:
-    background 0.3s,
-    border-color 0.3s;
-  height: 100dvh;
-}
-
-.theming-demo small {
-  display: block;
-  margin-block-end: 1rem;
-  font-size: 0.75rem;
-}
-
-/* Toggle row */
-/* .theming-demo-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-block-end: 1.25rem;
-}
-
-.theming-demo-header span {
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: contrast-color(var(--fab-bg));
-} */
-
-/* .theming-demo-toggle {
-  appearance: none;
-  width: 40px;
-  height: 22px;
-  border-radius: 999px;
-  background: light-dark(oklch(0.88 0.01 265), oklch(0.28 0.015 265));
-  border: 1.5px solid light-dark(oklch(0.82 0.012 265), oklch(0.35 0.015 265));
-  cursor: pointer;
-  position: relative;
-  transition: background 0.25s, border-color 0.25s;
-}
-
-.theming-demo-toggle::after {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: light-dark(white, oklch(0.82 0.02 265));
-  transition: transform 0.25s ease, background 0.25s;
-  box-shadow: 0 1px 2px oklch(0 0 0 / 0.15);
-}
-
-.theming-demo-toggle:checked::after {
-  transform: translateX(18px);
-} */
-
-.theming-demo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 0.75rem;
-}
-
-.theming-card {
-  --fab-bg: var(--fab-brand-color, oklch(0.55 0.08 265));
-  --fab-contrast-color: contrast-color(var(--fab-bg));
-  background: var(--fab-bg);
-  color: contrast-color(var(--fab-bg));
-  border-radius: 10px;
-  padding: 1.25rem;
-  transition:
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
-
-  box-shadow:
-    /* Subtle shadow--fab-visible in light, transparent in dark */
-    0 1px 2px light-dark(lightgray, transparent),
-    0 4px 12px light-dark(lightgray, transparent),
-    0 12px 32px light-dark(lightgray, transparent),
-    /* Glowy border--fab-transparent in light, visible in dark */ inset 0 0 0 1px
-      light-dark(transparent, oklch(from var(--fab-bg) calc(l + 0.5) c h / 0.5)),
-    0 0 16px light-dark(transparent, oklch(from var(--fab-bg) calc(l + 0.5) c h / 0.3)),
-    0 0 3px light-dark(transparent, oklch(from var(--fab-bg) calc(l + 0.5) c h / 0.5));
-}
-
-.theming-card-label {
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-block-end: 0.4rem;
-}
-
-.theming-card-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  margin-block-end: 0.35rem;
-  line-height: 1.35;
-}
-
-.theming-card-body {
-  font-size: 0.8rem;
-  line-height: 1.5;
-}
-
-/* Style query palette customization */
-@container style(--fab-contrast-color: white) {
-  .theming-card-label,
-  .theming-card-body {
-    color: oklch(from var(--fab-bg) 0.9 0.1 h);
-  }
-
-  .theming-card-title {
-    color: contrast-color(var(--fab-bg));
-  }
-}
-
-@container style(--fab-contrast-color: black) {
-  .theming-card-label,
-  .theming-card-body {
-    color: oklch(from var(--fab-bg) 0.3 0.1 h);
-  }
-
-  .theming-card-title {
-    color: contrast-color(var(--fab-bg));
-  }
-}
-
-/* 
-.test-grid::after {
-  content: "";
-  position: absolute;
-  inset:0;
-
-  background-image: linear-gradient(to bottom, #0ff 0, transparent 1px);
-  background-repeat: repeat-y;
-  background-size: 100% 1rem;
-
-}
-*:has(.test-grid) {
-  position: relative;
-} */
 
 #colour-test {
   --fab-colour-1: var(--fab-colour-primary);
@@ -433,5 +274,7 @@ header {
 
 /* Transition for smooth feedback */
 .token-card code {
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }

@@ -37,15 +37,25 @@
       ul {
         list-style: none;
         li {
-          padding: var(--fab-space-2xs) var(--fab-space-2xs);
           border-radius: var(--fab-radius-sm);
+          overflow: hidden;
+          transition: background-color 0.25s ease-in-out;
           &:hover {
             background-color: var(--fab-colour-background-darker);
           }
           a {
-            display: block;
+            display: flex;
+            align-items: center;
+            
             text-decoration: none;
             color: var(--fab-colour-text);
+            padding: var(--fab-space-2xs) var(--fab-space-2xs);
+
+            &::before  {
+              bottom: var(--fab-space-2xs);
+              width: calc(100% - var(--fab-space-2xs) * 2);
+              left: var(--fab-space-2xs);
+            }
           }
         }
       }

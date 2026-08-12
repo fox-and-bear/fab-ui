@@ -44,7 +44,7 @@ table {
     background-color: var(--fab-colour-background-darker);
   }
   tbody tr:nth-child(even) {
-    background-color: var(--colour-background);
+    background-color: var(--fab-colour-background);
   }
 
   caption {
@@ -93,6 +93,7 @@ a::before {
   transform-origin: right;
   transform: scaleX(0);
   transition: transform 0.2s ease-in-out;
+  transition-delay: 0.1s;
 }
 
 a:hover::before {

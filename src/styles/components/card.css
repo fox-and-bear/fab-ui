@@ -30,14 +30,6 @@
 }
 
 .token-section {
-  --fab-token-checkerboard: repeating-linear-gradient(
-    45deg,
-    var(--fab-colour-background) 0,
-    var(--fab-colour-background) 6px,
-    var(--fab-colour-background-darker) 6px,
-    var(--fab-colour-background-darker) 12px
-  );
-
   width: 100%;
   max-width: 90rem;
   margin-inline: auto;
@@ -105,5 +97,5 @@
 }
 
 .token-checkerboard {
-  background: var(--fab-token-checkerboard);
+  background: var(--fab-background-checkerboard);
 }

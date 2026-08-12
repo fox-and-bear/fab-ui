@@ -152,13 +152,7 @@ const elevations = [
   .shadow-swatch {
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: repeating-linear-gradient(
-      45deg,
-      var(--fab-colour-background) 0,
-      var(--fab-colour-background) 6px,
-      var(--fab-colour-background-lighter) 6px,
-      var(--fab-colour-background-lighter) 12px
-    );
+    background: var(--fab-background-checkerboard);
     border-radius: var(--fab-radius-sm);
     display: flex;
     align-items: center;
@@ -166,26 +160,45 @@ const elevations = [
     position: relative;
   }
 
+  @property --pulse-value {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+  }
+
+  @property --pulse-intensity {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+  }
+
   .shadow-box {
+    --pulse-value: 0;
+    --pulse-intensity: 0;
+    --pulse-size-increase: 0.2; /* e.g. 0.1 = 10% increase in size, 0.2 = 20% increase in size */
     width: 60%;
     height: 60%;
     background: var(--fab-colour-background-lighter);
     border-radius: var(--fab-radius-xs);
-    transition: box-shadow 0.2s ease;
-  }
 
-  .token-card:hover .shadow-box {
-    /* Slight animation on hover */
-    animation: pulse 1.5s infinite;
+    transform: scale(calc(1 + var(--pulse-value) * var(--pulse-size-increase) * var(--pulse-intensity)));
+    transition:
+      box-shadow 0.2s ease,
+      --pulse-intensity 0.75s ease-out;
+    animation: pulse 1.5s ease-in-out infinite;
+
+    .token-card:hover & {
+      --pulse-intensity: 1;
+    }
   }
 
   @keyframes pulse {
     0%,
     100% {
-      transform: scale(1);
+      --pulse-value: 0;
     }
     50% {
-      transform: scale(1.1);
+      --pulse-value: 1;
     }
   }
 </style>

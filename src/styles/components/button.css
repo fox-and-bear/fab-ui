@@ -187,24 +187,22 @@ button {
     align-items: center;
     justify-content: space-between;
     gap: var(--fab-_space-around-icon);
-    /* padding: var(--fab-space-2xs) var(--fab-space-xs); */
     padding-inline: var(--fab-_space-around-icon);
   }
 }
 
 .button-group {
-  display: flex;
+  display: inline-flex;
   gap: 0;
-  filter: drop-shadow(var(--fab-elevation-02));
 
   button {
     border-radius: 0px;
-    box-shadow: none;
   }
 
   > button:first-of-type {
     border-radius: 0 0 0 calc(var(--fab-input-height) / 2);
     padding-left: var(--fab-space-lg);
+
   }
 
   > button:last-of-type {

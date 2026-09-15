@@ -97,6 +97,7 @@
             justify-content: space-between;
             transition: background-color 0.125s ease-in-out;
             border-radius: var(--fab-radius-sm);
+            user-select: none;
 
             svg:last-child {
               margin-inline-start: auto;

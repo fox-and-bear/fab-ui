@@ -212,7 +212,7 @@ Override on `<fab-select>` or globally:
 
 ```css
 fab-select {
-  /* Colors */
+  /* Colours */
   --fab-bg: #ffffff;
   --fab-bg-disabled: #f5f5f7;
   --fab-surface: #ffffff;

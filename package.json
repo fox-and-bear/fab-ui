@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/fox-and-bear/fab-ui#readme",
   "dependencies": {
-    "astro": "^7.1.6"
+    "astro": "^7.3.2"
   }
 }

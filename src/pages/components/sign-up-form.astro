@@ -1,0 +1,79 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SignUpForm from "../../components/forms/SignUpForm.astro"; 
+---
+
+<Layout title="Sign Up Form" numeral="06">
+  <button
+    class="dialog-button"
+    aria-label="Open sign up form"
+    type="button"
+    command="show-modal"
+    commandfor="fab-dialog">
+    Open Dialog
+  </button>
+
+  <SignUpForm />
+
+  <dialog class="fab-dialog" id="fab-dialog" aria-label="Sign up form" closedby="any">
+    <SignUpForm />
+  </dialog>
+</Layout>
+
+<style>
+  
+  /* Open state of the dialog   */
+  dialog[open] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Closed state of the dialog   */
+  dialog {
+    opacity: 0;
+    transform: translateY(10%);
+    transition:
+      opacity 0.27s ease-out,
+      transform 0.27s ease-in-out,
+      overlay 0.27s ease-out allow-discrete,
+      display 0.27s ease-out allow-discrete;
+    /* Equivalent to
+  transition: all 0.7s allow-discrete; */
+    top: 40%;
+    left: 50%;
+    translate: -50% -50%;
+    border: none;
+    border-radius: var(--fab-radius-sm);
+    box-shadow: var(--fab-elevation-06);
+
+    .card {
+      margin: 0;
+    }
+  }
+
+  /* Before open state  */
+  @starting-style {
+    dialog[open] {
+      opacity: 0;
+      transform: translateY(-5%);
+    }
+  }
+
+  dialog[open]::backdrop {
+    backdrop-filter: blur(3px);
+  }
+
+  /* Transition the :backdrop when the dialog modal is promoted to the top layer */
+  dialog::backdrop {
+    background-color: transparent;
+    backdrop-filter: blur(0px);
+    transition: all 0.7s allow-discrete;
+  }
+
+  @starting-style {
+    dialog[open]::backdrop {
+      background-color: transparent;
+      backdrop-filter: blur(0px);
+    }
+  }
+</style>

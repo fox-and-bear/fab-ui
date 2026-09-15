@@ -105,32 +105,3 @@ body > * {
   grid-template-columns: repeat(3, auto);
 }
 
-table {
-  table-layout: fixed;
-  max-width: 90%;
-  border-collapse: collapse;
-
-  margin-block: var(--fab-space-md);
-  border-block: 1px solid var(--fab-colour-border);
-  box-shadow: var(--fab-elevation-03);
-
-  th,
-  td {
-    font-weight: var(--fab-font-weight-medium);
-    padding: var(--fab-space-xs) var(--fab-space-md);
-  }
-
-  thead th {
-    color: var(--fab-colour-text-darker);
-    text-align: center;
-  }
-
-  tbody tr:nth-child(odd) {
-    background-color: var(--fab-colour-background-darker);
-  }
-
-  caption {
-    padding: var(--fab-space-sm) var(--fab-space-md);
-    caption-side: bottom;
-  }
-}

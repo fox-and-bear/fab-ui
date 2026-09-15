@@ -1,0 +1,61 @@
+---
+import Logo from "../Logo.astro";
+---
+
+<div class="card" role="group" aria-label="Sign in form preview">
+  <Logo layout="stacked" />
+  <h1>Sign In</h1>
+  <!-- NB to submit form using external button, form property on button must equal the form id -->
+  <form class="sign-in-form" id="sign-in-form">
+    <div class="input-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+    </div>
+    <a href="#" class="forgot-pass">Forgot your password?</a>
+  </form>
+  <!-- NB to submit form using external button, form property on button must equal the form id -->
+  <button class="tl" type="submit" form="sign-in-form">Sign In</button>
+  <span class="link-to-other-form"
+    >Not already a member? <a href="/components/sign-up-form.astro">Create an account</a></span
+  >
+</div>
+
+<style>
+  .card {
+    min-width: 430px;
+    margin: 3rem auto;
+
+    padding: var(--fab-space-xl) var(--fab-space-2xl);
+    display: grid;
+    justify-items: center;
+    gap: var(--fab-space-lg);
+
+    h1 {
+      font-size: var(--fab-font-size-h5);
+      color: inherit;
+    }
+  }
+
+  .link-to-other-form,
+  .forgot-pass {
+    font-size: var(--fab-font-size-caption);
+    font-weight: var(--fab-font-weight-light);
+    align-self: start;
+  }
+
+  form {
+    display: grid;
+    gap: var(--fab-space-md);
+    width: 100%;
+    padding-block-start: var(--fab-space-lg);
+    border-block: 1px solid var(--fab-colour-primary);
+
+    input {
+      width: 100%;
+    }
+  }
+</style>

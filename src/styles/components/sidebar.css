@@ -1,4 +1,5 @@
 /* Sidebar placement is owned by styles/layout/grid.css. */
+
 .sidebar {
   padding: var(--fab-space-sm);
 
@@ -16,8 +17,8 @@
       display: grid;
       place-content: center;
       > svg {
-          display: block;
-        }
+        display: block;
+      }
     }
 
     .primary-navigation {
@@ -30,31 +31,98 @@
       .nav-heading {
         text-transform: uppercase;
         font-size: var(--fab-font-size-caption);
-        padding: var(--fab-space-3xs) var(--fab-space-2xs);
-        color: var(--fab-colour-text-disabled);
+        padding: var(--fab-space-3xs);
+        color: var(--fab-colour-background-lighter);
         margin-block-start: var(--fab-space-md);
+        font-family: var(--fab-font-family-heading);
       }
-      ul {
+      .nav-items {
         list-style: none;
-        li {
+        .nav-item {
           border-radius: var(--fab-radius-sm);
           overflow: hidden;
           transition: background-color 0.25s ease-in-out;
-          &:hover {
+
+          &:has(.nested-menu-items .active) {
+            .nested-menu {
+              color: var(--fab-colour-primary);
+            }
+          }
+
+          &:hover:not(:has(.nested-menu)) {
             background-color: var(--fab-colour-background-darker);
           }
+
+          .nested-menu,
           a {
+            all: unset;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            
+            gap: var(--fab-space-2xs);
             text-decoration: none;
-            color: var(--fab-colour-text);
-            padding: var(--fab-space-2xs) var(--fab-space-2xs);
 
-            &::before  {
-              bottom: var(--fab-space-2xs);
-              width: calc(100% - var(--fab-space-2xs) * 2);
-              left: var(--fab-space-2xs);
+            padding: var(--fab-space-2xs) var(--fab-space-2xs);
+            color: var(--fab-colour-text-darker);
+            transition: color 0.25s ease-in-out;
+            transition-delay: 0.1s;
+
+            &:hover {
+              color: var(--fab-colour-text-lighter);
+
+              svg {
+                color: var(--fab-colour-primary-lighter);
+              }
+            }
+
+            &.active {
+              color: var(--fab-colour-primary);
+            }
+
+            svg {
+              color: var(--fab-colour-text);
+              transition: color 0.25s ease-in-out;
+            }
+          }
+
+          .nested-menu {
+            justify-content: space-between;
+            transition: background-color 0.125s ease-in-out;
+            border-radius: var(--fab-radius-sm);
+
+            svg:last-child {
+              margin-inline-start: auto;
+              transition: transform 0.125s ease-in-out;
+            }
+
+            &[aria-expanded="true"] {
+              background-color: var(--fab-colour-background-darker);
+              svg:last-child {
+                transform: rotate(90deg);
+              }
+            }
+          }
+
+          .nested-menu-items {
+            list-style: none;
+            margin-block-start: var(--fab-space-2xs);
+            margin-inline-start: var(--fab-space-xs);
+
+            border-inline-start: 1px solid var(--fab-colour-border);
+
+            transition:
+              height 0.25s ease-in-out,
+              visibility 0.25s;
+
+            .nested-menu-item {
+              border-radius: var(--fab-radius-sm);
+              margin-inline-start: var(--fab-space-2xs);
+              transition: background-color 0.25s ease-in-out;
+              font-size: var(--fab-font-size-small);
+
+              &:hover {
+                background-color: var(--fab-colour-background-darker);
+              }
             }
           }
         }
@@ -65,8 +133,7 @@
       display: flex;
       align-items: center;
       gap: var(--fab-space-sm);
-          padding: var(--fab-space-sm);
-
+      padding: var(--fab-space-sm);
 
       .user-name {
         flex: 1;
@@ -74,3 +141,19 @@
     }
   }
 }
+
+
+.transition-auto {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease-in-out;
+
+  [aria-expanded="true"] + & {
+    grid-template-rows: 1fr;
+  }
+
+  > * {
+    overflow: hidden;
+  }
+}
+

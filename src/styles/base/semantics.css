@@ -37,14 +37,16 @@ table {
 
   thead th {
     color: var(--fab-colour-text-darker);
+    background-color: var(--fab-colour-background-darker);
+    border-bottom: 1px solid var(--fab-colour-border);
     text-align: center;
   }
 
-  tbody tr:nth-child(odd) {
-    background-color: var(--fab-colour-background-darker);
-  }
-  tbody tr:nth-child(even) {
+  tbody > tr:nth-child(odd) {
     background-color: var(--fab-colour-background);
+  }
+  tbody > tr:nth-child(even) {
+    background-color: var(--fab-colour-background-darker);
   }
 
   caption {
@@ -63,31 +65,29 @@ a {
   transition:
     color 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
-}
-
-a {
   position: relative;
-}
 
-a::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 0.2ch;
-  border-radius: 4px;
-  background-color: var(--fab-colour-primary);
-  bottom: 0;
-  left: 0;
-  transform-origin: right;
-  transform: scaleX(0);
-  transition: transform 0.2s ease-in-out;
-  transition-delay: 0.1s;
-}
-
-a:hover::before {
+  &:hover::before {
   transform-origin: left;
   transform: scaleX(1);
 }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0.2ch;
+    border-radius: 4px;
+    background-color: var(--fab-colour-primary);
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
+    transition-delay: 0.1s;
+  }
+}
+
 
 
 /* select, */
@@ -139,9 +139,10 @@ label:has(> input),
 label[for] {
   display: block;
   font-family: var(--fab-font-family-body);
-  font-size: var(--fab-font-size-small);
+  font-size: var(--fab-font-size-caption);
   line-height: var(--fab-line-height-normal);
   font-weight: var(--fab-font-weight-medium);
+  padding-block-end: var(--fab-space-3xs);
 }
 
 label:has(+ input[required]),
@@ -317,4 +318,3 @@ input[type="radio"]:checked {
   outline-color: var(--fab-colour-background);
   outline-offset: -4px;
 }
-

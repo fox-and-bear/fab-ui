@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Logo from "../../components/Logo.astro";
+import SignInForm from "../../components/forms/SignInForm.astro";
 ---
 
 <Layout title="Sign In Form" numeral="06">
@@ -13,72 +13,15 @@ import Logo from "../../components/Logo.astro";
     Open Dialog
   </button>
 
-  <div class="card" role="group" aria-label="Sign in form preview">
-    <header><Logo /></header>
-    <form class="sign-in-form">
-      <div class="input-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
-      </div>
-      <div class="input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required />
-      </div>
-      <button type="submit">Sign In</button>
-    </form>
-    <a href="#" class="forgot-pass">Forgot your password?</a>
-    <footer>
-      <span>Not yet a member? <a href="#">Create an account</a></span>
-    </footer>
-  </div>
+  <SignInForm />
 
   <dialog class="fab-dialog" id="fab-dialog" aria-label="Sign in form" closedby="any">
-    <div class="card" role="group" aria-label="Sign in form preview">
-      <header><Logo /></header>
-      <form class="sign-in-form">
-        <div class="input-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-        <div class="input-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required />
-        </div>
-        <button type="submit">Sign In</button>
-      </form>
-      <a href="#" class="forgot-pass">Forgot your password?</a>
-      <footer>
-        <span>Not yet a member? <a href="#">Create an account</a></span>
-      </footer>
-    </div>
+    <SignInForm />
   </dialog>
 </Layout>
 
 <style>
-  .card {
-    min-width: 20rem;
-    margin: 3rem auto;
-  }
-
-  .forgot-pass {
-    font-size: var(--fab-font-size-small);
-    align-self: start;
-  }
-
-  form {
-    display: grid;
-    gap: var(--fab-space-sm);
-
-    button {
-      margin-block-start: var(--fab-space-sm);
-      margin-inline: auto;
-    }
-    input {
-      width: 100%;
-    }
-  }
-
-  /* Open state of the dialog   */
+   /* Open state of the dialog   */
   dialog[open] {
     opacity: 1;
     transform: translateY(0);
@@ -125,8 +68,6 @@ import Logo from "../../components/Logo.astro";
     backdrop-filter: blur(0px);
     transition: all 0.7s allow-discrete;
   }
-
-
 
   @starting-style {
     dialog[open]::backdrop {

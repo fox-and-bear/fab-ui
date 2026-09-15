@@ -1,20 +1,34 @@
 ---
 import Logo from "./Logo.astro";
+import Icon from "./Icon.astro";
 
 const { pathname } = Astro.url;
 
+type NavItem = {
+  name: string;
+  href?: string;
+  children?: NavItem[];
+  icon?: string;
+};
+
 const foundations = [
-  { name: "Colours", href: "/" },
-  { name: "Typography", href: "/fonts" },
-  { name: "Elevation", href: "/elevation" },
-  { name: "Spacing", href: "/spacing" },
+  { name: "Colours", href: "/", icon: "colours" },
+  { name: "Typography", href: "/fonts", icon: "typography" },
+  { name: "Elevation", href: "/elevation", icon: "elevation" },
+  { name: "Spacing", href: "/spacing", icon: "spacing" },
 ];
 
-const components = [
-  { name: "Buttons", href: "/components/buttons" },
-  { name: "Form Elements", href: "/components/form-elements"
-   },
-  { name: "Sign-In Form", href: "/components/sign-in-form" },
+const components: NavItem[] = [
+  { name: "Buttons", href: "/components/buttons", icon: "button" },
+  { name: "Form Elements", href: "/components/form-elements", icon: "radio-button" },
+  {
+    name: "Forms",
+    children: [
+      { name: "Sign-In Form", href: "/components/sign-in-form" },
+      { name: "Sign-Up Form", href: "/components/sign-up-form" },
+    ],
+    icon: "form",
+  },
 ];
 ---
 
@@ -25,11 +39,12 @@ const components = [
     </header>
     <nav class="primary-navigation">
       <span class="nav-heading">Foundations</span>
-      <ul>
+      <ul class="nav-items">
         {
-          foundations.map(({ name, href }) => (
-            <li>
-              <a href={href} class={pathname === href ? "active" : ""}>
+          foundations.map(({ name, href, icon }) => (
+            <li class="nav-item">
+              <a href={href} aria-label={name} class={pathname === href ? "active" : ""}>
+                {icon && <Icon name={icon} size={16} />}
                 {name}
               </a>
             </li>
@@ -38,11 +53,35 @@ const components = [
       </ul>
 
       <span class="nav-heading">Components</span>
-      <ul>
+      <ul class="nav-items">
         {
-          components.map(({ name, href }) => (
-            <li>
-              <a href={href}>{name}</a>
+          components.map(({ name, href, children, icon }) => (
+            <li class="nav-item">
+              {href ? (
+                <a href={href} aria-label={name} class={pathname.includes(href) ? "active" : ""}>
+                  {icon && <Icon name={icon} size={16} />}
+                  {name}
+                </a>
+              ) : (
+                <span class="nested-menu" aria-expanded="false">
+                  {icon && <Icon name={icon} size={16} />}
+                  {name} <Icon name="chevron-right" size={16} />
+                </span>
+              )}
+
+              {children && children.length > 0 && (
+                <div class="transition-auto">
+                  <ul class="nested-menu-items">
+                    {children.map(({ name, href }) => (
+                      <li class="nested-menu-item">
+                        <a href={href} aria-label={name} class={pathname === href ? "active" : ""}>
+                          {name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </li>
           ))
         }
@@ -67,3 +106,15 @@ const components = [
     </div>
   </div>
 </div>
+
+<script>
+  const nestedMenuItems = document.querySelectorAll(".nested-menu");
+  nestedMenuItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      item.setAttribute(
+        "aria-expanded",
+        item.getAttribute("aria-expanded") === "true" ? "false" : "true",
+      );
+    });
+  });
+</script>

@@ -1,0 +1,64 @@
+---
+import Icon from "../Icon.astro";
+
+type NavItem = {
+  name: string;
+  href?: string;
+  children?: NavItem[];
+  icon?: string;
+};
+
+interface Props {
+  item: NavItem;
+  pathname: string;
+  depth?: number;
+}
+
+const { item, pathname, depth = 0 } = Astro.props as Props;
+const hasChildren = Boolean(item.children && item.children.length > 0);
+
+const isActiveInTree = (node: NavItem): boolean => {
+  if (node.href === pathname) {
+    return true;
+  }
+
+  if (!node.children || node.children.length === 0) {
+    return false;
+  }
+
+  return node.children.some((child) => isActiveInTree(child));
+};
+
+const shouldExpand = hasChildren && item.children!.some((child) => isActiveInTree(child));
+---
+
+<li
+  class:list={["nav-item", depth > 0 && "nested-menu-item"]}
+  {...depth > 0 ? { "data-depth": depth } : {}}>
+  {
+    item.href ? (
+      <a href={item.href} aria-label={item.name} class={pathname === item.href ? "active" : ""}>
+        {item.icon && depth === 0 && <Icon name={item.icon} size={16} />}
+        {item.name}
+      </a>
+    ) : (
+      <span class="nested-menu" aria-expanded={shouldExpand ? "true" : "false"}>
+        {item.icon && depth === 0 && <Icon name={item.icon} size={16} />}
+        {item.name}
+        <Icon name="chevron-right" size={16} />
+      </span>
+    )
+  }
+
+  {
+    hasChildren && (
+      <div class="transition-auto">
+        <ul class="nested-menu-items">
+          {item.children!.map((child) => (
+            <Astro.self item={child} pathname={pathname} depth={depth + 1} />
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</li>

@@ -1,7 +1,6 @@
 ---
 import Logo from "./Logo.astro";
 import Icon from "./Icon.astro";
-import NavItems from "./sidebar/NavItems.astro";
 
 const { pathname } = Astro.url;
 
@@ -12,60 +11,72 @@ type NavItem = {
   icon?: string;
 };
 
-const foundations = [
-  { name: "Colours", href: "/", icon: "colours" },
-  { name: "Typography", href: "/fonts", icon: "typography" },
-  { name: "Elevation", href: "/elevation", icon: "elevation" },
-  { name: "Spacing", href: "/spacing", icon: "spacing" },
-];
+type SitemapGroup = {
+  title: string;
+  children: NavItem[];
+};
 
-const components: NavItem[] = [
-  { name: "Buttons", href: "/components/buttons", icon: "button" },
-  { name: "Form Elements", href: "/components/form-elements", icon: "radio-button" },
-  {
-    name: "Forms",
-    children: [
-      { name: "Login Form", href: "/components/sign-in-form" },
-      { name: "Registration Form", href: "/components/sign-up-form" },
-    ],
-    icon: "form",
-  },
-];
+// const sitemap: SitemapGroup[] = [
+//   {
+//     title: "Group Title One",
+//     children: [
+//       { name: "Parent Item 1", href: "/group/child-1", icon: "child-1" },
+//       { name: "Parent Item 2", href: "/group/child-2", icon: "child-2" },
+//     ],
+//   },
+//   {
+//     title: "Group Title Two",
+//     children: [
+//       { name: "Parent Item 3", href: "/group/child-1", icon: "child-1" },
+//       {
+//         name: "Parent Item 4",
+//         icon: "child-2",
+//         children: [
+//           {
+//             name: "Child Item 1",
+//             // icon: "grandchild-1",
+//             children: [
+//               {
+//                 name: "Grand Item 1",
+//                 href: "/group/child-2/grandchild-1/great-grandchild-1",
+//                 // icon: "great-grandchild-1",
+//               },
+//               {
+//                 name: "Grand Item 2",
+//                 href: "/group/child-2/grandchild-1/great-grandchild-2",
+//                 // icon: "great-grandchild-2",
+//               },
+//             ],
+//           },
+//           { name: "Child Item 2", href: "/group/child-2/grandchild-2", icon: "grandchild-2" },
+//         ],
+//       },
+//     ],
+//   },
+// ];
 
-const sitemap = [
+const sitemap: SitemapGroup[] = [
   {
-    title: "Group Title One",
+    title: "Foundations",
     children: [
-      { name: "Child Item 1", href: "/group/child-1", icon: "child-1" },
-      { name: "Child Item 2", href: "/group/child-2", icon: "child-2" },
+      { name: "Colours", href: "/", icon: "colours" },
+      { name: "Typography", href: "/fonts", icon: "typography" },
+      { name: "Elevation", href: "/elevation", icon: "elevation" },
+      { name: "Spacing", href: "/spacing", icon: "spacing" },
     ],
   },
   {
-    title: "Group Title Two",
+    title: "Components",
     children: [
-      { name: "Child Item 1", href: "/group/child-1", icon: "child-1" },
+      { name: "Buttons", href: "/components/buttons", icon: "button" },
+      { name: "Form Elements", href: "/components/form-elements", icon: "radio-button" },
       {
-        name: "Child Item 2",
-        icon: "child-2",
+        name: "Forms",
         children: [
-          {
-            name: "Grand Item 1",
-            icon: "grandchild-1",
-            children: [
-              {
-                name: "Great-Grand Item 1",
-                href: "/group/child-2/grandchild-1/great-grandchild-1",
-                icon: "great-grandchild-1",
-              },
-              {
-                name: "Great-Grand Item 2",
-                href: "/group/child-2/grandchild-1/great-grandchild-2",
-                icon: "great-grandchild-2",
-              },
-            ],
-          },
-          { name: "Grand Item 2", href: "/group/child-2/grandchild-2", icon: "grandchild-2" },
+          { name: "Login Form", href: "/components/sign-in-form" },
+          { name: "Registration Form", href: "/components/sign-up-form" },
         ],
+        icon: "form",
       },
     ],
   },
@@ -77,67 +88,85 @@ const sitemap = [
     <header>
       <Logo />
     </header>
+
     <nav class="primary-navigation">
       {
-        sitemap.map(({ title, children }) => (
-          <Fragment>
-            <span class="nav-heading">{title}</span>
+        sitemap.map((group) => (
+          <>
+            <span class="nav-heading">{group.title}</span>
             <ul class="nav-items">
-              {children.map((child) => (
-                <NavItems item={child} pathname={pathname} />
+              {group.children.map((parent) => (
+                <li class="nav-item">
+                  {parent.href ? (
+                    <a href={parent.href} aria-label={parent.name} class={pathname === parent.href ? "active" : ""}>
+                      {parent.icon && <Icon name={parent.icon} size={20} />}
+                      {parent.name}
+                    </a>
+                  ) : (
+                    <button class="nested-menu" aria-expanded="false" aria-label={parent.name}>
+                      {parent.icon && <Icon name={parent.icon} size={20} />}
+                      {parent.name}
+                      <Icon name="chevron-right" size={16} />
+                    </button>
+                  )}
+
+                  {parent.children && (
+                    <div class="transition-auto">
+                      <ul class="nav-items nested">
+                        {parent.children.map((child) => (
+                          <li class="nav-item">
+                            {child.href ? (
+                              <a href={child.href} aria-label={child.name} class={pathname === child.href ? "active" : ""}>
+                                {/* {child.icon && <Icon name={child.icon} size={20} />} */}
+                                {child.name}
+                              </a>
+                            ) : (
+                              <button
+                                class="nested-menu"
+                                aria-expanded="false"
+                                aria-label={child.name}>
+                                {/* {child.icon && <Icon name={child.icon} size={20} />} */}
+                                {child.name}
+                                <Icon name="chevron-right" size={16} />
+                              </button>
+                            )}
+
+                            {child.children && (
+                              <div class="transition-auto">
+                              <ul class="nav-items nested">
+                                {child.children.map((grandchild) => (
+                                  <li class="nav-item">
+                                    {grandchild.href ? (
+                                      <a href={grandchild.href} aria-label={grandchild.name} class={pathname === grandchild.href ? "active" : ""}>
+                                        {/* {grandchild.icon && <Icon name={grandchild.icon} size={20} />} */}
+                                        {grandchild.name}
+                                      </a>
+                                    ) : (
+                                      <button
+                                        class="nested-menu"
+                                        aria-expanded="false"
+                                        aria-label={grandchild.name}>
+                                        {/* {grandchild.icon && <Icon name={grandchild.icon} size={20} />} */}
+                                        {grandchild.name}
+                                        <Icon name="chevron-right" size={16} />
+                                      </button>
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                              </div> <!-- end transition-auto grandchildren -->
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div> <!-- end transition-auto children -->
+                  )}
+                </li>
               ))}
             </ul>
-          </Fragment>
+          </>
         ))
       }
-      <!-- <span class="nav-heading">Foundations</span> -->
-      <!-- <ul class="nav-items">
-        {
-          foundations.map(({ name, href, icon }) => (
-            <li class="nav-item">
-              <a href={href} aria-label={name} class={pathname === href ? "active" : ""}>
-                {icon && <Icon name={icon} size={16} />}
-                {name}
-              </a>
-            </li>
-          ))
-        }
-      </ul> -->
-
-      <!-- <span class="nav-heading">Components</span> -->
-      <!-- <ul class="nav-items">
-        {
-          components.map(({ name, href, children, icon }) => (
-            <li class="nav-item">
-              {href ? (
-                <a href={href} aria-label={name} class={pathname.includes(href) ? "active" : ""}>
-                  {icon && <Icon name={icon} size={16} />}
-                  {name}
-                </a>
-              ) : (
-                <span class="nested-menu" aria-expanded="false">
-                  {icon && <Icon name={icon} size={16} />}
-                  {name} <Icon name="chevron-right" size={16} />
-                </span>
-              )}
-
-              {children && children.length > 0 && (
-                <div class="transition-auto">
-                  <ul class="nested-menu-items">
-                    {children.map(({ name, href }) => (
-                      <li class="nested-menu-item">
-                        <a href={href} aria-label={name} class={pathname === href ? "active" : ""}>
-                          {name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </li>
-          ))
-        }
-      </ul> -->
     </nav>
 
     <div class="user-info">

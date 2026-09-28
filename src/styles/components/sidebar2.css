@@ -47,11 +47,9 @@
       }
 
       .nav-item {
-        &[data-depth] {
-            margin-inline-start: calc(5px * attr(data-depth number));
-          }
+      
         a,
-        span {
+        .nested-menu {
           all: unset;
           display: flex;
           align-items: center;
@@ -59,54 +57,46 @@
           cursor: pointer;
           color: var(--fab-colour-text-darker);
           padding: var(--fab-space-2xs) var(--fab-space-2xs);
-          transition: color 0.25s ease-in-out, border-radius 0.25s ease-in-out;
+          transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+          /* margin-inline-start for .nested */
+          width: calc(100% - var(--fab-space-sm));
+
+          &.active {
+            color: var(--fab-colour-primary);
+          }
+          
 
           &[aria-expanded="true"] {
             color: var(--fab-colour-text);
             /* border-bottom-left-radius: 10px; */
+            /* background-color: var(--fab-colour-background-darker); */
           }
 
           &:hover {
             color: var(--fab-colour-text-lighter);
           }
-
-          [data-depth] & {
-            border-inline-start: 2px solid var(--fab-colour-border);
-            position: relative;
-
-            &[aria-expanded="true"]:before {
-                content: "";
-                position: absolute;
-                bottom: 0px;
-                left: -2px;
-                display: block;
-                width: 12px;
-                height: 20px;
-                border: 2px solid var(--fab-colour-primary); 
-                border-radius: 50%;
-                clip-path: polygon(0 50%, 50% 50%, 50% 100%, 0 100%);
-                /* background-image: url("data:image/svg+xml,%3Csvg width='14' height='20' viewBox='0 0 14 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0C1 14.2105 13 5.75 13 20' stroke='black' stroke-width='2'/%3E%3C/svg%3E");
-                background-repeat: no-repeat;
-                background-size: contain; */
-                z-index: 1;
-            }
-          }
           
-
-
-
           svg {
             color: var(--fab-colour-primary);
             transition: rotate 0.25s ease-in-out;
 
-            span &:last-child {
+            button &:last-child {
                 margin-inline-start: auto;
+                color: var(--fab-colour-text-darker);
 
                 [aria-expanded="true"]  & {
                   rotate: 90deg;
                 }
             }
           }
+        }
+
+        .nested {
+          /* see also width of .nested-menu; */
+          margin-inline-start: var(--fab-space-sm);
+          border-inline-start: 2px solid var(--fab-colour-border);
+          padding-inline-start: var(--fab-space-xs);
+          font-size: var(--fab-font-size-small);
         }
       }
 
@@ -138,3 +128,7 @@
     }
   }
 }
+
+
+
+

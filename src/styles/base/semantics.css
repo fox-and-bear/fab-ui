@@ -66,13 +66,14 @@ a {
     color 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
   position: relative;
+  cursor: pointer;
 
-  &:hover::before {
+   &:hover::before {
   transform-origin: left;
   transform: scaleX(1);
 }
 
-  &::before {
+  &.underline::before {
     content: "";
     position: absolute;
     width: 100%;

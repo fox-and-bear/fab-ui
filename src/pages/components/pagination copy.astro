@@ -1,0 +1,204 @@
+---
+import Icon from "../../components/Icon.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const totalPages = 11;
+
+let currentPage = 2;
+---
+
+<Layout title="Pagination" numeral="08">
+  <section class="demo">
+    <div class="pagination">
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost" aria-label="First page">
+          <Icon name="arrow-left-double" size={20} />
+        </button>
+        <button class="pagination-button icon ghost" aria-label="Previous page">
+          <Icon name="arrow-left" size={20} />
+        </button>
+      </div>
+      <div class="pagination-links">
+        {
+            Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <>
+                {page === currentPage ? (
+                  <button class="pagination-link icon tr active" aria-label={`Page ${page}`}> {page} </button>
+                ) : (
+                  <button class="pagination-link icon ghost" aria-label={`Page ${page}`}> {page} </button>
+                )}
+              </>
+            ))
+        }
+        <!-- <a class="pagination-link" aria-label="Page 1"> 1 </a>
+        <a class="pagination-link active" aria-label="Page 2"> 2 </a>
+        <a class="pagination-link" aria-label="Page 3"> 3 </a>
+        <a class="pagination-link" aria-label="Page 4"> 4 </a>
+        <a class="pagination-link" aria-label="Page 5"> 5 </a>
+
+        <span class="pagination-ellipsis">...</span>
+
+        <a class="pagination-link" aria-label="Page 10"> 10 </a>
+        <a class="pagination-link" aria-label="Page 11"> 11 </a> -->
+      </div>
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost" aria-label="Next page">
+          <Icon name="arrow-right" size={20} />
+        </button>
+        <button class="pagination-button icon ghost" aria-label="Last page">
+          <Icon name="arrow-right-double" size={20} />
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <h2>End Pages</h2>
+  <p>
+    Back buttons should be disabled when on the first page. Next buttons should be disabled on the
+    last page.
+  </p>
+  <section>
+    <div class="pagination">
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost" aria-label="First page" disabled>
+          <Icon name="arrow-left-double" size={20} />
+        </button>
+        <button class="pagination-button icon ghost" aria-label="Previous page" disabled>
+          <Icon name="arrow-left" size={20} />
+        </button>
+      </div>
+      <div class="pagination-links">
+        <a class="pagination-link active" aria-label="Page 1"> 1 </a>
+        <a class="pagination-link" aria-label="Page 2"> 2 </a>
+        <a class="pagination-link" aria-label="Page 3"> 3 </a>
+        <a class="pagination-link" aria-label="Page 4"> 4 </a>
+        <a class="pagination-link" aria-label="Page 5"> 5 </a>
+
+        <span class="pagination-ellipsis">...</span>
+
+        <a class="pagination-link" aria-label="Page 10"> 10 </a>
+        <a class="pagination-link" aria-label="Page 11"> 11 </a>
+      </div>
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost" aria-label="Next page">
+          <Icon name="arrow-right" size={20} />
+        </button>
+        <button class="pagination-button icon ghost" aria-label="Last page">
+          <Icon name="arrow-right-double" size={20} />
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <h2>Middle Pages</h2>
+  <p>
+    Keep the <code>.active</code> indicator two places from the ellipsis where possible.
+  </p>
+  <section>
+    <div class="pagination">
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost" aria-label="First page">
+          <Icon name="arrow-left-double" size={20} />
+        </button>
+        <button class="pagination-button icon ghost" aria-label="Previous page">
+          <Icon name="arrow-left" size={20} />
+        </button>
+      </div>
+      <div class="pagination-links">
+        <a class="pagination-link" aria-label="Page 1"> 1 </a>
+        <a class="pagination-link" aria-label="Page 2"> 2 </a>
+
+        <span class="pagination-ellipsis">...</span>
+
+        <a class="pagination-link" aria-label="Page 7"> 7 </a>
+        <a class="pagination-link" aria-label="Page 8"> 8 </a>
+        <a class="pagination-link active" aria-label="Page 9"> 9 </a>
+
+        <a class="pagination-link" aria-label="Page 10"> 10 </a>
+        <a class="pagination-link" aria-label="Page 11"> 11 </a>
+      </div>
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost" aria-label="Next page">
+          <Icon name="arrow-right" size={20} />
+        </button>
+        <button class="pagination-button icon ghost" aria-label="Last page">
+          <Icon name="arrow-right-double" size={20} />
+        </button>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost" aria-label="First page">
+          <Icon name="arrow-left-double" size={20} />
+        </button>
+        <button class="pagination-button icon ghost" aria-label="Previous page">
+          <Icon name="arrow-left" size={20} />
+        </button>
+      </div>
+      <div class="pagination-links">
+        <a class="pagination-link" aria-label="Page 1"> 1 </a>
+
+        <span class="pagination-ellipsis">...</span>
+
+        <a class="pagination-link" aria-label="Page 5"> 5 </a>
+        <a class="pagination-link" aria-label="Page 6"> 6 </a>
+        <a class="pagination-link active" aria-label="Page 7"> 700 </a>
+
+        <a class="pagination-link" aria-label="Page 8"> 8 </a>
+        <a class="pagination-link" aria-label="Page 9"> 9 </a>
+
+        <span class="pagination-ellipsis">...</span>
+        <a class="pagination-link" aria-label="Page 12"> 12 </a>
+      </div>
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost" aria-label="Next page">
+          <Icon name="arrow-right" size={20} />
+        </button>
+        <button class="pagination-button icon ghost" aria-label="Last page">
+          <Icon name="arrow-right-double" size={20} />
+        </button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  section {
+    display: grid;
+    justify-content: center;
+    gap: var(--fab-space-xl);
+
+    padding: 2rem;
+
+    &.demo {
+      margin-block-start: var(--fab-space-xl);
+      background:
+        radial-gradient(
+          circle at top left,
+          color-mix(in oklab, var(--fab-colour-primary) 12%, transparent),
+          transparent 40%
+        ),
+        var(--fab-background-checkerboard);
+    }
+  }
+
+  h2 {
+    grid-column: 1 / -1;
+    font-size: var(--fab-font-size-body);
+    font-weight: 600;
+    color: var(--fab-colour-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-bottom: var(--fab-space-xs);
+    border-bottom: 1px solid var(--fab-colour-border);
+    margin-block-start: var(--fab-space-xl);
+    margin-block-end: var(--fab-space-md);
+  }
+
+  p {
+    grid-column: 1 / -1;
+    color: var(--fab-colour-text-darker);
+    font-size: var(--fab-font-size-small);
+  }
+</style>

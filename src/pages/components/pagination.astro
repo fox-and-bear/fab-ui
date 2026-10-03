@@ -1,0 +1,342 @@
+---
+import Icon from "../../components/Icon.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const totalPages = 150;
+
+let currentPage = 2;
+
+const getPageItems = (current: number, total: number): (number | "...")[] => {
+  if (total <= 7) return Array.from({ length: total }, (_, index) => index + 1);
+
+  let visiblePages: number[];
+  if (current <= 3) {
+    visiblePages = [...Array.from({ length: 5 }, (_, index) => index + 1), total - 1, total];
+  } else if (current === 4) {
+    visiblePages = [...Array.from({ length: 6 }, (_, index) => index + 1), total];
+  } else if (current >= total - 2) {
+    visiblePages = [1, 2, ...Array.from({ length: 5 }, (_, index) => total - 4 + index)];
+  } else if (current === total - 3) {
+    visiblePages = [1, ...Array.from({ length: 6 }, (_, index) => total - 5 + index)];
+  } else {
+    visiblePages = [1, current - 2, current - 1, current, current + 1, current + 2, total];
+  }
+
+  const items: (number | "...")[] = [];
+  for (const page of visiblePages) {
+    const previous = items.at(-1);
+    if (typeof previous === "number" && page - previous > 1) items.push("...");
+    items.push(page);
+  }
+  return items;
+};
+---
+
+<Layout title="Pagination" numeral="08">
+  <section class="demo">
+    <div
+      class="pagination"
+      data-pagination
+      data-total-pages={totalPages}
+      data-current-page={currentPage}>
+      <div class="progress-buttons">
+        <button
+          class="pagination-button icon ghost"
+          aria-label="First page"
+          data-page-action="first"
+          disabled={currentPage === 1}>
+          <Icon name="arrow-left-double" size={20} />
+        </button>
+        <button
+          class="pagination-button icon ghost"
+          aria-label="Previous page"
+          data-page-action="previous"
+          disabled={currentPage === 1}>
+          <Icon name="arrow-left" size={20} />
+        </button>
+      </div>
+      <div class="pagination-links">
+        {
+          getPageItems(currentPage, totalPages).map((item) =>
+            item === "..." ? (
+              <span class="pagination-ellipsis" aria-hidden="true">
+                ...
+              </span>
+            ) : (
+              <button
+                class={`pagination-link icon ${item === currentPage ? `${currentPage < totalPages / 2 ? "tr" : "tl"} active` : "ghost"}`}
+                aria-label={`Page ${item}`}
+                aria-current={item === currentPage ? "page" : undefined}
+                data-page-number={item}
+                type="button">
+                {item}
+              </button>
+            ),
+          )
+        }
+      </div>
+      <div class="progress-buttons">
+        <button
+          class="pagination-button icon ghost"
+          aria-label="Next page"
+          data-page-action="next"
+          disabled={currentPage === totalPages}>
+          <Icon name="arrow-right" size={20} />
+        </button>
+        <button
+          class="pagination-button icon ghost"
+          aria-label="Last page"
+          data-page-action="last"
+          disabled={currentPage === totalPages}>
+          <Icon name="arrow-right-double" size={20} />
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <h2>End Pages</h2>
+  <p>
+    Back buttons should be disabled when on the first page. Next buttons should be disabled on the
+    last page.
+  </p>
+  <section>
+    <div class="pagination">
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost icon" aria-label="First page" disabled>
+          <Icon name="arrow-left-double" size={20} />
+        </button>
+        <button class="pagination-button icon ghost icon" aria-label="Previous page" disabled>
+          <Icon name="arrow-left" size={20} />
+        </button>
+      </div>
+      <div class="pagination-links">
+        <button class="pagination-link tr icon active" aria-label="Page 1"> 1 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 2"> 2 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 3"> 3 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 4"> 4 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 5"> 5 </button>
+
+        <span class="pagination-ellipsis">...</span>
+
+        <button class="pagination-link ghost icon" aria-label="Page 10"> 10 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 11"> 11 </button>
+      </div>
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost icon" aria-label="Next page">
+          <Icon name="arrow-right" size={20} />
+        </button>
+        <button class="pagination-button icon ghost icon" aria-label="Last page">
+          <Icon name="arrow-right-double" size={20} />
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <h2>Middle Pages</h2>
+  <p>
+    Keep the <code>.active</code> indicator two places from the ellipsis where possible, and use the <code
+      >.tl</code
+    > and <code>.tr</code> classes to indicate which side of the total the active page is on - it should "point away" from the closest end.
+  </p>
+  <section>
+    <div class="pagination">
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost icon" aria-label="First page">
+          <Icon name="arrow-left-double" size={20} />
+        </button>
+        <button class="pagination-button icon ghost icon" aria-label="Previous page">
+          <Icon name="arrow-left" size={20} />
+        </button>
+      </div>
+      <div class="pagination-links">
+        <button class="pagination-link ghost icon" aria-label="Page 1"> 1 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 2"> 2 </button>
+
+        <span class="pagination-ellipsis">...</span>
+
+        <button class="pagination-link ghost icon" aria-label="Page 7"> 7 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 8"> 8 </button>
+        <button class="pagination-link tl icon active" aria-label="Page 9"> 9 </button>
+
+        <button class="pagination-link ghost icon" aria-label="Page 10"> 10 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 11"> 11 </button>
+      </div>
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost icon" aria-label="Next page">
+          <Icon name="arrow-right" size={20} />
+        </button>
+        <button class="pagination-button icon ghost icon" aria-label="Last page">
+          <Icon name="arrow-right-double" size={20} />
+        </button>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost icon" aria-label="First page">
+          <Icon name="arrow-left-double" size={20} />
+        </button>
+        <button class="pagination-button icon ghost icon" aria-label="Previous page">
+          <Icon name="arrow-left" size={20} />
+        </button>
+      </div>
+      <div class="pagination-links">
+        <button class="pagination-link ghost icon" aria-label="Page 1"> 1 </button>
+
+        <span class="pagination-ellipsis">...</span>
+
+        <button class="pagination-link ghost icon" aria-label="Page 3"> 3 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 4"> 4 </button>
+
+        <button class="pagination-link tr icon active" aria-label="Page 5"> 5 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 6"> 6 </button>
+        <button class="pagination-link ghost icon" aria-label="Page 7"> 7 </button>
+
+        <span class="pagination-ellipsis">...</span>
+        <button class="pagination-link ghost icon" aria-label="Page 12"> 12 </button>
+      </div>
+      <div class="progress-buttons">
+        <button class="pagination-button icon ghost icon" aria-label="Next page">
+          <Icon name="arrow-right" size={20} />
+        </button>
+        <button class="pagination-button icon ghost icon" aria-label="Last page">
+          <Icon name="arrow-right-double" size={20} />
+        </button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const pagination = document.querySelector<HTMLElement>("[data-pagination]");
+
+  if (pagination) {
+    const totalPages = Number(pagination.dataset.totalPages);
+    const links = pagination.querySelector<HTMLElement>(".pagination-links");
+    const pageActions = pagination.querySelectorAll<HTMLButtonElement>("[data-page-action]");
+
+    const getPageItems = (current: number): (number | "...")[] => {
+      if (totalPages <= 7) return Array.from({ length: totalPages }, (_, index) => index + 1);
+
+      let visiblePages: number[];
+      if (current <= 3) {
+        visiblePages = [
+          ...Array.from({ length: 5 }, (_, index) => index + 1),
+          totalPages - 1,
+          totalPages,
+        ];
+      } else if (current === 4) {
+        visiblePages = [...Array.from({ length: 6 }, (_, index) => index + 1), totalPages];
+      } else if (current >= totalPages - 2) {
+        visiblePages = [1, 2, ...Array.from({ length: 5 }, (_, index) => totalPages - 4 + index)];
+      } else if (current === totalPages - 3) {
+        visiblePages = [1, ...Array.from({ length: 6 }, (_, index) => totalPages - 5 + index)];
+      } else {
+        visiblePages = [1, current - 2, current - 1, current, current + 1, current + 2, totalPages];
+      }
+
+      const items: (number | "...")[] = [];
+      for (const page of visiblePages) {
+        const previous = items.at(-1);
+        if (typeof previous === "number" && page - previous > 1) items.push("...");
+        items.push(page);
+      }
+      return items;
+    };
+
+    const render = (current: number) => {
+      pagination.dataset.currentPage = String(current);
+      pageActions.forEach((button) => {
+        const action = button.dataset.pageAction;
+        button.disabled =
+          action === "first" || action === "previous" ? current === 1 : current === totalPages;
+      });
+
+      if (!links) return;
+      links.replaceChildren(
+        ...getPageItems(current).map((item) => {
+          if (item === "...") {
+            const ellipsis = document.createElement("span");
+            ellipsis.className = "pagination-ellipsis";
+            ellipsis.setAttribute("aria-hidden", "true");
+            ellipsis.textContent = "...";
+            return ellipsis;
+          }
+
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = `pagination-link icon ${item === current ? `${current < totalPages / 2 ? "tr" : "tl"} active` : "ghost"}`;
+          button.setAttribute("aria-label", `Page ${item}`);
+          button.dataset.pageNumber = String(item);
+          button.textContent = String(item);
+          if (item === current) button.setAttribute("aria-current", "page");
+          return button;
+        }),
+      );
+    };
+
+    pagination.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const pageButton = target.closest<HTMLButtonElement>("[data-page-number]");
+      const actionButton = target.closest<HTMLButtonElement>("[data-page-action]");
+      const current = Number(pagination.dataset.currentPage);
+
+      if (pageButton) {
+        render(Number(pageButton.dataset.pageNumber));
+      } else if (actionButton) {
+        const action = actionButton.dataset.pageAction;
+        const nextPage =
+          action === "first"
+            ? 1
+            : action === "previous"
+              ? current - 1
+              : action === "next"
+                ? current + 1
+                : totalPages;
+        render(nextPage);
+      }
+    });
+  }
+</script>
+
+<style>
+  section {
+    display: grid;
+    justify-content: center;
+    gap: var(--fab-space-xl);
+
+    padding: 2rem;
+
+    &.demo {
+      margin-block-start: var(--fab-space-xl);
+      background:
+        radial-gradient(
+          circle at top left,
+          color-mix(in oklab, var(--fab-colour-primary) 12%, transparent),
+          transparent 40%
+        ),
+        var(--fab-background-checkerboard);
+    }
+  }
+
+  h2 {
+    grid-column: 1 / -1;
+    font-size: var(--fab-font-size-body);
+    font-weight: 600;
+    color: var(--fab-colour-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-bottom: var(--fab-space-xs);
+    border-bottom: 1px solid var(--fab-colour-border);
+    margin-block-start: var(--fab-space-xl);
+    margin-block-end: var(--fab-space-md);
+  }
+
+  p {
+    grid-column: 1 / -1;
+    color: var(--fab-colour-text-darker);
+    font-size: var(--fab-font-size-small);
+  }
+</style>

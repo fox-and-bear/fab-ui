@@ -14,7 +14,7 @@ import { iconNames } from "../components/iconNames";
       iconNames.toSorted().map((name) => (
         <article class="icon-card">
           <Icon name={name} size={32} />
-          <span>{name}</span>
+          <code>{name}</code>
         </article>
       ))
     }
@@ -51,7 +51,7 @@ import { iconNames } from "../components/iconNames";
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: var(--fab-space-2xs);
+        gap: var(--fab-space-md);
         padding: var(--fab-space-sm);
         background: var(--fab-colour-background);
         border: 1px solid var(--fab-colour-border);
@@ -61,7 +61,7 @@ import { iconNames } from "../components/iconNames";
           box-shadow 0.2s ease,
           transform 0.2s ease;
 
-        span {
+        code {
           color: var(--fab-colour-text-darker);
           font-size: var(--fab-font-size-small);
         }

@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { iconNames } from "../components/iconNames";
+---
+
+<Layout title="Icons" numeral="05">
+  <section aria-label="Available icons">
+    <h2>Available Icons ({iconNames.length} total)</h2>
+    <p>
+      This list will update automatically as new icons are added (this includes all icons even those used in the docs).
+    </p>
+    {
+      iconNames.toSorted().map((name) => (
+        <article class="icon-card">
+          <Icon name={name} size={32} />
+          <span>{name}</span>
+        </article>
+      ))
+    }
+  </section>
+
+  <style>
+    section {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
+      gap: var(--fab-space-md);
+      margin-bottom: var(--fab-space-2xl);
+      padding-inline: var(--fab-space-lg);
+
+      h2 {
+        grid-column: 1 / -1;
+        font-size: var(--fab-font-size-body);
+        font-weight: 600;
+        color: var(--fab-colour-text);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding-bottom: var(--fab-space-xs);
+        border-bottom: 1px solid var(--fab-colour-border);
+        margin-block-start: var(--fab-space-xl);
+      }
+
+      p {
+        grid-column: 1 / -1;
+        color: var(--fab-colour-text-darker);
+        font-size: var(--fab-font-size-small);
+      }
+
+      .icon-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--fab-space-2xs);
+        padding: var(--fab-space-sm);
+        background: var(--fab-colour-background);
+        border: 1px solid var(--fab-colour-border);
+        border-radius: var(--fab-radius-sm);
+        box-shadow: var(--fab-elevation-01, 0 1px 3px rgba(0, 0, 0, 0.04));
+        transition:
+          box-shadow 0.2s ease,
+          transform 0.2s ease;
+
+        span {
+          color: var(--fab-colour-text-darker);
+          font-size: var(--fab-font-size-small);
+        }
+      }
+    }
+  </style>
+</Layout>

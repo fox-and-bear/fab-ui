@@ -2,6 +2,59 @@
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout title="Template" numeral="00" />
+<Layout title="Template" numeral="00">
+  <section class="demo">
+    <p>Template</p>
+  </section>
+  <section></section>
 
-<style></style>
+  <style>
+    section {
+      display: grid;
+      justify-content: center;
+      gap: var(--fab-space-xl);
+      padding: 2rem;
+
+      h2 {
+        grid-column: 1 / -1;
+        font-size: var(--fab-font-size-body);
+        font-weight: 600;
+        color: var(--fab-colour-text);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding-bottom: var(--fab-space-xs);
+        border-bottom: 1px solid var(--fab-colour-border);
+        margin-block-start: var(--fab-space-xl);
+        margin-block-end: var(--fab-space-md);
+      }
+
+      p {
+        grid-column: 1 / -1;
+        color: var(--fab-colour-text-darker);
+        font-size: var(--fab-font-size-small);
+      }
+
+      &.demo {
+        margin-block-start: var(--fab-space-xl);
+        background:
+          radial-gradient(
+            circle at top left,
+            color-mix(in oklab, var(--fab-colour-primary) 12%, transparent),
+            transparent 40%
+          ),
+          var(--fab-background-checkerboard);
+
+        .demo-container {
+          display: flex;
+          justify-content: space-between;
+          gap: var(--fab-space-2xl);
+          background: linear-gradient(to bottom, var(--fab-colour-background) 80%, transparent);
+          padding: var(--fab-space-sm);
+          padding-block-end: var(--fab-space-lg);
+          border-radius: var(--fab-radius-md) var(--fab-radius-md) 0 0;
+          border-block-start: 1px solid var(--fab-colour-border);
+        }
+      }
+    }
+  </style>
+</Layout>

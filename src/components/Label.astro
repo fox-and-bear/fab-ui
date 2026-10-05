@@ -1,0 +1,32 @@
+---
+import Icon from "./Icon.astro";
+
+const { name = "Album", align = "left" } = Astro.props;
+
+const labels = [
+  { name: "CD", icon: "cd" },
+  { name: "Digital", icon: "digital" },
+  { name: "Blu-ray", icon: "blu-ray" },
+  { name: "DVD", icon: "dvd" },
+  { name: "Vinyl", icon: "vinyl" },
+  { name: "Cassette", icon: "cassette" },
+  { name: "Video Cassette", icon: "video-cassette" },
+  { name: "Album", icon: "album" },
+  { name: "Movie", icon: "movie" },
+  { name: "Live Act", icon: "live-act" },
+  { name: "Music Video", icon: "music-video" },
+  { name: "TV Show", icon: "tv-show" },
+  { name: "Playlist", icon: "playlist" },
+] as const;
+
+//ensuring the label name is properly capitalised. 
+const normalisedName = name.trim().toLowerCase();
+const matchedLabel = labels.find(
+  (label) => label.name.toLowerCase() === normalisedName,
+);
+---
+
+<span class:list={`label label-align-${align}`}>
+  <Icon name={matchedLabel?.icon ?? "album"} size={20} />
+  {matchedLabel?.name ?? name}
+</span>

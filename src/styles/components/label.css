@@ -1,0 +1,16 @@
+.label {
+    display: flex;
+    align-items: center;
+    gap: var(--fab-space-2xs);
+    font-weight: var(--fab-font-weight-regular);
+    font-size: var(--fab-font-size-small);
+    user-select: none;
+
+    &.label-align-left {
+        flex-direction: row;
+    }
+
+    &.label-align-right {
+        flex-direction: row-reverse;
+    }
+}

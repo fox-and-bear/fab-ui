@@ -1,6 +1,7 @@
 ---
 import Logo from "./Logo.astro";
 import Icon from "./Icon.astro";
+import type { IconName } from "./iconNames";
 
 const { pathname } = Astro.url;
 
@@ -8,7 +9,7 @@ type NavItem = {
   name: string;
   href?: string;
   children?: NavItem[];
-  icon?: string;
+  icon?: IconName;
 };
 
 type SitemapGroup = {
@@ -81,7 +82,7 @@ const sitemap: SitemapGroup[] = [
       },
       { name: "Pagination", href: "/components/pagination ", icon: "arrow-right-double" },
       { name: "Labels", href: "/components/labels", icon: "label" },
-
+      { name: "Media Card", href: "/components/media-card", icon: "media-card" },
     ],
   },
 ];

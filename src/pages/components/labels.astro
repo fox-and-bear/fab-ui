@@ -25,26 +25,33 @@ const categories = [
 <Layout title="Labels" numeral="10">
   <section class="demo">
     <div class="demo-container">
-      <Label name="CD"  />
+      <Label name="CD" />
       <Label name="Digital" align="right" />
     </div>
   </section>
   <section>
-    <h2>Alignment</h2>
+    <h2>Labels & Alignment</h2>
     <p>
       <code>.label-align-left</code> or <code>.label-align-right</code> will align the label and the icon.
     </p>
     <div class="align-container">
-        <Label name="Digital" align="left" />
-        <Label name="Digital"  align="right" />
+      <Label name="Digital" align="left" />
+      <Label name="Digital" align="right" />
     </div>
-   
-</section>
-    <section>
-<h2>Formats</h2>
-        <div>
-            {formats.map((format) => <Label name={format.name} />)}
-        </div>
+    <p>
+      Where more than one label is used, <code>.hide-text</code> will leave only the icon visible.
+    </p>
+    <div class="align-container" style="justify-content: center; gap: 0;">
+      <Label name="Digital" hideText={true} />
+      <Label name="CD" hideText={true} />
+      <Label name="Blu-ray" hideText={true} />
+    </div>
+  </section>
+  <section>
+    <h2>Formats</h2>
+    <div>
+      {formats.map((format) => <Label name={format.name} />)}
+    </div>
     <h2>Categories</h2>
     <div>
       {categories.map((category) => <Label name={category.name} />)}
@@ -102,11 +109,12 @@ const categories = [
       }
     }
     .align-container {
-        display: flex;
-        justify-content: space-between;
-        gap: var(--fab-space-2xl);
-        width: fit-content;
-        margin-inline: auto;
-      }
+      display: flex;
+      justify-content: space-between;
+      gap: var(--fab-space-2xl);
+      width: fit-content;
+      margin-inline: auto;
+      padding-block-end: var(--fab-space-lg);
+    }
   }
 </style>

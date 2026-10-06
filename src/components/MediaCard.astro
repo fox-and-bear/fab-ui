@@ -1,0 +1,77 @@
+---
+import Label from "./Label.astro";
+import type { IconName } from "./iconNames";
+
+type MediaCardProps = {
+  title: string;
+  artist: string;
+  artistLink?: string;
+  image: string;
+  href: string;
+  format: IconName;
+  categories: IconName[];
+};
+
+const {
+  title = "Media Card",
+  artist = "Artist Name",
+  artistLink = "#",
+  image = "/media/images/media-card.png",
+  href = "/components/media-card",
+  format = "CD",
+  categories = ["Album", "Live Act"],
+} = Astro.props as MediaCardProps;
+---
+
+<div class="media-card">
+  <div class="media-card-labels">
+    <Label name={format} />
+    {
+      categories.map((category) => (
+        <Label name={category} align="right" hideText={categories.length > 1} />
+      ))
+    }
+  </div>
+  <div class="media-card-content">
+    <a href={href}>
+      <div class="media-card-image">
+        <img src={image} alt={title} />
+      </div>
+    </a>
+    <div class="media-card-footer">
+      <a href={href}>
+        <span class="media-card-title">{title}</span>
+      </a>
+      <a class="media-card-artist" href={artistLink}>{artist}</a>
+    </div>
+  </div>
+
+  <script>
+    // This can likely be changed with a simple check if the size is included in the return 
+    const setImageAspectRatio = (image: HTMLImageElement) => {
+      if (!image.naturalWidth || !image.naturalHeight) return;
+
+      const container = image.closest(".media-card-image");
+      if (!(container instanceof HTMLElement)) return;
+
+      container.dataset.orientation =
+        image.naturalWidth > image.naturalHeight
+          ? "landscape"
+          : image.naturalWidth < image.naturalHeight
+            ? "portrait"
+            : "square";
+    };
+
+    document.querySelectorAll<HTMLImageElement>(".media-card-image img").forEach((image) => {
+      if (image.complete) {
+        setImageAspectRatio(image);
+      } else {
+        image.addEventListener("load", () => setImageAspectRatio(image), { once: true });
+      }
+    });
+  </script>
+
+  <style>
+   
+  </style>
+</div>

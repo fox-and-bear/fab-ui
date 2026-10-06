@@ -1,7 +1,7 @@
 ---
 import Icon from "./Icon.astro";
 
-const { name = "Album", align = "left" } = Astro.props;
+const { name = "Album", align = "left", hideText = false } = Astro.props;
 
 const labels = [
   { name: "CD", icon: "cd" },
@@ -26,7 +26,7 @@ const matchedLabel = labels.find(
 );
 ---
 
-<span class:list={`label label-align-${align}`}>
-  <Icon name={matchedLabel?.icon ?? "album"} size={20} />
-  {matchedLabel?.name ?? name}
+<span class:list={`label label-align-${align} ${hideText && "hide-text"}`} aria-label={matchedLabel?.name ?? name}>
+  <Icon name={matchedLabel?.icon ?? "album"} />
+  <span>{matchedLabel?.name ?? name}</span>
 </span>

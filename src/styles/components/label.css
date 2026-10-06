@@ -1,10 +1,18 @@
 .label {
+    --_label-height: 20px;
     display: flex;
     align-items: center;
     gap: var(--fab-space-2xs);
     font-weight: var(--fab-font-weight-regular);
     font-size: var(--fab-font-size-small);
     user-select: none;
+    height: var(--_label-height);
+
+    svg {
+        flex-shrink: 0;
+        width: var(--_label-height);
+        height: var(--_label-height);
+    }
 
     &.label-align-left {
         flex-direction: row;
@@ -12,5 +20,11 @@
 
     &.label-align-right {
         flex-direction: row-reverse;
+    }
+
+    &.hide-text {
+        span {
+            display: none;
+        }
     }
 }

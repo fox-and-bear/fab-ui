@@ -26,6 +26,8 @@ export const iconNames = [
   "tv-show",
   "music-video",
   "playlist",
+  "media-card",
+  "icons"
 ] as const;
 
 export type IconName = (typeof iconNames)[number];

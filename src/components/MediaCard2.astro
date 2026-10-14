@@ -1,0 +1,77 @@
+---
+import Label from "./Label.astro";
+import type { IconName } from "./iconNames";
+
+type MediaCardProps = {
+  title: string;
+  artist: string;
+  artistLink?: string;
+  image: string;
+  href: string;
+  format: IconName;
+  categories: IconName[];
+  layout: "cover" | "top" | "bottom" | "default";
+};
+
+const {
+  title,
+  artist,
+  artistLink,
+  image,
+  href,
+  format,
+  categories,
+  layout = "default",
+} = Astro.props as MediaCardProps;
+---
+
+<div class="media-card2">
+  <header>
+    <Label name={format} />
+    {
+      categories.map((category) => (
+        <Label name={category} align="right" hideText={categories.length > 1} />
+      ))
+    }
+  </header>
+  <div class=`media-card-content ${layout == "default" ? "" : layout}`>
+    <div class="media-card-image">
+      <a href={href}>
+        <img src={image} alt={title} />
+      </a>
+    </div>
+  </div>
+  <footer>
+    <a href={href}>
+      <span class="media-card-title">{title}</span>
+    </a>
+    <a class="media-card-artist" href={artistLink}>{artist}</a>
+  </footer>
+</div>
+
+<script>
+  // This can likely be changed with a simple check if the size is included in the return
+  const setImageAspectRatio = (image: HTMLImageElement) => {
+    if (!image.naturalWidth || !image.naturalHeight) return;
+
+    const container = image.closest(".media-card-image");
+    if (!(container instanceof HTMLElement)) return;
+
+    container.dataset.orientation =
+      image.naturalWidth > image.naturalHeight
+        ? "landscape"
+        : image.naturalWidth < image.naturalHeight
+          ? "portrait"
+          : "square";
+  };
+
+  document.querySelectorAll<HTMLImageElement>(".media-card-image img").forEach((image) => {
+    if (image.complete) {
+      setImageAspectRatio(image);
+    } else {
+      image.addEventListener("load", () => setImageAspectRatio(image), { once: true });
+    }
+  });
+</script>
+
+<style></style>

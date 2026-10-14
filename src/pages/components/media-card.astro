@@ -39,6 +39,43 @@ categories: ["TV Series"],
   href: "/components/media-card",
   format: "Vinyl",
   categories: ["Album"]
+},
+  
+{
+title: "Season 25",
+artist: "Doctor Who",
+artistLink: "#",
+image: "/media/images/doctorwho.jpg",
+href: "/components/media-card",
+format: "Blu-Ray",
+categories: ["TV Series"],
+},{
+title: "Froot",
+artist: "Marina",
+artistLink: "#",
+image: "/media/images/froot.png",
+href: "/components/media-card",
+format: "CD",
+categories: ["Album"],
+},
+  {
+title: "Amplified Heart (2026) Deluxe Edition",
+artist: "Everything But the Girl",
+artistLink: "#",
+image: "/media/images/ebtg.jpg",
+href: "/components/media-card",
+format: "CD",
+categories: ["Album"],
+},
+  
+{
+  title: "Princess of Power",
+  artist: "Marina",
+  artistLink: "#",
+  image: "/media/images/princessofpower.jpg",
+  href: "/components/media-card",
+  format: "Vinyl",
+  categories: ["Album"]
 }
 ];
 
@@ -103,7 +140,8 @@ categories: ["TV Series"],
     }
     .card-deck {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      justify-items: center;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: var(--fab-space-md);
       background: var(--fab-colour-background);
       padding: var(--fab-space-md);

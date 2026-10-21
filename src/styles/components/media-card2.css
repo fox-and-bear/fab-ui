@@ -15,6 +15,7 @@
   width: var(--_min-height);
   isolation: isolate;
   
+  
   &:has(.cover) {
     border-radius: var(--_border-radius);
   }
@@ -32,7 +33,7 @@
     margin: 0;
 
     &:hover {
-      color: var(--fab-colour-primary);
+      color: var(--fab-colour-primary);    
     }
   }
 
@@ -56,7 +57,6 @@
 
       border-radius: calc(var(--_border-radius) - var(--_border-width));
       margin: var(--_border-width);
-
     }
   }
 
@@ -69,8 +69,9 @@
     min-height: var(--_min-height);
     box-shadow: var(--fab-elevation-02);
     border-radius: var(--_border-radius);
-    background: 
-    /* linear-gradient(var(--fab-colour-background), var(--fab-colour-background)) content-box, */
+    /* MOVED TO IMAGE CONTAINER  */
+    /* background: 
+    linear-gradient(var(--fab-colour-background), var(--fab-colour-background)) content-box,
     linear-gradient(
         var(--_glass-border-angle),
         var(--fab-colour-border) 0%,
@@ -79,10 +80,16 @@
         transparent 50%,
         var(--fab-colour-border) 100%
       )
-      border-box;
-    border: var(--_border-width) solid transparent;
-    overflow: hidden;
+      border-box; 
+  border: var(--_border-width) solid transparent;       
     transition: --_glass-border-angle .5s ease;
+    
+     .media-card2:hover & {
+      --_glass-border-angle: 160deg;
+    } 
+
+    */
+   
    
 
     &.cover {
@@ -112,9 +119,6 @@
       }
     }
 
-    &:hover {
-      --_glass-border-angle: 160deg;
-    }
   }
 
   footer {
@@ -123,14 +127,36 @@
 
   .media-card-image {
     height: 100%;
-    border-radius: var(--_border-radius);
+    border-radius: calc(var(--_border-radius));
     overflow: hidden;
+    
+    /* BORDER HOVER  */
+    border: var(--_border-width) solid transparent;
+    background: 
+    linear-gradient(var(--fab-colour-background), var(--fab-colour-background)) content-box,
+    linear-gradient(
+        var(--_glass-border-angle),
+        var(--fab-colour-border) 0%,
+        transparent 30%,
+        var(--fab-colour-background-on) 40%,
+        transparent 50%,
+        var(--fab-colour-border) 100%
+      )
+      border-box;
+      transition: --_glass-border-angle .5s ease;
+
+      .media-card2:hover & {
+      --_glass-border-angle: 160deg;
+    }
+   
     img {
       object-fit: cover;
       height: 100%;
       width: 100%;
     }
   }
+
+
   /* demo only  */
   header,
   footer {

@@ -5,96 +5,92 @@ import MediaCard from "../../components/MediaCard2.astro";
 
 const titles = [
   {
-title: "Froot",
-artist: "Marina",
-artistLink: "#",
-image: "/media/images/froot.png",
-href: "/components/media-card",
-format: "CD",
-categories: ["Album"],
+    title: "Froot",
+    artist: "Marina",
+    artistLink: "#",
+    image: "/media/images/froot.png",
+    href: "/components/media-card",
+    format: "CD",
+    categories: ["Album"],
+  },
+  {
+    title: "Amplified Heart (2026) Deluxe Edition",
+    artist: "Everything But the Girl",
+    artistLink: "#",
+    image: "/media/images/ebtg.jpg",
+    href: "/components/media-card",
+    format: "CD",
+    categories: ["Album"],
+    layout: "top",
+  },
+  {
+    title: "Season 25",
+    artist: "Doctor Who",
+    artistLink: "#",
+    image: "/media/images/doctorwho.jpg",
+    href: "/components/media-card",
+    format: "Blu-Ray",
+    categories: ["TV Series"],
+  },
+  {
+    title: "Princess of Power",
+    artist: "Marina",
+    artistLink: "#",
+    image: "/media/images/princessofpower.jpg",
+    href: "/components/media-card",
+    format: "Vinyl",
+    categories: ["Album"],
+    layout: "bottom",
+  },
 
-},
   {
-title: "Amplified Heart (2026) Deluxe Edition",
-artist: "Everything But the Girl",
-artistLink: "#",
-image: "/media/images/ebtg.jpg",
-href: "/components/media-card",
-format: "CD",
-categories: ["Album"],
-layout: "top"
-},
+    title: "Season 25",
+    artist: "Doctor Who",
+    artistLink: "#",
+    image: "/media/images/doctorwho.jpg",
+    href: "/components/media-card",
+    format: "Blu-Ray",
+    categories: ["TV Series"],
+    layout: "cover",
+  },
   {
-title: "Season 25",
-artist: "Doctor Who",
-artistLink: "#",
-image: "/media/images/doctorwho.jpg",
-href: "/components/media-card",
-format: "Blu-Ray",
-categories: ["TV Series"],
-},
-{
-  title: "Princess of Power",
-  artist: "Marina",
-  artistLink: "#",
-  image: "/media/images/princessofpower.jpg",
-  href: "/components/media-card",
-  format: "Vinyl",
-  categories: ["Album"],
-  layout: "bottom"
-},
-  
-{
-title: "Season 25",
-artist: "Doctor Who",
-artistLink: "#",
-image: "/media/images/doctorwho.jpg",
-href: "/components/media-card",
-format: "Blu-Ray",
-categories: ["TV Series"],
-layout: "cover"
-},{
-title: "Froot",
-artist: "Marina",
-artistLink: "#",
-image: "/media/images/froot.png",
-href: "/components/media-card",
-format: "CD",
-categories: ["Album"],
-},
+    title: "Froot",
+    artist: "Marina",
+    artistLink: "#",
+    image: "/media/images/froot.png",
+    href: "/components/media-card",
+    format: "CD",
+    categories: ["Album"],
+  },
   {
-title: "Amplified Heart (2026) Deluxe Edition",
-artist: "Everything But the Girl",
-artistLink: "#",
-image: "/media/images/ebtg.jpg",
-href: "/components/media-card",
-format: "CD",
-categories: ["Album"],
-},
-  
-{
-  title: "Princess of Power",
-  artist: "Marina",
-  artistLink: "#",
-  image: "/media/images/princessofpower.jpg",
-  href: "/components/media-card",
-  format: "Vinyl",
-  categories: ["Album"]
-}
+    title: "Amplified Heart (2026) Deluxe Edition",
+    artist: "Everything But the Girl",
+    artistLink: "#",
+    image: "/media/images/ebtg.jpg",
+    href: "/components/media-card",
+    format: "CD",
+    categories: ["Album"],
+  },
+
+  {
+    title: "Princess of Power",
+    artist: "Marina",
+    artistLink: "#",
+    image: "/media/images/princessofpower.jpg",
+    href: "/components/media-card",
+    format: "Vinyl",
+    categories: ["Album"],
+  },
 ];
-
 ---
 
 <Layout title="Media Card" numeral="11">
   <div class="card-deck">
-      {titles.map((props) => (
-        <MediaCard {...props} />
-      ))}
+    {titles.map((props) => <MediaCard {...props} />)}
   </div>
   <section></section>
 
   <style>
-    
     section {
       display: grid;
       gap: var(--fab-space-xl);
@@ -140,7 +136,6 @@ categories: ["Album"],
           border-block-start: 1px solid var(--fab-colour-border);
         }
       }
-
     }
     .card-deck {
       display: grid;

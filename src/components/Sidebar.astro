@@ -4,6 +4,8 @@ import Icon from "./Icon.astro";
 import type { IconName } from "./iconNames";
 
 const { pathname } = Astro.url;
+const withBase = (path: string) =>
+  `${import.meta.env.BASE_URL}/${path.replace(/^\/+/, "")}`;
 
 type NavItem = {
   name: string;
@@ -56,6 +58,7 @@ type SitemapGroup = {
 //   },
 // ];
 
+
 const sitemap: SitemapGroup[] = [
   {
     title: "Foundations",
@@ -104,7 +107,7 @@ const sitemap: SitemapGroup[] = [
               {group.children.map((parent) => (
                 <li class="nav-item">
                   {parent.href ? (
-                    <a href={parent.href} aria-label={parent.name} class={pathname === parent.href ? "active" : ""}>
+                    <a href={withBase(parent.href)} aria-label={parent.name} class={pathname === withBase(parent.href) ? "active" : ""}>
                       {parent.icon && <Icon name={parent.icon} size={20} />}
                       {parent.name}
                     </a>
@@ -122,7 +125,7 @@ const sitemap: SitemapGroup[] = [
                         {parent.children.map((child) => (
                           <li class="nav-item">
                             {child.href ? (
-                              <a href={child.href} aria-label={child.name} class={pathname === child.href ? "active" : ""}>
+                              <a href={withBase(child.href)} aria-label={child.name} class={pathname === withBase(child.href) ? "active" : ""}>
                                 {/* {child.icon && <Icon name={child.icon} size={20} />} */}
                                 {child.name}
                               </a>
@@ -143,7 +146,7 @@ const sitemap: SitemapGroup[] = [
                                 {child.children.map((grandchild) => (
                                   <li class="nav-item">
                                     {grandchild.href ? (
-                                      <a href={grandchild.href} aria-label={grandchild.name} class={pathname === grandchild.href ? "active" : ""}>
+                                      <a href={withBase(grandchild.href)} aria-label={grandchild.name} class={pathname === withBase(grandchild.href) ? "active" : ""}>
                                         {/* {grandchild.icon && <Icon name={grandchild.icon} size={20} />} */}
                                         {grandchild.name}
                                       </a>
@@ -176,7 +179,7 @@ const sitemap: SitemapGroup[] = [
     </nav>
 
     <div class="user-info">
-      <img src="/image/Avatar.svg" alt="User Avatar" />
+      <img src="/fab-ui/image/Avatar.svg" alt="User Avatar" />
       <span class="user-name">Kristian</span>
       <button class="icon ghost">
         <svg

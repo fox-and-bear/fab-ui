@@ -153,19 +153,21 @@
     }
   }
 
-  /* demo only  */
-  .media-card2 {
+}
 
-    > header,
-    > footer {
-      display: flex;
-    }
-    > header {
-      justify-content: space-between;
-    }
-    
-    > footer {
-      flex-direction: column;
-    }
+
+/* demo only  */
+.media-card2 {
+
+  > header,
+  > footer {
+    display: flex;
+  }
+  > header {
+    justify-content: space-between;
+  }
+  
+  > footer {
+    flex-direction: column;
   }
 }

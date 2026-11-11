@@ -2,6 +2,7 @@
 @import url("cassannet/index.css");
 @import url("n27/index.css");
 @import url("quablo/index.css");
+@import url("satoshi/index.css");
 
 
 @font-face {
@@ -93,3 +94,5 @@
   font-weight: 300;
   font-style: italic;
 }
+
+

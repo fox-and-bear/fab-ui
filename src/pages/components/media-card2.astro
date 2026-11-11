@@ -115,18 +115,25 @@ const titles = [
 ---
 
 <Layout title="Media Card" numeral="11">
-  <div class="card-deck">
-    {titles.map((props) => <MediaCard {...props} />)}
-  </div>
-  <section></section>
+  <section>
+    <h2>Revision</h2>
+    <p>
+      A revision of the original Media Card to maintain a more consistent size and alignment of the cards. Some outliers still exist but it's much improved.
+    </p>
+  </section>
+
+  <section>
+    <div class="card-deck">
+      {titles.map((props) => <MediaCard {...props} />)}
+    </div>
+  </section>
+</Layout>
 
   <style>
     section {
       display: grid;
-      gap: var(--fab-space-xl);
-
       padding: 2rem;
-
+    
       h2 {
         grid-column: 1 / -1;
         font-size: var(--fab-font-size-body);
@@ -144,6 +151,10 @@ const titles = [
         grid-column: 1 / -1;
         color: var(--fab-colour-text-darker);
         font-size: var(--fab-font-size-small);
+      }
+
+      .card-deck {
+        border-radius: var(--fab-radius-lg);
       }
 
       &.demo {
@@ -169,4 +180,3 @@ const titles = [
       }
     }
   </style>
-</Layout>

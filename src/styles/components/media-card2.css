@@ -56,7 +56,7 @@
   }
 
   > .media-card-content {
-    z-index: -1;
+    /* z-index: -1; */
     display: flex;
     flex-direction: column;
     min-height: var(--_min-height);
@@ -70,6 +70,7 @@
       position: absolute;
       inset: var(--_border-width);
       border-radius: calc(var(--_border-radius) - var(--_border-width));
+      pointer-events: none;
     }
 
     &.cover {
@@ -119,6 +120,15 @@
     & > :first-child {
       text-transform: uppercase;
       font-weight: var(--fab-font-weight-bold);
+      transition: font-weight 0.25s ease;
+
+      .media-card-content:hover + footer & {
+        font-weight: var(--fab-font-weight-black);
+        color: var(--fab-colour-primary);
+      } 
+      &:hover {
+        font-weight: var(--fab-font-weight-black);
+      }
     }
   }
 

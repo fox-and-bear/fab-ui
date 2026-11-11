@@ -103,6 +103,10 @@
   footer {
     grid-row: -2 / -1;
     margin-block-start: auto;
+    & > :first-child {
+      text-transform: uppercase;
+      font-weight: var(--fab-font-weight-bold);
+    }
   }
 
   .media-card-image {

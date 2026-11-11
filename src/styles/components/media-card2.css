@@ -4,6 +4,15 @@
   initial-value: 135deg;
 }
 
+.card-deck {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: min-content minmax(300px, 1fr) min-content;
+  gap: var(--fab-space-md) var(--fab-space-lg);
+  background: var(--fab-colour-background);
+  padding: var(--fab-space-md);
+}
+
 .media-card2 {
   --_border-width: 2px;
   --_border-radius: var(--fab-radius-md);
@@ -15,7 +24,6 @@
   grid-template-rows: subgrid;
   grid-template-columns: subgrid;
 
-  background-color: var(--fab-colour-background);
   width: var(--_min-height);
   isolation: isolate;
 
@@ -36,18 +44,18 @@
     all: unset;
   }
 
-  header {
+  > header {
     grid-row: 1 / 2;
     padding-block-start: var(--fab-space-xs);
 
     /* previous header - needs to move away from edge  */
     &:has(+ .cover),
     &:has(+ .top) {
-        padding-inline: var(--fab-space-sm);
+      padding-inline: var(--fab-space-sm);
     }
   }
 
-  .media-card-content {
+  > .media-card-content {
     z-index: -1;
     display: flex;
     flex-direction: column;
@@ -63,13 +71,19 @@
       inset: var(--_border-width);
       border-radius: calc(var(--_border-radius) - var(--_border-width));
     }
-   
-    
+
     &.cover {
       grid-row: 1 / -1;
 
       &::after {
-        background: linear-gradient(to bottom, black, #00000077 10%, transparent, #00000077 75%, black);
+        background: linear-gradient(
+          to bottom,
+          black,
+          #00000077 10%,
+          transparent,
+          #00000077 75%,
+          black
+        );
       }
     }
 
@@ -89,7 +103,6 @@
       }
     }
 
-
     &.cover,
     &.bottom {
       /* subsequent footer - needs to move away from edge  */
@@ -98,8 +111,8 @@
       }
     }
   }
-  
-  footer {
+
+  > footer {
     grid-row: -2 / -1;
     margin-block-start: auto;
     padding-block-end: var(--fab-space-xs);
@@ -141,15 +154,18 @@
   }
 
   /* demo only  */
-  header,
-  footer {
-    display: flex;
-  }
-  header {
-    justify-content: space-between;
-  }
+  .media-card2 {
 
-  footer {
-    flex-direction: column;
+    > header,
+    > footer {
+      display: flex;
+    }
+    > header {
+      justify-content: space-between;
+    }
+    
+    > footer {
+      flex-direction: column;
+    }
   }
 }

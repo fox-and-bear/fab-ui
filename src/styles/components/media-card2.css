@@ -56,7 +56,7 @@
   }
 
   > .media-card-content {
-    /* z-index: -1; */
+    z-index: -1;
     display: flex;
     flex-direction: column;
     min-height: var(--_min-height);

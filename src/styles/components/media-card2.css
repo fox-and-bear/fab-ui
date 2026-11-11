@@ -38,12 +38,12 @@
 
   header {
     grid-row: 1 / 2;
+    padding-block-start: var(--fab-space-xs);
 
     /* previous header - needs to move away from edge  */
     &:has(+ .cover),
     &:has(+ .top) {
         padding-inline: var(--fab-space-sm);
-        padding-block-start: var(--fab-space-xs);
     }
   }
 
@@ -95,14 +95,14 @@
       /* subsequent footer - needs to move away from edge  */
       ~ footer {
         padding-inline: var(--fab-space-sm);
-        padding-block-end: var(--fab-space-xs);
       }
     }
   }
-
+  
   footer {
     grid-row: -2 / -1;
     margin-block-start: auto;
+    padding-block-end: var(--fab-space-xs);
     & > :first-child {
       text-transform: uppercase;
       font-weight: var(--fab-font-weight-bold);

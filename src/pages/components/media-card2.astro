@@ -2,7 +2,6 @@
 import Layout from "../../layouts/Layout.astro";
 import MediaCard from "../../components/MediaCard2.astro";
 
-
 const titles = [
   {
     title: "Froot",
@@ -94,6 +93,7 @@ const titles = [
     section {
       display: grid;
       gap: var(--fab-space-xl);
+
       padding: 2rem;
 
       h2 {
@@ -141,7 +141,8 @@ const titles = [
       display: grid;
       justify-items: center;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--fab-space-md);
+      grid-template-rows: auto minmax(300px, 1fr) auto;
+      gap: var(--fab-space-md) var(--fab-space-lg);
       background: var(--fab-colour-background);
       padding: var(--fab-space-md);
     }
